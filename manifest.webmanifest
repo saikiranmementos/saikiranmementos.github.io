@@ -1,0 +1,17 @@
+{
+  "name": "Sai Kiran Shield & Wood Works",
+  "short_name": "Sai Kiran",
+  "description": "Orders, customers, payments and designs for Sai Kiran Shield & Wood Works",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1d130e",
+  "theme_color": "#341a0d",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

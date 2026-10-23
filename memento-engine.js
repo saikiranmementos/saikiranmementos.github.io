@@ -486,11 +486,17 @@ export async function createEngine(el, cb = {}) {
     }
     return Math.min(6, Math.max(1, z));
   }
+  // full photo loads in the background; the tiny strip thumbnail (already cached) stands in instantly so the pick shows at once
   function photoFor(b) {
     if (b.id === 'custom') return bgImg;
     let c = photoCache[b.id];
-    if (!c) { c = photoCache[b.id] = { img: null }; loadImg(b.photo).then(i => { c.img = i; if (P && P.bg === b.id) drawBg(); }).catch(() => {}); }
-    return c.img;
+    if (!c || (c.failed && Date.now() - c.failed > 4000)) {
+      c = photoCache[b.id] = { img: null, th: (c && c.th) || null };
+      const redraw = () => { if (P && P.bg === b.id) drawBg(); };
+      if (b.thumb && !c.th) loadImg(b.thumb).then(i => { c.th = i; if (!c.img) redraw(); }).catch(() => {});
+      c.p = loadImg(b.photo).then(i => { c.img = i; c.failed = 0; redraw(); }, () => { c.failed = Date.now(); });
+    }
+    return c.img || c.th;
   }
   const avgCache = new WeakMap();
   function avgColor(img) {
@@ -539,6 +545,7 @@ export async function createEngine(el, cb = {}) {
     const pr = renderer.getPixelRatio(), w = Math.max(2, Math.round(size[0] * pr)), h = Math.max(2, Math.round(size[1] * pr));
     bgCanvas.width = w; bgCanvas.height = h; const g = bgCanvas.getContext('2d');
     const b = bgDef(), img = (b.photo || b.id === 'custom') ? photoFor(b) : null;
+    if (!img && (b.photo || b.id === 'custom') && scene.background === bgTex) return; // keep the current backdrop until the new one arrives
     bgInfo = img ? { mm: b.mm, coverW: img.naturalWidth * Math.max(w / img.naturalWidth, h / img.naturalHeight), fx: b.fx, fy: b.fy } : { mm: 0, coverW: 0, fx: 0.5, fy: 0.5 };
     const z = bgZoom(); paintBg(g, w, h, z); drawnZ = z;
     bgTex.repeat.set(1, 1); bgTex.offset.set(0, 0);
@@ -993,6 +1000,8 @@ export async function createEngine(el, cb = {}) {
       controls.update();
     },
     snapshot(name = 'memento', onBlob) {
+      const sb = P && P.viewMode !== 'cad' ? bgDef() : null;
+      if (sb && sb.photo) { photoFor(sb); const c = photoCache[sb.id]; if (c && !c.img && !c.failed && c.p) return c.p.then(() => this.snapshot(name, onBlob)); }
       const vw = size[0], vh = size[1], fmt = P.exportFormat || 'png';
       let W = P.outW, H = P.outH;
       if (!W || !H) { W = Math.round(vw * 2); H = Math.round(vh * 2); }

@@ -1,10 +1,11 @@
-const C = 'sk-app-v2';
+const C = 'sk-app-v3';
 const ROOT = self.registration.scope;
 self.addEventListener('install', e => { self.skipWaiting(); e.waitUntil(caches.open(C).then(c => c.addAll([ROOT, 'manifest.webmanifest', 'assets/icon-192.png'])).catch(() => {})); });
 self.addEventListener('activate', e => e.waitUntil((async () => { for (const k of await caches.keys()) if (k !== C) await caches.delete(k); await self.clients.claim(); })()));
 self.addEventListener('fetch', e => {
   const r = e.request, u = new URL(r.url);
   if (r.method !== 'GET' || u.origin !== location.origin) return;
+  if (u.pathname.indexOf('/memento-studio/') >= 0) return;
   if (r.mode === 'navigate') {
     e.respondWith(fetch(r).then(res => { const cp = res.clone(); caches.open(C).then(c => c.put(ROOT, cp)); return res; }).catch(() => caches.match(ROOT)));
     return;

@@ -1,7 +1,7 @@
-const C = 'sk-app-v3';
+const C = 'sk-app-v4';
 const ROOT = self.registration.scope;
 self.addEventListener('install', e => { self.skipWaiting(); e.waitUntil(caches.open(C).then(c => c.addAll([ROOT, 'manifest.webmanifest', 'assets/icon-192.png'])).catch(() => {})); });
-self.addEventListener('activate', e => e.waitUntil((async () => { for (const k of await caches.keys()) if (k !== C) await caches.delete(k); await self.clients.claim(); })()));
+self.addEventListener('activate', e => e.waitUntil((async () => { for (const k of await caches.keys()) if (k !== C && k.indexOf('sk-app-') === 0) await caches.delete(k); await self.clients.claim(); })()));
 self.addEventListener('fetch', e => {
   const r = e.request, u = new URL(r.url);
   if (r.method !== 'GET' || u.origin !== location.origin) return;

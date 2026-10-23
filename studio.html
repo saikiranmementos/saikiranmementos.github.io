@@ -9,9 +9,9 @@
 <x-dc>
 <helmet>
   <title>Memento Studio · Sai Kiran Wood Works &amp; Mementoes</title>
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/studio/logo.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="assets/studio/apple-touch-icon.png">
   <meta name="theme-color" content="#ec3013">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +35,7 @@
   <sc-if value="{{ showInstall }}" hint-placeholder-val="{{ false }}">
     <div role="region" aria-label="Install app" style="position:fixed; top:0; left:0; right:0; z-index:45; display:flex; justify-content:center; padding:8px 8px 0; pointer-events:none">
       <div style="pointer-events:auto; width:min(640px, 100%); display:flex; align-items:center; gap:12px; padding:10px 10px 10px 12px; border-radius:16px; background:var(--ms-primary); color:var(--ms-on-primary); box-shadow:var(--ms-pop)">
-        <img src="assets/icon-192.png" alt="" width="40" height="40" style="display:block; width:40px; height:40px; flex:none; border-radius:10px">
+        <img src="assets/studio/icon-192.png" alt="" width="40" height="40" style="display:block; width:40px; height:40px; flex:none; border-radius:10px">
         <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:2px">
           <span style="font-size:13px; font-weight:700">Install Memento Studio</span>
           <span style="font-size:11px; line-height:1.4; opacity:0.8; text-wrap:pretty">{{ installText }}</span>
@@ -52,7 +52,7 @@
 
   <aside style="display:{{ M.panelDisp }}; flex-direction:column; min-height:0; background:var(--ms-panel); border-radius:18px; box-shadow:var(--ms-shadow); overflow:hidden">
     <div style="order:0; flex:none; display:flex; align-items:center; gap:8px; padding:{{ M.hdrPad }}; background:var(--ms-panel); border-bottom:{{ M.hdrLine }}">
-      <img src="assets/logo.svg" alt="Memento Studio" width="30" height="30" style="display:block; width:30px; height:30px; flex:none">
+      <img src="assets/studio/logo.svg" alt="Memento Studio" width="30" height="30" style="display:block; width:30px; height:30px; flex:none">
       <span style="display:{{ M.mobOnly }}; flex-direction:column; min-width:0; gap:1px"><span style="font-size:14px; font-weight:700; white-space:nowrap">Memento Studio</span><span style="font-size:10px; color:var(--ms-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Sai Kiran Wood Works &amp; Mementoes</span></span>
       <span style="flex:1"></span>
       <button onClick="{{ startTour }}" title="Product tour" aria-label="Product tour" style="display:{{ M.mobOnly }}; width:36px; height:36px; flex:none; place-items:center; border:0; border-radius:10px; background:var(--ms-field); color:var(--ms-text); cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg></button>
@@ -154,7 +154,7 @@
       <sc-if value="{{ showLoader }}" hint-placeholder-val="{{ true }}">
         <div role="status" aria-live="polite" style="position:absolute; inset:0; z-index:4; display:grid; place-items:center; background:{{ loaderBg }}; pointer-events:none">
           <div style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:22px 26px; min-width:220px; border-radius:18px; background:var(--ms-panel); box-shadow:var(--ms-pop)">
-            <img src="assets/logo.svg" alt="Memento Studio" width="48" height="48" style="display:block; width:48px; height:48px">
+            <img src="assets/studio/logo.svg" alt="Memento Studio" width="48" height="48" style="display:block; width:48px; height:48px">
             <div style="display:flex; flex-direction:column; align-items:center; gap:3px">
               <span style="font-size:13px; font-weight:700">Memento Studio</span>
               <span style="font-size:12px; color:var(--ms-muted)">{{ status }}</span>
@@ -788,7 +788,7 @@
           <sc-if value="{{ tabAbout }}" hint-placeholder-val="{{ false }}">
             <div style="padding:20px 18px; display:flex; flex-direction:column; gap:18px; max-width:600px">
               <div style="display:flex; align-items:center; gap:12px">
-                <img src="assets/logo.svg" alt="Memento Studio" width="48" height="48" style="display:block; width:48px; height:48px; flex:none">
+                <img src="assets/studio/logo.svg" alt="Memento Studio" width="48" height="48" style="display:block; width:48px; height:48px; flex:none">
                 <div style="display:flex; flex-direction:column; gap:2px; min-width:0">
                   <span style="font-size:16px; font-weight:700">Memento Studio</span>
                   <span style="font-size:12px; color:var(--ms-muted)">3D memento preview tool · version {{ appVersion }}</span>
@@ -827,7 +827,7 @@
               </div>
               <sc-if value="{{ showInstallBtn }}" hint-placeholder-val="{{ false }}">
                 <div style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; background:var(--ms-field)">
-                  <img src="assets/icon-192.png" alt="" width="36" height="36" style="display:block; width:36px; height:36px; flex:none; border-radius:9px">
+                  <img src="assets/studio/icon-192.png" alt="" width="36" height="36" style="display:block; width:36px; height:36px; flex:none; border-radius:9px">
                   <span style="flex:1; min-width:0; font-size:12px; line-height:1.5; text-wrap:pretty">Install Memento Studio as an app — it opens in its own window with its own icon.</span>
                   <button onClick="{{ doInstall }}" style="flex:none; padding:8px 14px; border:0; border-radius:10px; background:var(--ms-primary); color:var(--ms-on-primary); font:inherit; font-size:12px; font-weight:600; cursor:pointer">Install app</button>
                 </div>
@@ -841,7 +841,7 @@
           <sc-if value="{{ tabCredits }}" hint-placeholder-val="{{ false }}">
             <div style="padding:20px 18px; display:flex; flex-direction:column; gap:18px; max-width:600px">
               <div style="display:flex; align-items:center; gap:12px">
-                <img src="assets/logo.svg" alt="Memento Studio" width="40" height="40" style="display:block; width:40px; height:40px">
+                <img src="assets/studio/logo.svg" alt="Memento Studio" width="40" height="40" style="display:block; width:40px; height:40px">
                 <div style="display:flex; flex-direction:column; gap:2px">
                   <span style="font-size:15px; font-weight:700">Memento Studio</span>
                   <span style="font-size:12px; color:var(--ms-muted)">Built for and owned by SAI KIRAN Wood Works &amp; Mementoes</span>
@@ -917,7 +917,7 @@ const DEF = {
   privOn: false, privArea: 'all', privStyle: 'blur', privAmount: 60, privRegions: [], privTool: 'rect',
 };
 const PRESETS = { sq1080: [1080, 1080], sq2000: [2000, 2000], p45: [1080, 1350], p34: [1500, 2000], l169: [1920, 1080], l32: [1800, 1200], og: [1200, 630], story: [1080, 1920], view: [0, 0] };
-const BUILTIN = [{ id: 'builtin:4x6', name: 'BASE_4X6.stp', url: 'assets/base_4x6.stp', meta: 'Built-in · STEP' }, { id: 'builtin:10x15', name: '10X15 Dimma.stp', url: 'assets/base_10x15_dimma.stp', meta: 'Built-in · STEP · gold poles & beading' }];
+const BUILTIN = [{ id: 'builtin:4x6', name: 'BASE_4X6.stp', url: 'assets/studio/base_4x6.stp', meta: 'Built-in · STEP' }, { id: 'builtin:10x15', name: '10X15 Dimma.stp', url: 'assets/studio/base_10x15_dimma.stp', meta: 'Built-in · STEP · gold poles & beading' }];
 const VKEY = 'memento3d.variants.v1';
 const TKEY = 'memento3d.tour.v1';
 const TOUR = [

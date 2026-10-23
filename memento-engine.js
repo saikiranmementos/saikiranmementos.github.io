@@ -39,7 +39,7 @@ export const BACKGROUNDS = [
     ['25', 'Carrara marble', 600, 0.5, 0.5, 0.9, 0, 0.4], ['26', 'Grey marble', 600, 0.5, 0.5, 0.82, 0, 0.5], ['27', 'Swirl plaster', 600, 0.5, 0.5, 0.9, 0, 0.3],
     ['28', 'Natural linen', 500, 0.5, 0.5, 0.72, 0.2, 0.1], ['29', 'Cream linen', 500, 0.5, 0.5, 0.82, 0.4, 0.1], ['30', 'Blush linen', 500, 0.5, 0.5, 0.7, 0.5, 0.1],
     ['31', 'Charcoal weave', 500, 0.5, 0.5, 0.25, 0, 0.2], ['32', 'Ivory silk', 500, 0.5, 0.5, 0.9, 0, 0.5], ['33', 'Desk lamp', 800, 0.5, 0.85, 0.85, 0.3, 0.3],
-  ].map(([n, name, mm, fx, fy, lum, warm, busy]) => ({ id: 'p' + n, name, mm, fx, fy, lum, warm, busy, photo: res(`assets/backdrops/bd_${n}.jpg`), thumb: res(`assets/backdrops/th_${n}.jpg`) })),
+  ].map(([n, name, mm, fx, fy, lum, warm, busy]) => ({ id: 'p' + n, name, mm, fx, fy, lum, warm, busy, photo: res(`assets/studio/backdrops/bd_${n}.jpg`), thumb: res(`assets/studio/backdrops/th_${n}.jpg`) })),
 ];
 // tabletop / floor surfaces the memento stands on: mm = real-world width of one photo tile, rough = surface sheen
 export const FLOORS = [
@@ -48,7 +48,7 @@ export const FLOORS = [
     ['oak', 'Light oak', '22', 700, 0.6], ['walnut', 'Walnut', '23', 700, 0.45], ['planks', 'Barn planks', '24', 900, 0.75],
     ['carrara', 'Carrara marble', '25', 800, 0.18], ['greymarble', 'Grey marble', '26', 800, 0.2], ['plaster', 'White stone', '27', 700, 0.85],
     ['linen', 'Linen cloth', '28', 450, 0.95], ['cream', 'Cream cloth', '29', 450, 0.95], ['charcoal', 'Charcoal cloth', '31', 450, 0.95],
-  ].map(([id, name, n, mm, rough]) => ({ id, name, mm, rough, photo: res(`assets/backdrops/bd_${n}.jpg`), thumb: res(`assets/backdrops/th_${n}.jpg`) })),
+  ].map(([id, name, n, mm, rough]) => ({ id, name, mm, rough, photo: res(`assets/studio/backdrops/bd_${n}.jpg`), thumb: res(`assets/studio/backdrops/th_${n}.jpg`) })),
 ];
 // rank backdrops for a plate: contrast in lightness, calmer scenes for busy/saturated prints, matching warmth
 export function suggestBackdrops(st, n = 4) {

@@ -1,0 +1,54 @@
+{
+  "name": "Memento Studio · Sai Kiran Wood Works & Mementoes",
+  "short_name": "Memento Studio",
+  "description": "Photo-real 3D previews of Sai Kiran Wood Works mementoes.",
+  "id": "./",
+  "start_url": "./Memento%20Studio.dc.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ececec",
+  "theme_color": "#1e1e20",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "categories": [
+    "business",
+    "productivity",
+    "photo"
+  ],
+  "lang": "en",
+  "shortcuts": [
+    {
+      "name": "Open Memento Studio",
+      "url": "./Memento%20Studio.dc.html",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

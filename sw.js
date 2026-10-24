@@ -1,4 +1,4 @@
-const C = 'sk-app-v8';
+const C = 'sk-app-v9';
 const ROOT = self.registration.scope;
 const CORE = [ROOT, 'support.js', 'vendor/react.production.min.js', 'vendor/react-dom.production.min.js', 'manifest.webmanifest', 'assets/icon-192.png', 'assets/logo-en-sm.png', 'assets/logo-te-sm.png', 'assets/logo-splash.png'];
 const CDN = /^https:\/\/(fonts\.googleapis\.com|fonts\.gstatic\.com|lh3\.googleusercontent\.com)\//;

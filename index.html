@@ -700,7 +700,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
     </div>
   </aside>
 
-  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+  <sc-if value="{{ tabBarOn }}" hint-placeholder-val="{{ false }}">
   <nav data-screen-label="Phone tab bar" style="position:fixed;left:0;right:0;bottom:0;z-index:19;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;padding:4px 4px calc(4px + env(safe-area-inset-bottom));background:var(--color-surface);border-top:1px solid var(--color-divider);box-shadow:0 -6px 18px rgba(28,20,16,.07)">
     <button onClick="{{ tabs.dash.go }}" aria-label="{{ tabs.dash.label }}" style="{{ tabs.dash.style }}"><span style="{{ tabs.dash.iw }}"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" style="stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="{{ tabs.dash.icon }}"></path></svg><sc-if value="{{ tabs.dash.badge }}" hint-placeholder-val="{{ false }}"><span data-keep-lh="" style="position:absolute;top:-5px;right:-2px;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:999px;background:var(--color-accent);color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1">{{ tabs.dash.badge }}</span></sc-if></span><span data-keep-lh="" style="font-size:11px;font-weight:700;line-height:1.25;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ tabs.dash.label }}</span></button>
     <button onClick="{{ tabs.orders.go }}" aria-label="{{ tabs.orders.label }}" style="{{ tabs.orders.style }}"><span style="{{ tabs.orders.iw }}"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" style="stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="{{ tabs.orders.icon }}"></path></svg><sc-if value="{{ tabs.orders.badge }}" hint-placeholder-val="{{ false }}"><span data-keep-lh="" style="position:absolute;top:-5px;right:-2px;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:999px;background:var(--color-accent);color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1">{{ tabs.orders.badge }}</span></sc-if></span><span data-keep-lh="" style="font-size:11px;font-weight:700;line-height:1.25;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ tabs.orders.label }}</span></button>
@@ -1361,7 +1361,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
 
       <sc-if value="{{ sec.payments }}" hint-placeholder-val="{{ false }}">
         <div data-screen-label="Payments" style="display:flex;flex-direction:column;gap:20px">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:clamp(10px,2vw,16px)">
             <sc-for list="{{ payKpis }}" as="k" hint-placeholder-count="4">
               <div style="display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm)">
                 <span style="font-size:13px;font-weight:600;color:var(--color-neutral-700)">{{ k.label }}</span>
@@ -1384,7 +1384,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
                   <tbody>
                     <sc-if value="{{ emptyPay }}" hint-placeholder-val="{{ false }}"><tr><td colspan="5" style="padding:22px 8px;text-align:center;color:var(--color-neutral-600);font-size:13.5px">{{ emptyPay }}</td></tr></sc-if>
 <sc-for list="{{ payView }}" as="p" hint-placeholder-count="8">
-                      <tr onClick="{{ p.open }}" style="cursor:pointer"><td style="padding:12px 8px;white-space:nowrap">{{ p.date }}</td><td style="padding:12px 8px"><div style="font-weight:700">{{ p.code }}</div><div style="font-size:12px;color:var(--color-neutral-600)">{{ p.cust }}</div></td><td style="padding:12px 8px">{{ p.type }}</td><td style="padding:12px 8px"><span style="{{ p.modeStyle }}">{{ p.mode }}</span></td><td style="padding:12px 8px;font-weight:700;text-align:right">{{ p.amountF }}</td></tr>
+                      <tr onClick="{{ p.open }}" style="cursor:pointer"><td style="padding:12px 8px;white-space:nowrap">{{ p.date }}</td><td style="padding:12px 8px"><div style="font-weight:700;white-space:nowrap">{{ p.code }}</div><div style="font-size:12px;color:var(--color-neutral-600)">{{ p.cust }}</div></td><td style="padding:12px 8px">{{ p.type }}</td><td style="padding:12px 8px"><span style="{{ p.modeStyle }}">{{ p.mode }}</span></td><td style="padding:12px 8px;font-weight:700;text-align:right">{{ p.amountF }}</td></tr>
                     </sc-for>
                   </tbody>
                 </table>
@@ -1398,7 +1398,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
                   <tbody>
                     <sc-if value="{{ emptyOut }}" hint-placeholder-val="{{ false }}"><tr><td colspan="4" style="padding:22px 8px;text-align:center;color:var(--color-neutral-600);font-size:13.5px">{{ emptyOut }}</td></tr></sc-if>
 <sc-for list="{{ outstanding }}" as="o" hint-placeholder-count="6">
-                      <tr><td style="padding:12px 8px"><div style="font-weight:700">{{ o.code }}</div><div style="font-size:12px;color:var(--color-neutral-600)">{{ o.cust }}</div></td><td style="padding:12px 8px"><span style="{{ o.tagStyle }}"><span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>{{ o.status }}</span></td><td style="padding:12px 8px;font-weight:700;text-align:right;color:var(--color-accent-700)">{{ o.balF }}</td><td style="padding:12px 8px;text-align:right"><button class="btn btn-secondary" onClick="{{ o.pay }}" style="border-radius:8px;padding:5px 12px">{{ L.add }}</button></td></tr>
+                      <tr><td style="padding:12px 8px"><div style="font-weight:700;white-space:nowrap">{{ o.code }}</div><div style="font-size:12px;color:var(--color-neutral-600)">{{ o.cust }}</div></td><td style="padding:12px 8px"><span style="{{ o.tagStyle }}"><span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>{{ o.status }}</span></td><td style="padding:12px 8px;font-weight:700;text-align:right;color:var(--color-accent-700)">{{ o.balF }}</td><td style="padding:12px 8px;text-align:right"><button class="btn btn-secondary" onClick="{{ o.pay }}" style="border-radius:8px;padding:5px 12px">{{ L.add }}</button></td></tr>
                     </sc-for>
                   </tbody>
                 </table>
@@ -1899,6 +1899,18 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
         <input type="file" multiple ref="{{ subRef }}" onChange="{{ onSubFiles }}" style="display:none">
       </div>
     </div>
+<sc-if value="{{ selCompact }}" hint-placeholder-val="{{ false }}">
+    <div data-sk-actions="" data-screen-label="Order actions" style="margin-top:auto;position:sticky;bottom:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;box-sizing:border-box;padding:6px 6px calc(6px + env(safe-area-inset-bottom));border-top:1px solid var(--color-divider);background:var(--color-surface);box-shadow:0 -4px 14px rgba(20,14,12,.06)">
+      <button onClick="{{ msgCustomer }}" aria-label="{{ L.msgCust }}" title="{{ L.msgCust }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:4px 2px;border:0;border-radius:10px;background:transparent;color:var(--color-text);font:inherit;font-size:10.5px;font-weight:700;line-height:1.1;cursor:pointer;color:var(--color-accent-700)" style-hover="background:var(--color-accent-100)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M8 12h.01M12 12h.01M16 12h.01"></path></svg><span style="max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ act.msg }}</span></button>
+      <button onClick="{{ selQuote }}" aria-label="{{ quoteLbl }}" title="{{ quoteLbl }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:4px 2px;border:0;border-radius:10px;background:transparent;color:var(--color-text);font:inherit;font-size:10.5px;font-weight:700;line-height:1.1;cursor:pointer" style-hover="background:var(--color-neutral-100)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v4a2 2 0 0 0 2 2h4"></path><path d="M9 12h6M9 16h4"></path></svg><span style="max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ act.quote }}</span></button>
+      <button onClick="{{ selInvoice }}" aria-label="{{ invLbl }}" title="{{ invLbl }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:4px 2px;border:0;border-radius:10px;background:transparent;color:var(--color-text);font:inherit;font-size:10.5px;font-weight:700;line-height:1.1;cursor:pointer" style-hover="background:var(--color-neutral-100)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M4 2v20l3-2 3 2 2-2 2 2 3-2 3 2V2l-3 2-3-2-2 2-2-2-3 2Z"></path><path d="M9 8h6M9 12h6M9 16h3"></path></svg><span style="max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ act.inv }}</span></button>
+      <button onClick="{{ printQuote }}" aria-label="{{ printQLbl }}" title="{{ printQLbl }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:4px 2px;border:0;border-radius:10px;background:transparent;color:var(--color-text);font:inherit;font-size:10.5px;font-weight:700;line-height:1.1;cursor:pointer" style-hover="background:var(--color-neutral-100)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"></path></svg><span style="max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ act.pq }}</span></button>
+      <button onClick="{{ printInv }}" aria-label="{{ printILbl }}" title="{{ printILbl }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:4px 2px;border:0;border-radius:10px;background:transparent;color:var(--color-text);font:inherit;font-size:10.5px;font-weight:700;line-height:1.1;cursor:pointer" style-hover="background:var(--color-neutral-100)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"></path><path d="M10 18h4"></path></svg><span style="max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ act.pi }}</span></button>
+      <button onClick="{{ askDelete }}" aria-label="{{ L.deleteOrder }}" title="{{ L.deleteOrder }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:4px 2px;border:0;border-radius:10px;background:transparent;color:var(--color-text);font:inherit;font-size:10.5px;font-weight:700;line-height:1.1;cursor:pointer;color:var(--color-accent-700)" style-hover="background:var(--color-accent-100)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"></path></svg><span style="max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ act.del }}</span></button>
+      <button onClick="{{ closeOrder }}" aria-label="{{ act.closeFull }}" title="{{ act.closeFull }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px;padding:4px 2px;border:0;border-radius:10px;background:transparent;color:var(--color-text);font:inherit;font-size:10.5px;font-weight:700;line-height:1.1;cursor:pointer;color:var(--color-neutral-700)" style-hover="background:var(--color-neutral-100)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M18 6 6 18M6 6l12 12"></path></svg><span style="max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ act.close }}</span></button>
+    </div>
+    </sc-if>
+    <sc-if value="{{ selWide }}" hint-placeholder-val="{{ true }}">
     <div data-sk-actions="" style="margin-top:auto;position:sticky;bottom:0;display:flex;gap:8px;flex-wrap:wrap;box-sizing:border-box;padding:14px 22px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--color-divider);background:var(--color-surface)">
       <button class="btn btn-primary" onClick="{{ msgCustomer }}" style="border-radius:9px;min-height:38px;gap:6px"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>{{ L.msgCust }}</button>
       <button class="btn btn-secondary" onClick="{{ selQuote }}" style="border-radius:9px;min-height:38px;gap:6px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v4a2 2 0 0 0 2 2h4M16 13H8M16 17H8"></path></svg><span>{{ quoteLbl }}</span></button>
@@ -1906,7 +1918,9 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
       <button class="btn btn-secondary" onClick="{{ printQuote }}" style="border-radius:9px;min-height:38px;gap:6px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"></path></svg><span>{{ printQLbl }}</span></button>
       <button class="btn btn-secondary" onClick="{{ printInv }}" style="border-radius:9px;min-height:38px;gap:6px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"></path></svg><span>{{ printILbl }}</span></button>
       <button class="btn" onClick="{{ askDelete }}" style="margin-left:auto;gap:6px;border-radius:9px;min-height:38px;border:1px solid var(--color-accent-300);background:var(--color-surface);color:var(--color-accent-700)" style-hover="background:var(--color-accent-100)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"></path></svg>{{ L.deleteOrder }}</button>
+      <button class="btn btn-secondary" onClick="{{ closeOrder }}" style="border-radius:9px;min-height:38px;gap:6px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" style="flex:none;stroke-width:2;stroke-linecap:round"><path d="M18 6 6 18M6 6l12 12"></path></svg>{{ act.closeFull }}</button>
     </div>
+    </sc-if>
   </aside>
 </sc-if>
 
@@ -2049,7 +2063,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
           </sc-if>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px">
-          <div class="field"><label>{{ L.dueDateFmt }}</label><div style="position:relative"><input class="input" style="min-height:40px;width:100%;box-sizing:border-box;padding-right:44px" value="{{ noDue }}" onChange="{{ onNoDue }}" placeholder="15-10-2026"><button onClick="{{ noDueCal }}" aria-label="Open calendar" title="Calendar" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:transparent;color:var(--color-accent-700);cursor:pointer" style-hover="background:var(--color-accent-100)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></button></div></div>
+          <div class="field"><label>{{ L.dueDateFmt }}</label><div style="position:relative"><input class="input" style="min-height:40px;width:100%;box-sizing:border-box;padding-right:44px" value="{{ noDue }}" onChange="{{ onNoDue }}" placeholder="DD-MM-YYYY" aria-label="{{ L.dueDateFmt }}"><button onClick="{{ noDueCal }}" aria-label="Open calendar" title="Calendar" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:transparent;color:var(--color-accent-700);cursor:pointer" style-hover="background:var(--color-accent-100)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></button></div></div>
           <div class="field"><label>{{ L.assignTo }}</label><select class="input" style="min-height:40px" value="{{ noStaff }}" onChange="{{ onNoStaff }}"><option value="">{{ L.unassigned }}</option>{{ staffOpts }}</select></div>
           <div class="field" style="grid-column:1/-1"><label>{{ L.occasion }}</label><input class="input" style="min-height:40px" list="occ-list" value="{{ noOcc }}" onChange="{{ onNoOcc }}"></div>
         </div>
@@ -2076,7 +2090,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
             <div style="grid-area:qty;display:flex;flex-direction:column;gap:4px;min-width:0"><span style="{{ cellLbl }}">{{ L.quantity }}</span>
               <div style="display:flex;align-items:stretch;border:1px solid var(--color-divider);border-radius:8px;overflow:hidden;min-height:40px;background:var(--color-surface)">
                 <button onClick="{{ ln.dec }}" aria-label="Less" style="width:34px;flex:none;border:0;background:var(--color-neutral-100);color:var(--color-text);font:inherit;font-size:17px;font-weight:700;cursor:pointer" style-hover="background:var(--color-neutral-200)">−</button>
-                <input type="number" min="1" value="{{ ln.qty }}" onChange="{{ ln.onQty }}" style="flex:1;min-width:0;width:100%;border:0;outline:0;background:transparent;text-align:center;font:inherit;font-weight:700;color:var(--color-text)">
+                <input type="number" min="1" value="{{ ln.qty }}" onChange="{{ ln.onQty }}" aria-label="Quantity" style="flex:1;min-width:0;width:100%;border:0;background:transparent;text-align:center;font:inherit;font-weight:700;color:var(--color-text)">
                 <button onClick="{{ ln.inc }}" aria-label="More" style="width:34px;flex:none;border:0;background:var(--color-neutral-100);color:var(--color-text);font:inherit;font-size:17px;font-weight:700;cursor:pointer" style-hover="background:var(--color-neutral-200)">+</button>
               </div>
             </div>
@@ -2169,7 +2183,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
 
 <sc-if value="{{ gmOpen }}" hint-placeholder-val="{{ false }}">
   <div class="dialog-backdrop" onClick="{{ gmBg }}" style="align-items:start;justify-items:center;z-index:26;overflow:auto;background:rgba(20,14,12,.5)">
-    <div class="dialog" data-screen-label="Gallery model" style="margin-block:auto;width:min(940px,100%);box-sizing:border-box;padding:0;border-radius:16px;gap:0;overflow:hidden;max-height:none">
+    <div class="dialog" data-screen-label="Gallery model" style="margin-block:auto;width:min(940px,100%);box-sizing:border-box;padding:0;border-radius:16px;gap:0;overflow:clip;max-height:none">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
         <div style="background:var(--color-neutral-100);display:flex;flex-direction:column;gap:10px;padding:18px;min-width:0">
           <div data-screen-label="Model slider" onPointerDown="{{ gm.sdown }}" onPointerMove="{{ gm.smove }}" onPointerUp="{{ gm.sup }}" onPointerCancel="{{ gm.sup }}" onPointerLeave="{{ gm.sup }}" style="position:relative;width:100%;aspect-ratio:3 / 4;max-height:70vh;overflow:hidden;border-radius:12px;touch-action:pan-y;user-select:none">
@@ -2202,9 +2216,11 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
               <button onClick="{{ gm.close }}" aria-label="Close" style="width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--color-divider);border-radius:9px;background:var(--color-surface);color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-100)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
             </div>
           </div>
-          <div style="background:#201e1d;color:#fff;border-radius:12px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center">
-            <div style="flex:1 1 200px;min-width:0"><div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6)">{{ gm.idLabel }}</div><div style="font-family:ui-monospace,Consolas,monospace;font-size:clamp(18px,2.4vw,22px);font-weight:800;letter-spacing:.02em;overflow-wrap:anywhere">{{ gm.fullId }}</div></div>
+          <div data-screen-label="Model summary" style="position:sticky;top:12px;z-index:3;background:#201e1d;color:#fff;border-radius:12px;padding:12px 14px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;box-shadow:0 8px 22px rgba(20,14,12,.28)">
+            <sc-if value="{{ gm.stacked }}" hint-placeholder-val="{{ false }}"><button onClick="{{ gm.full }}" aria-label="{{ gm.fullLbl }}" style="position:relative;flex:none;width:64px;height:80px;padding:0;border:0;border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in"><div role="img" aria-label="{{ gm.name }}" style="{{ gm.imgStyle }}"></div></button></sc-if>
+            <div style="flex:1 1 140px;min-width:0"><div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6)">{{ gm.idLabel }}</div><div style="font-family:ui-monospace,Consolas,monospace;font-size:clamp(18px,2.4vw,22px);font-weight:800;letter-spacing:.02em;overflow-wrap:anywhere">{{ gm.fullId }}</div></div>
             <div style="text-align:right"><div style="font-size:11.5px;color:rgba(255,255,255,.6)">{{ gm.breakdown }}</div><div style="font-size:26px;font-weight:800;color:#f2b552">{{ gm.price }}</div></div>
+            <sc-if value="{{ gm.stacked }}" hint-placeholder-val="{{ false }}"><button onClick="{{ gm.close }}" aria-label="Close" style="position:absolute;top:-10px;right:-10px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;border-radius:50%;background:#201e1d;color:#fff;cursor:pointer"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" style="stroke-width:2.4;stroke-linecap:round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></sc-if>
           </div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <div style="font-size:13px;font-weight:700">{{ gm.sizeLabel }}</div>
@@ -2625,8 +2641,13 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
 </sc-if>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Logo&quot;,&quot;Maroon&quot;,&quot;Teak&quot;,&quot;Emerald&quot;,&quot;Indigo&quot;],&quot;default&quot;:&quot;Logo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Look&quot;},&quot;sidebar&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Dark&quot;,&quot;Light&quot;],&quot;default&quot;:&quot;Dark&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Look&quot;}}">
-const TODAY = new Date(2026, 9, 12);
-const TODAY_S = '12-10-2026';
+let TODAY, TODAY_S;
+const MON_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const MON_TE = ['జనవరి', 'ఫిబ్రవరి', 'మార్చి', 'ఏప్రిల్', 'మే', 'జూన్', 'జులై', 'ఆగస్టు', 'సెప్టెంబర్', 'అక్టోబర్', 'నవంబర్', 'డిసెంబర్'];
+const WD_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], WD_TE = ['ఆదివారం', 'సోమవారం', 'మంగళవారం', 'బుధవారం', 'గురువారం', 'శుక్రవారం', 'శనివారం'];
+const skDay = () => { const d = new Date(); d.setHours(0, 0, 0, 0); if (TODAY && +TODAY === +d) return false; TODAY = d; TODAY_S = String(d.getDate()).padStart(2, '0') + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + d.getFullYear(); return true; };
+skDay();
+const pl = (n, one, many) => (Number(n) === 1 ? one : many);
 const ST = ['Received', 'Designing', 'Approval', 'Production', 'Ready', 'Delivered'];
 let LANG = 'en';
 const ST_LABEL_EN = { Received: 'New order', Designing: 'Designing', Approval: 'Waiting for OK', Production: 'Making', Ready: 'Ready', Delivered: 'Delivered' };
@@ -2791,7 +2812,7 @@ const OLD_EM = {
   Ready: { subject: 'Order {order} is ready for pickup', body: 'Dear {name},\n\nYour order {order} ({item}) is ready. Balance to pay: {balance}.\n\nమీ ఆర్డర్ {order} సిద్ధంగా ఉంది.' + EM_SIGN },
   Delivered: { subject: 'Thank you – order {order} delivered', body: 'Dear {name},\n\nYour order {order} has been delivered. Thank you for choosing us!\n\nధన్యవాదాలు {name} గారు!' + EM_SIGN }
 };
-const APP_VER = '2026.10.24-1';
+const APP_VER = '2026.10.24-8';
 const WA_SIGN = '\n\n— *Sai Kiran Wood Works & Mementos*, Jinnuru.';
 const SIG_ADDR = 'Jinnuru, West Godavari, Andhra Pradesh', SIG_PH = '+91 89191 07529';
 const skSigText = b => 'Warm regards,\nSai Kiran Wood Works & Mementos\n' + ((b && b.sigAddr) || SIG_ADDR) + '\nPh: ' + ((b && b.sigPhones) || SIG_PH);
@@ -3277,7 +3298,7 @@ class Component extends DCLogic {
       let w = r;
       if (x && (Number(x._u) || 0) > (Number(r._u) || 0)) { w = { ...x }; Object.keys(r).forEach(f => { if (typeof r[f] === 'string' && r[f].length > 45000 && !w[f]) w[f] = r[f]; });
         ['colors', 'lines'].forEach(f => { if (Array.isArray(r[f]) && Array.isArray(w[f])) w[f] = w[f].map((c, i) => { const lc = r[f].find(z => (f === 'colors' ? z.c === c.c : z.id === c.id)) || r[f][i]; return lc && lc.img && !c.img ? { ...c, img: lc.img } : c; }); }); }
-      if (!dead(key, w)) out.push(w);
+      if (!dead(key, w)) out.push(w); else if (k === 'orders') this.queuePurge(r);
     });
     return out;
   }
@@ -3386,7 +3407,7 @@ class Component extends DCLogic {
       try { await root.removeEntry(SK_APP, { recursive: true }); } catch (e) {} }
   }
   async attachDir(dir, remember) {
-    this._dir = dir; this._pending = null;
+    this._dir = dir; this._pending = null; setTimeout(() => this.runPurge(), 1500);
     this.setState({ dataDir: dir.name, dataStatus: 'saving', dataErr: '' });
     try {
       let d = await this.readDir(dir);
@@ -3492,6 +3513,7 @@ class Component extends DCLogic {
       this.updEl(d.id, { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
     };
     this._up = () => { this.drag = null; };
+    this._dt = setInterval(() => { if (skDay()) this.forceUpdate(); }, 60000);
     this._lt = setInterval(() => { if (this.state.screen === 'login' && !this.state.logoPaused) this.setState(s => ({ logoLang: s.logoLang === 'en' ? 'te' : 'en' })); }, 8000);
     this._rs = () => { const vw = window.innerWidth; if (vw !== this.state.vw) this.setState(vw >= 860 ? { vw, navOpen: false } : { vw }); };
     window.addEventListener('pointermove', this._mv); window.addEventListener('pointerup', this._up); window.addEventListener('resize', this._rs); this._rs();
@@ -3608,7 +3630,7 @@ class Component extends DCLogic {
     const ua = navigator.userAgent || '', ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
     this.flash(ios ? tx('In Safari tap Share, then “Add to Home Screen”.', 'Safari లో Share నొక్కి “Add to Home Screen” ఎంచుకోండి.') : tx('Open the browser menu (⋮) and tap “Install app” or “Add to Home screen”.', 'బ్రౌజర్ మెనూ (⋮) తెరిచి “Install app” లేదా “Add to Home screen” నొక్కండి.'));
   };
-  componentWillUnmount() { window.removeEventListener('message', this.msOnMsg); clearInterval(this._poll); clearInterval(this._fpoll); document.removeEventListener('visibilitychange', this._vis); window.removeEventListener('online', this._onl); window.removeEventListener('offline', this._onl); window.removeEventListener('pointerup', this._gest, true); window.removeEventListener('keydown', this._kd); document.removeEventListener('fullscreenchange', this._fsc); window.removeEventListener('beforeinstallprompt', this._bip); window.removeEventListener('appinstalled', this._ain); clearInterval(this._lt); window.removeEventListener('pointermove', this._mv); window.removeEventListener('pointerup', this._up); window.removeEventListener('resize', this._rs); if (this._ro) this._ro.disconnect(); clearTimeout(this._tt); window.removeEventListener('popstate', this._onPop); clearInterval(this._cuPoll); }
+  componentWillUnmount() { clearInterval(this._dt); window.removeEventListener('message', this.msOnMsg); clearInterval(this._poll); clearInterval(this._fpoll); document.removeEventListener('visibilitychange', this._vis); window.removeEventListener('online', this._onl); window.removeEventListener('offline', this._onl); window.removeEventListener('pointerup', this._gest, true); window.removeEventListener('keydown', this._kd); document.removeEventListener('fullscreenchange', this._fsc); window.removeEventListener('beforeinstallprompt', this._bip); window.removeEventListener('appinstalled', this._ain); clearInterval(this._lt); window.removeEventListener('pointermove', this._mv); window.removeEventListener('pointerup', this._up); window.removeEventListener('resize', this._rs); if (this._ro) this._ro.disconnect(); clearTimeout(this._tt); window.removeEventListener('popstate', this._onPop); clearInterval(this._cuPoll); }
 
   wa(text) { return this.sendWa(this.state.biz.waNumber, text).catch(e => this.flash(e.message)); }
   async sendWa(toPhone, text) {
@@ -3695,9 +3717,12 @@ class Component extends DCLogic {
       if (b.demo || b.waMode === 'api') {
         for (const n of nums) { await this.sendWa(n, text); if (files.length) { if (b.demo) this.pushFeed({ ch: 'wa', num: '+' + waDigits(n), to: c.cust, text: tx('Attached: ', 'అటాచ్: ') + files.map(f => f.name).join(', ') }); else for (const f of files) await this.waApiFile(b.testMode ? waDigits(b.waNumber) : waDigits(n), f); } }
       } else {
-        const fl = files.map(f => new File([f.blob], f.name, { type: f.type })); let shared = false;
-        if (fl.length) { try { if (navigator.canShare && navigator.canShare({ files: fl, text })) { await navigator.share({ files: fl, text }); shared = true; } } catch (e) { if (e && e.name === 'AbortError') throw e; } }
-        if (shared) st = 'shared'; else { this.openWa(waDigits(nums[0]), text); st = 'opened'; } if (files.length && !shared) note = tx(' — now tap “Share files” to add the attachments', ' — ఇప్పుడు అటాచ్‌మెంట్ల కోసం “ఫైళ్లు షేర్” నొక్కండి'); if (nums[1]) next = nums[1];
+        const win = b.waApp === 'web' ? window.open('', 'sk_whatsapp') : null; let links = [];
+        if (files.length) { this.setCmp({ waStatus: tx('Preparing the PDF link…', 'PDF లింక్ సిద్ధం చేస్తున్నాం…') }); try { links = await this.waLinks(files, c); } catch (e) { links = []; } }
+        const body = links.length ? text + '\n\n' + links.map(l => '📎 ' + l.name + '\n' + l.url).join('\n\n') : text;
+        this.openWa(waDigits(nums[0]), body, win); st = 'opened';
+        if (files.length && links.length < files.length) note = tx(' — connect Google so the PDF link goes with the message, or tap “Share files”', ' — PDF లింక్ కోసం Google కనెక్ట్ చేయండి, లేదా “ఫైళ్లు షేర్” నొక్కండి'); else if (links.length) note = tx(' with the PDF link — press Send in WhatsApp', ' PDF లింక్‌తో — WhatsApp లో Send నొక్కండి');
+        if (nums[1]) next = nums[1];
       }
     } catch (e) { if (e && e.name === 'AbortError') return this.setCmp({ waBusy: false }); return this.setCmp({ waBusy: false, err: 'WhatsApp: ' + ((e && e.message) || e) }); }
     const tm = nowStamp(), sentTo = next ? [nums[0]] : nums;
@@ -3722,7 +3747,9 @@ class Component extends DCLogic {
       ...(logo ? ['--' + R, 'Content-Type: image/png', 'Content-Transfer-Encoding: base64', 'Content-ID: <sklogo>', 'Content-Disposition: inline; filename="logo.png"', '', wrap(logo)] : []), '--' + R + '--'];
     for (const f of files) raw.push('--' + M, 'Content-Type: ' + (f.type || 'application/octet-stream') + '; name="=?UTF-8?B?' + enc(f.name) + '?="', 'Content-Transfer-Encoding: base64', 'Content-Disposition: attachment; filename="=?UTF-8?B?' + enc(f.name) + '?="', '', await b64(f.blob));
     raw.push('--' + M + '--', '');
-    const r = await fetch('https://gmail.googleapis.com/upload/gmail/v1/users/me/messages/send?uploadType=media', { method: 'POST', headers: { Authorization: 'Bearer ' + this._gTok, 'Content-Type': 'message/rfc822' }, body: raw.join('\r\n') });
+    const mime = raw.join('\r\n'), b64u = (() => { let s = ''; for (let i = 0; i < mime.length; i += 0x6000) s += btoa(mime.slice(i, i + 0x6000)); return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); })();
+    const go = () => fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', { method: 'POST', headers: { Authorization: 'Bearer ' + this._gTok, 'Content-Type': 'application/json' }, body: JSON.stringify({ raw: b64u }) });
+    let r; try { r = await go(); } catch (e) { await sleep(1200); try { r = await go(); } catch (e2) { throw new Error(navigator.onLine === false ? tx('No internet connection', 'ఇంటర్నెట్ కనెక్షన్ లేదు') : tx('Could not reach Gmail. Check the internet and tap Send email again.', 'Gmail కి చేరలేకపోయాం. ఇంటర్నెట్ చూసి మళ్ళీ ఈమెయిల్ పంపండి నొక్కండి.')); } }
     if (!r.ok) { const j = await r.json().catch(() => ({})), m = (j.error && j.error.message) || 'HTTP ' + r.status; const er = new Error(r.status === 403 || r.status === 401 ? tx('Gmail sending is not allowed yet. In Google Cloud enable “Gmail API”, then tap “Connect now” in Settings › Connections and allow Gmail. (' + m + ')', 'Gmail పంపడానికి అనుమతి లేదు. Google Cloud లో “Gmail API” ఆన్ చేసి, సెట్టింగ్స్ › కనెక్షన్లు లో మళ్ళీ కనెక్ట్ చేయండి. (' + m + ')') : m); er.gmailScope = r.status === 403 || r.status === 401; throw er; }
     return 'sent';
   }
@@ -3893,8 +3920,26 @@ class Component extends DCLogic {
   };
   rootPath() { return String(this.state.biz.rootPath || 'E:\\Sai Kiran Tool').trim().replace(/[\\/]+$/, ''); }
   localFolder(o) { return `${this.rootPath()}\\${SK_CUST}\\${skSafe(o.cust)}\\${skYear(o)}\\SK-${o.id}`; }
-  openWa(to, text) {
+  // files become Google Drive links ("anyone with the link can view") so a WhatsApp chat link can carry them
+  async waLinks(files, c) {
+    const b = this.state.biz; if (b.demo || !(this._gTok && this._gReady && this.gRoot())) return [];
+    this._wl = this._wl || new WeakMap(); const o = this.state.orders.find(x => x.id === (c && c.orderId)), out = [];
+    for (const f of files) {
+      let url = this._wl.get(f.blob);
+      if (!url) {
+        let id = skDriveId(c && c.doc && c.doc.blob === f.blob ? c.doc.url : '');
+        if (!id && o) { const pdf = /pdf/.test(f.type || ''), gid = await this.gFolder(await this.gOrderFolderId(o), ORDER_SUBS[pdf ? 2 : 3]); id = await this.gUpload(gid, f.name, f.blob, f.type || 'application/octet-stream'); }
+        if (!id) continue;
+        try { await this.gFetch(G_DRIVE + '/files/' + id + '/permissions?fields=id', { method: 'POST', body: JSON.stringify({ role: 'reader', type: 'anyone' }) }); } catch (e) {}
+        url = 'https://drive.google.com/file/d/' + id + '/view'; this._wl.set(f.blob, url);
+      }
+      out.push({ name: f.name.replace(/\.pdf$/i, ''), url });
+    }
+    return out;
+  }
+  openWa(to, text, win) {
     const q = (to ? 'phone=' + to + '&' : '') + 'text=' + encodeURIComponent(text);
+    if (win && !win.closed) { try { win.location.href = 'https://web.whatsapp.com/send?' + q; return; } catch (e) {} }
     if (this.state.biz.waApp === 'web') window.open('https://web.whatsapp.com/send?' + q, 'sk_whatsapp');
     else window.location.href = 'whatsapp://send?' + q;
   }
@@ -4101,7 +4146,7 @@ class Component extends DCLogic {
       const gN = gSl.length, gColIdx = c => { const j = m.colors.findIndex(x => x.c === c); return j <= 0 ? 0 : gAng.length + j; };
       const gCur = Math.min(gN - 1, Math.max(0, s.gm.slide != null ? s.gm.slide : gColIdx(col.c)));
       const gGo = j => { const k = ((j % gN) + gN) % gN, t2 = gSl[k]; setG({ slide: k, ...(t2.c ? { col: t2.c.c } : {}) }); };
-      gm = { id: 'SK-' + m.id, name: m.name, te: m.te, occ: occL(m.occasion), imgStyle: col.img ? imgS(col.img, 0) : imgS(m.img, rot), full: () => setG({ fs: true }), fullLbl: tx('Full screen', 'పూర్తి స్క్రీన్'), fullId, idLabel: tx('Unique ID', 'ప్రత్యేక ID'),
+      gm = { id: 'SK-' + m.id, name: m.name, te: m.te, occ: occL(m.occasion), imgStyle: col.img ? imgS(col.img, 0) : imgS(m.img, rot), full: () => setG({ fs: true }), stacked: (s.vw || 1024) < 760, fullLbl: tx('Full screen', 'పూర్తి స్క్రీన్'), fullId, idLabel: tx('Unique ID', 'ప్రత్యేక ID'),
         colNote: col.img ? tx(`${vName(m, col)} version · uploaded photo`, `${vName(m, col)} రకం · అప్‌లోడ్ చేసిన ఫోటో`) : rot ? tx(`Colour preview: ${vName(m, col)} — the printed design is made in this colour`, `రంగు ప్రివ్యూ: ${vName(m, col)} — ఈ రంగులో ప్రింట్ చేస్తాం`) : tx('Original colours', 'అసలు రంగులు'),
 ...(() => { const ang = Array.isArray(m.angles) ? m.angles : [], m3 = m.m3d, nA = ang.length;
           const sl = [{ k: 'c0', c: m.colors[0], tag: tx('Design', 'డిజైన్'), style: imgS(m.colors[0].img || m.img, 0) },
@@ -4326,7 +4371,7 @@ class Component extends DCLogic {
     this.flash(had ? tx('Synced with Google Sheets', 'Google Sheets తో సింక్ అయింది') : tx('Loaded data from Google Sheets', 'Google Sheets నుండి డేటా లోడ్ అయింది'));
     this.setState({ gStatus: 'connected', gSaved: skNow() });
     this.pushFeed({ ch: 'db', text: tx(`Connected to Google as ${me.email}`, `${me.email} తో Google కనెక్ట్ అయింది`) });
-    this._gReady = true; this.gAppData().catch(() => {}); this.fSyncSoon();
+    this._gReady = true; this.gAppData().catch(() => {}); this.fSyncSoon(); setTimeout(() => this.runPurge(), 1500);
     for (const o of this.state.orders) { if (o.driveUrl) continue; try { await this.gOrderFolder(o); } catch (e) { break; } }
   }
   async gWrite(only, src) {
@@ -4491,6 +4536,38 @@ class Component extends DCLogic {
     const key = parent + '/' + name; this._gf = this._gf || {}; if (this._gf[key]) return this._gf[key];
     const p = this.gFolderRaw(parent, name); this._gf[key] = p; p.catch(() => { delete this._gf[key]; }); return p;
   }
+  queuePurge(o) {
+    if (!o || o.id == null) return; const q = lsJ('sk_purge', []) || [];
+    if (!q.some(x => String(x.id) === String(o.id))) { q.push({ id: o.id, cust: o.cust, created: o.created, t: Date.now(), d: false, l: false }); lsSet('sk_purge', q); }
+    if (this._docs) { delete this._docs[o.id + 'quote']; delete this._docs[o.id + 'invoice']; }
+    clearTimeout(this._prt); this._prt = setTimeout(() => this.runPurge(), 600);
+  }
+  async gFindDir(parent, name) {
+    const q = `name='${String(name).replace(/\\/g, '\\\\').replace(/'/g, "\\'")}' and '${parent}' in parents and mimeType='${G_FOLDER}' and trashed=false`;
+    const r = await this.gFetch(G_DRIVE + '/files?fields=files(id)&q=' + encodeURIComponent(q)); return (r.files && r.files[0] && r.files[0].id) || null;
+  }
+  async runPurge() {
+    if (this._purging) return; this._purging = true;
+    try {
+      let q = lsJ('sk_purge', []) || []; const demo = this.state.biz.demo, gOk = !demo && this._gTok && this._gReady && this.gRoot();
+      for (const it of q) {
+        const o = { id: it.id, cust: it.cust, created: it.created }, sk = 'SK-' + it.id, y = skYear(o), c = skSafe(it.cust || '');
+        if (!it.l && this._dir) {
+          try { const a = await (await (await this._dir.getDirectoryHandle(SK_CUST)).getDirectoryHandle(c)).getDirectoryHandle(y); await a.removeEntry(sk, { recursive: true }); it.l = true; this.pushFeed({ ch: 'db', text: tx(`${sk} folder deleted from this PC`, `${sk} ఫోల్డర్ ఈ PC నుండి తొలగించాం`) }); }
+          catch (e) { if (e && e.name === 'NotFoundError') it.l = true; }
+        }
+        if (!it.d && (demo || gOk)) {
+          try {
+            if (!demo) { let p = await this.gFindDir(this.gRoot(), 'Customer orders'); p = p && await this.gFindDir(p, c); p = p && await this.gFindDir(p, y); const f = p && await this.gFindDir(p, sk);
+              if (f) { await this.gFetch(G_DRIVE + '/files/' + f + '?fields=id', { method: 'PATCH', body: JSON.stringify({ trashed: true }) }); this.pushFeed({ ch: 'db', text: tx(`${sk} folder deleted from Google Drive`, `${sk} ఫోల్డర్ Google Drive నుండి తొలగించాం`) }); }
+              if (this._gf && p) delete this._gf[p + '/' + sk]; }
+            it.d = true;
+          } catch (e) {}
+        }
+      }
+      q = q.filter(it => !(it.d && it.l) && Date.now() - (it.t || 0) < 30 * 864e5); lsSet('sk_purge', q);
+    } finally { this._purging = false; }
+  }
   async gFolderRaw(parent, name) {
     const q = `name='${String(name).replace(/\\/g, '\\\\').replace(/'/g, "\\'")}' and '${parent}' in parents and mimeType='${G_FOLDER}' and trashed=false`;
     const r = await this.gFetch(G_DRIVE + '/files?fields=files(id)&q=' + encodeURIComponent(q));
@@ -4565,7 +4642,7 @@ class Component extends DCLogic {
     const s = this.state, b = s.biz, name = 'Test Customer';
     const id = Math.max(...s.orders.map(o => o.id), 1000) + 1;
     const o = { ...O(id, name, b.waNumber, 'Teak award shield', '10 in', 1, TODAY_S, '20-10-2026', 'Received', '', 650) };
-    this.setState(x => ({ customers: x.customers.some(c => c.name === name) ? x.customers.map(c => c.name === name ? { ...c, phone: b.waNumber, email: b.email || b.gAccount } : c) : [C(name, b.waNumber, 'Jinnuru', 'Individual', '2026', '', 'Testing', '', b.email || b.gAccount), ...x.customers], orders: [o, ...x.orders], tryOrderId: id }));
+    this.setState(x => ({ customers: x.customers.some(c => c.name === name) ? x.customers.map(c => c.name === name ? { ...c, phone: b.waNumber, email: b.email || b.gAccount } : c) : [C(name, b.waNumber, 'Jinnuru', 'Individual', String(TODAY.getFullYear()), '', 'Testing', '', b.email || b.gAccount), ...x.customers], orders: [o, ...x.orders], tryOrderId: id }));
     setTimeout(() => { this.openCompose(o, 'Received', { wa: true, em: true }); this.gOrderFolderSafe(o); }, 60);
   };
   tryNext = () => {
@@ -4702,7 +4779,7 @@ class Component extends DCLogic {
         waSig: '— Sai Kiran Wood Works & Mementos, Jinnuru.', ph2Sw: sw2(!!c.usePh2), togglePh2: () => this.setCmp({ usePh2: !c.usePh2, waNext: '' }), onPh2: e => this.setCmp({ phone2: e.target.value, waNext: '' }),
         ph2Lbl: c.phone2 ? tx('Also send to secondary number', 'రెండో నంబర్‌కి కూడా పంపండి') : tx('Add a secondary number (optional)', 'రెండో నంబర్ (ఐచ్ఛికం)'),
         sendWa: this.sendWaC, waCanShare: b.waMode !== 'api' && !b.demo && this.cmpFiles(c).length > 0, waShare: this.shareWaFiles, waShareLbl: tx('Share files', 'ఫైళ్లు షేర్'),
-        waHint: b.waMode !== 'api' && !b.demo ? tx('Send opens this customer’s chat directly with the message — no contact picking. A link cannot carry files, so tap “Share files” for attachments, or switch on WhatsApp Business API (Settings › WhatsApp) to send PDFs and photos fully automatically.', 'పంపండి నొక్కితే ఈ కస్టమర్ చాట్ నేరుగా మెసేజ్‌తో తెరుచుకుంటుంది — కాంటాక్ట్ ఎంచుకోనక్కర్లేదు. లింక్ ద్వారా ఫైళ్లు వెళ్లవు; అటాచ్‌మెంట్ల కోసం “ఫైళ్లు షేర్” నొక్కండి, లేదా పూర్తిగా ఆటోమేటిక్‌గా పంపడానికి సెట్టింగ్స్ › WhatsApp లో Business API ఆన్ చేయండి.') : '', waBtn: c.waBusy ? tx('Sending…', 'పంపుతున్నాం…') : c.waNext ? tx('Send to secondary', 'రెండో నంబర్‌కి పంపండి') : c.waDone ? tx('Send again', 'మళ్ళీ పంపండి') : tx('Send on WhatsApp', 'WhatsApp లో పంపండి'), waStatus: c.waStatus || '',
+        waHint: b.waMode !== 'api' && !b.demo ? tx('Opens this customer’s chat with the message and a download link to the PDF — no contact picking. Just press Send in WhatsApp. To send with no tap at all, switch on WhatsApp Business API (Settings › WhatsApp).', 'ఈ కస్టమర్ చాట్ మెసేజ్, PDF డౌన్‌లోడ్ లింక్‌తో తెరుచుకుంటుంది — కాంటాక్ట్ ఎంచుకోనక్కర్లేదు. WhatsApp లో Send నొక్కండి చాలు. అస్సలు ట్యాప్ లేకుండా పంపడానికి సెట్టింగ్స్ › WhatsApp లో Business API ఆన్ చేయండి.') : '', waBtn: c.waBusy ? tx('Sending…', 'పంపుతున్నాం…') : c.waNext ? tx('Send to secondary', 'రెండో నంబర్‌కి పంపండి') : c.waDone ? tx('Send again', 'మళ్ళీ పంపండి') : tx('Send on WhatsApp', 'WhatsApp లో పంపండి'), waStatus: c.waStatus || '',
         sendEm: this.sendEmC, emBtn: c.emBusy ? tx('Sending…', 'పంపుతున్నాం…') : c.emDone ? tx('Send again', 'మళ్ళీ పంపండి') : tx('Send email', 'ఈమెయిల్ పంపండి'), emStatus: c.emStatus || '',
         sigAddr: b.sigAddr || SIG_ADDR, sigPh: 'Ph: ' + (b.sigPhones || SIG_PH),
         attHead: tx('Attachments', 'అటాచ్‌మెంట్లు'), attSub: c.stage === 'Approval' ? tx('Attach the design JPG so the customer can check and approve it. Sent with both WhatsApp and email.', 'కస్టమర్ చూసి OK చెప్పడానికి డిజైన్ JPG అటాచ్ చేయండి. WhatsApp, ఈమెయిల్ రెండింటితో వెళ్తుంది.') : tx('Sent with both WhatsApp and email.', 'WhatsApp, ఈమెయిల్ రెండింటితో వెళ్తుంది.'),
@@ -4848,6 +4925,7 @@ class Component extends DCLogic {
     const waOk = (b.demo || b.waMode === 'api') && waDigits(c.phone).length >= 11, emTo = b.emailTest ? (b.email || c.email) : c.email;
     const emOk = emailOk(emTo) && (b.demo || (this._gReady && this.gTokValid(60000))), dn = c.doc.kind === 'quote' ? tx('Quotation', 'కొటేషన్') : tx('Invoice', 'ఇన్వాయిస్');
     const waNo = waDigits(c.phone).length >= 11 && !waOk, emNo = emailOk(emTo) && !emOk;
+    if (waNo) this.waLinks(this.cmpFiles(c), c).catch(() => {});
     this.setCmp({ autoSent: true, ...(waNo ? { waStatus: tx('Tap Send on WhatsApp — the PDF goes with the message', 'WhatsApp లో పంపండి నొక్కండి — PDF మెసేజ్‌తో వెళ్తుంది') } : {}), ...(emNo ? { emStatus: tx('Connect Google to send emails automatically', 'ఆటోమేటిక్ ఈమెయిల్ కోసం Google కనెక్ట్ చేయండి') } : {}) });
     const jobs = [...(waOk ? [this.sendWaC()] : []), ...(emOk ? [this.sendEmC()] : [])]; if (!jobs.length) return;
     Promise.allSettled(jobs).then(() => {
@@ -4865,6 +4943,15 @@ class Component extends DCLogic {
   async shareDoc(d, text) {
     if (!d || !d.blob) return;
     try { await navigator.share({ files: [new File([d.blob], d.name, { type: 'application/pdf' })], title: d.name, text: text || d.name }); } catch (e) { if (e && e.name !== 'AbortError') this.viewDoc(d); }
+  }
+  async openDoc(o, kind) {
+    if (!o) return; const ro = this.state.orders.find(x => x.id === o.id) || o, dn = kind === 'quote' ? tx('Quotation', 'కొటేషన్') : tx('Invoice', 'ఇన్వాయిస్');
+    let w = null; try { w = window.open('', '_blank'); if (w) w.document.write('<title>' + dn + ' SK-' + ro.id + '</title><p style="font:16px system-ui,sans-serif;padding:24px;color:#444">' + tx('Preparing ', 'సిద్ధం చేస్తున్నాం ') + dn + '…</p>'); } catch (e) { w = null; }
+    this.flash(tx(`Opening ${dn}…`, `${dn} తెరుస్తున్నాం…`));
+    try {
+      const d = await this.makeDoc(ro, kind); if (!d || !d.blob) throw new Error('No PDF');
+      if (w && !w.closed) { const u = URL.createObjectURL(d.blob); w.location.href = u; setTimeout(() => URL.revokeObjectURL(u), 300000); } else this.viewDoc(d);
+    } catch (e) { try { if (w) w.close(); } catch (e2) {} this.flash(tx(`Couldn't open ${dn}: `, `${dn} తెరవలేకపోయాం: `) + (e.message || e)); }
   }
   docNow(o, kind) {
     if (!o) return; const st = o.rawStatus || o.status;
@@ -4958,7 +5045,7 @@ class Component extends DCLogic {
         orders: ed !== name ? s.orders.map(o => o.cust === ed ? { ...o, cust: name } : o) : s.orders, selCust: name, dialog: null, form: {}, formErr: '' }));
       return this.flash(tx(`${name} updated`, `${name} వివరాలు మార్చాం`));
     }
-    const c = C(name, phone, (f.cplace || '').trim(), f.corgType || 'Individual', '2026', (f.corg || '').trim(), (f.cocc || '').trim(), (f.caddr || '').trim(), email);
+    const c = C(name, phone, (f.cplace || '').trim(), f.corgType || 'Individual', String(TODAY.getFullYear()), (f.corg || '').trim(), (f.cocc || '').trim(), (f.caddr || '').trim(), email);
     c.phone2 = (f.cphone2 || '').trim(); c.pin = genPin();
     const forOrder = this.state.custForOrder;
     this.setState(s => ({ customers: [c, ...s.customers], dialog: null, form: {}, formErr: '', custForOrder: false,
@@ -5590,7 +5677,7 @@ class Component extends DCLogic {
     const staffP = isStaffU ? permsOf(s.staff.find(x => x.id === s.staffMe)) : null;
     const sec = s.screen === 'cust' ? s.cuSec : isStaffU && (s.section === 'settings' || (s.section === 'studio' && !staffP.studio) || (s.section === 'whatsapp' && !staffP.messages)) ? 'dashboard' : s.section;
     const NAV = isTe() ? [['dashboard', 'డాష్‌బోర్డ్'], ['orders', 'ఆర్డర్లు'], ['customers', 'కస్టమర్లు'], ['studio', 'మెమెంటో స్టూడియో'], ['catalogue', 'గ్యాలరీ'], ['whatsapp', 'మెసేజ్‌లు'], ['payments', 'పేమెంట్లు'], ['settings', 'యాప్ సెట్టింగ్స్']] : [['dashboard', 'Dashboard'], ['orders', 'Orders'], ['customers', 'Customers'], ['studio', 'Memento studio'], ['catalogue', 'Gallery'], ['whatsapp', 'Messages'], ['payments', 'Payments'], ['settings', 'App settings']];
-    const SUB = isTe() ? { dashboard: 'సోమవారం, 12 అక్టోబర్ 2026', orders: 'అన్ని ఆర్డర్లు ఒకే చోట', customers: 'కస్టమర్ వివరాలు, ఆర్డర్ చరిత్ర, ఫోల్డర్లు', studio: 'తయారు చేసే ముందు మెమెంటోలను 3Dలో చూడండి', catalogue: 'సైజ్‌లు, రంగులు, బేస్‌లతో మోడల్స్ · ప్రత్యేక IDలు', whatsapp: 'ఆర్డర్ అప్‌డేట్లు, పండుగ మెసేజ్‌లు', payments: 'నగదు, UPI, అడ్వాన్సులు', settings: 'సిబ్బంది, WhatsApp, ఈమెయిల్, డేటాబేస్, ప్రాక్టీస్' } : { dashboard: 'Monday, 12 October 2026', orders: 'All orders in one place', customers: 'Customer details, order history and folders', studio: 'Preview mementos in 3D before making them', catalogue: 'Models with sizes, colours and bases · unique IDs', whatsapp: 'Order updates and festival messages', payments: 'Cash, UPI and advances', settings: 'Staff, WhatsApp, email, database and a practice area' };
+    const SUB = isTe() ? { dashboard: `${WD_TE[TODAY.getDay()]}, ${TODAY.getDate()} ${MON_TE[TODAY.getMonth()]} ${TODAY.getFullYear()}`, orders: 'అన్ని ఆర్డర్లు ఒకే చోట', customers: 'కస్టమర్ వివరాలు, ఆర్డర్ చరిత్ర, ఫోల్డర్లు', studio: 'తయారు చేసే ముందు మెమెంటోలను 3Dలో చూడండి', catalogue: 'సైజ్‌లు, రంగులు, బేస్‌లతో మోడల్స్ · ప్రత్యేక IDలు', whatsapp: 'ఆర్డర్ అప్‌డేట్లు, పండుగ మెసేజ్‌లు', payments: 'నగదు, UPI, అడ్వాన్సులు', settings: 'సిబ్బంది, WhatsApp, ఈమెయిల్, డేటాబేస్, ప్రాక్టీస్' } : { dashboard: `${WD_EN[TODAY.getDay()]}, ${TODAY.getDate()} ${MON_EN[TODAY.getMonth()]} ${TODAY.getFullYear()}`, orders: 'All orders in one place', customers: 'Customer details, order history and folders', studio: 'Preview mementos in 3D before making them', catalogue: 'Models with sizes, colours and bases · unique IDs', whatsapp: 'Order updates and festival messages', payments: 'Cash, UPI and advances', settings: 'Staff, WhatsApp, email, database and a practice area' };
     if (s.screen === 'cust') NAV.splice(0, NAV.length, ['chome', tx('Home', 'హోమ్')], ['corders', tx('My orders', 'నా ఆర్డర్లు')], ['catalogue', tx('Gallery', 'గ్యాలరీ')], ['creq', tx('My requests', 'నా అభ్యర్థనలు')], ['cprofile', tx('My account', 'నా ఖాతా')]);
     else { NAV.push(['requests', tx('Requests', 'అభ్యర్థనలు')]); const ORD = ['dashboard', 'catalogue', 'requests', 'orders', 'studio', 'payments', 'customers', 'whatsapp', 'settings']; NAV.sort((a, b) => ORD.indexOf(a[0]) - ORD.indexOf(b[0])); if (isStaffU) { const sp = permsOf(s.staff.find(x => x.id === s.staffMe)), hide = ['settings', ...(sp.studio ? [] : ['studio']), ...(sp.messages ? [] : ['whatsapp'])]; for (let i = NAV.length - 1; i >= 0; i--) if (hide.includes(NAV[i][0])) NAV.splice(i, 1); } }
     Object.assign(SUB, { requests: tx('Design requests and replies from customers', 'కస్టమర్ల నుండి డిజైన్ అభ్యర్థనలు, జవాబులు'), chome: tx('Your orders and designs at Sai Kiran', 'సాయి కిరణ్‌లో మీ ఆర్డర్లు, డిజైన్లు'), corders: tx('Track every order, see bills and pay', 'ప్రతి ఆర్డర్ చూడండి, బిల్లులు, చెల్లింపులు'), creq: tx('Designs you picked and messages to the shop', 'మీరు ఎంచుకున్న డిజైన్లు, షాప్‌కు అభ్యర్థనలు'), cprofile: tx('Your details, PIN and language', 'మీ వివరాలు, PIN, భాష') });
@@ -5625,7 +5712,7 @@ class Component extends DCLogic {
       cust = { ...cObj, type: vt(cObj.type), hasInfo: !!(cObj.org || cObj.occasion || cObj.address || cObj.email), info: [[tx('Secondary WhatsApp', 'రెండో WhatsApp'), cObj.phone2], [tx('Email', 'ఈమెయిల్'), cObj.email], [L.orgName, cObj.org], [L.orgType, vt(cObj.type)], [L.address, cObj.address]].filter(x => x[1]).map(([k, v]) => ({ k, v, style: k === L.address ? { gridColumn: '1 / -1' } : {} })), sinceLine: tx(`${cObj.type} since ${cObj.since}`, `${cObj.since} నుండి · ${vt(cObj.type)}`), initials: initials(cObj.name), count: st.count, spendF: inr(st.spend), balF: st.bal ? inr(st.bal) : '₹0', root: `D:\\Customers\\${cObj.name}\\`,
         root: this.custPath(cObj.name), folderHead: L.folderPC, pcLbl: this._dir ? tx('Offline backup on this PC', 'ఈ PC లో ఆఫ్‌లైన్ బ్యాకప్') : tx('Offline backup on the shop PC', 'షాప్ PC లో ఆఫ్‌లైన్ బ్యాకప్'), driveLbl: tx('Google Drive (main)', 'Google Drive (ముఖ్యం)'), drivePath: `My Drive › Sai Kiran Tool › Customer orders › ${skSafe(cObj.name)}`, openDriveBtn: tx('Open in Google Drive', 'Google Drive లో తెరవండి'),
         openFolderBtn: tx('Open folder', 'ఫోల్డర్ తెరవండి'), copyBtn: tx('Copy path', 'పాత్ కాపీ'),
-        histHead: tx('Order history', 'ఆర్డర్ చరిత్ర'), histSub: tx(`${st.count} orders · ${inr(st.spend - st.bal)} paid`, `${st.count} ఆర్డర్లు · ${inr(st.spend - st.bal)} చెల్లించారు`),
+        histHead: tx('Order history', 'ఆర్డర్ చరిత్ర'), histSub: tx(`${st.count} ${pl(st.count, 'order', 'orders')} · ${inr(st.spend - st.bal)} paid`, `${st.count} ఆర్డర్లు · ${inr(st.spend - st.bal)} చెల్లించారు`),
         histTabs: [['all', tx('All', 'అన్నీ')], ['open', tx('In progress', 'జరుగుతున్నవి')], ['done', tx('Delivered', 'అందజేసినవి')]].map(([k, l]) => ({ label: l, style: chip((s.histTab || 'all') === k), pick: () => this.setState({ histTab: k }) })),
         ...(() => { const ht = s.histTab || 'all', os = st.os.filter(o => ht === 'all' || (ht === 'open' ? o.isOpen : o.rawStatus === 'Delivered')).sort((a, b) => b.id - a.id);
           return { noHist: !os.length, noHistText: tx('No orders here yet.', 'ఇక్కడ ఇంకా ఆర్డర్లు లేవు.'),
@@ -5683,7 +5770,7 @@ class Component extends DCLogic {
       { label: tr('dueSoon'), value: due2.length, note: lateN ? tx(`${lateN} late — do today`, `${lateN} ఆలస్యం — ఈ రోజే చేయండి`) : tx('Next 2 days · none late', 'తర్వాతి 2 రోజులు · ఆలస్యం లేదు'), icon: 'M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20M12 6v6l4 2', iconWrap: lateN ? kIcon('var(--color-accent-100)', 'var(--color-accent-700)') : kIcon('#fcf1dc', '#8a5300'), noteStyle: noteS(lateN ? 'var(--color-accent-700)' : null), go: () => this.setState({ section: 'orders', filter: 'Open' }) },
       { label: tx('Waiting for customer OK', 'కస్టమర్ OK కోసం'), value: all.filter(o => o.rawStatus === 'Approval').length, note: tx('Design sent on WhatsApp', 'డిజైన్ WhatsApp లో పంపాం'), icon: 'M7.9 20A9 9 0 1 0 4 16.1L2 22ZM8.5 12l2.5 2.5 5-5', iconWrap: kIcon('#efe9fa', '#5a3d9a'), noteStyle: noteS(), go: () => this.setState({ section: 'orders', filter: 'Approval' }) }
     ];
-    const monthPaid = pays.filter(p => p.date.endsWith('-10-2026')).reduce((a, p) => a + p.amount, 0);
+    const monthPaid = pays.filter(p => String(p.date || '').endsWith(TODAY_S.slice(2))).reduce((a, p) => a + p.amount, 0);
     const heroPct = Math.round(monthPaid / Math.max(1, monthPaid + totalBal) * 100);
     const earnedAll = all.reduce((x, o) => x + (o.total - o.bal), 0), valueAll = all.reduce((x, o) => x + o.total, 0);
     const kW = (bg, fg) => ({ width: 40, height: 40, flex: 'none', borderRadius: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', background: bg, color: fg });
@@ -5693,7 +5780,7 @@ class Component extends DCLogic {
       earnedLabel: tx('Money received so far', 'ఇప్పటివరకు వచ్చిన డబ్బు'), earned: inr(earnedAll),
       monthLine: tx(`${inr(monthPaid)} received this month`, `ఈ నెల ${inr(monthPaid)} వచ్చింది`),
       valueLabel: tx('Total order value', 'మొత్తం ఆర్డర్ల విలువ'), totalValue: inr(valueAll),
-      collectLabel: tx(`Still to collect · ${outstanding.length} orders`, `ఇంకా రావాలి · ${outstanding.length} ఆర్డర్లు`), toCollect: inr(totalBal),
+      collectLabel: tx(`Still to collect · ${outstanding.length} ${pl(outstanding.length, 'order', 'orders')}`, `ఇంకా రావాలి · ${outstanding.length} ఆర్డర్లు`), toCollect: inr(totalBal),
       bar: { display: 'block', height: '100%', width: Math.round(earnedAll / Math.max(1, valueAll) * 100) + '%', borderRadius: 8, background: 'linear-gradient(90deg,#d98a32,#f2b552)' },
       tiles: [
         { label: tx('Total orders', 'మొత్తం ఆర్డర్లు'), value: all.length, note: tx('All time', 'ఇప్పటివరకు'), icon: ICONS.orders, iconWrap: kW('var(--color-neutral-100)', 'var(--color-text)'), noteStyle: noteS(), go: goF('All') },
@@ -5701,7 +5788,7 @@ class Component extends DCLogic {
         { label: tx('Due in 2 days', '2 రోజుల్లో ఇవ్వాలి'), value: due2.length, note: lateN ? tx(`${lateN} late`, `${lateN} ఆలస్యం`) : tx('None late', 'ఆలస్యం లేదు'), icon: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z', iconWrap: kW('#fcf1dc', '#8a5300'), noteStyle: noteS(lateN ? 'var(--color-accent-700)' : null), go: goF('Open') },
         { label: tx('Delivered', 'అందజేసినవి'), value: all.filter(o => o.rawStatus === 'Delivered').length, note: tx('Completed orders', 'పూర్తైన ఆర్డర్లు'), icon: 'M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3', iconWrap: kW('#e2f3e7', '#1e6a39'), noteStyle: noteS(), go: goF('Delivered') }
       ],
-      stageSub: tx(`${openOrders.length} orders in progress`, `${openOrders.length} ఆర్డర్లు జరుగుతున్నాయి`),
+      stageSub: tx(`${openOrders.length} ${pl(openOrders.length, 'order', 'orders')} in progress`, `${openOrders.length} ఆర్డర్లు జరుగుతున్నాయి`),
       stages: ST.map(k => { const n = all.filter(o => o.rawStatus === k).length, c = (STC[k] || [])[1] || 'var(--color-accent)';
         return { label: ST_LABEL[k], count: n, go: goF(k), dot: { width: 8, height: 8, flex: 'none', borderRadius: '50%', background: c },
           bar: { display: 'block', height: '100%', width: (n ? Math.max(4, Math.round(n / maxSt * 100)) : 0) + '%', borderRadius: 10, background: c } }; })
@@ -5748,7 +5835,7 @@ class Component extends DCLogic {
     const audCount = a => a === 'All' ? s.customers.length : s.customers.filter(c => c.type === a).length;
     const audiences = [['All', tx('All customers', 'అందరు కస్టమర్లు')], ['School', tx('Schools', 'స్కూళ్ళు')], ['Temple', tx('Temples', 'దేవాలయాలు')], ['Govt. Organization', tx('Govt. organizations', 'ప్రభుత్వ సంస్థలు')], ['Private Organization', tx('Private organizations', 'ప్రైవేట్ సంస్థలు')], ['Individual', tx('Individuals', 'వ్యక్తులు')]].map(([v, l]) => ({ value: v, label: `${l} (${audCount(v)})` }));
 
-    const octPays = pays.filter(p => p.date.endsWith('-10-2026'));
+    const octPays = pays.filter(p => String(p.date || '').endsWith(TODAY_S.slice(2)));
     const sum = arr => arr.reduce((a, p) => a + p.amount, 0);
     const payView = pays.filter(p => s.payFilter === 'All' || p.mode === s.payFilter || p.type === s.payFilter).map(p => {
       const o = all.find(x => x.id === p.order);
@@ -5904,7 +5991,7 @@ class Component extends DCLogic {
       goOrders: () => this.setState({ section: 'orders', filter: 'Open' }), goWhatsapp: go('whatsapp'),
 
       kpis, pipeline, pipeSegs, pipeSummary, dash,
-      greeting: (() => { const sm = isStaffU && s.staff.find(x => x.id === s.staffMe), f = sm ? String(sm.name).trim().split(' ')[0] : ''; return f ? tx('Good morning, ' + f, 'శుభోదయం, ' + f + ' గారు') : tx('Good morning, Owner', 'శుభోదయం, యజమాని గారు'); })(), heroBal: inr(totalBal), heroBalNote: tx(`From ${outstanding.length} orders`, `${outstanding.length} ఆర్డర్ల నుండి`),
+      greeting: (() => { const sm = isStaffU && s.staff.find(x => x.id === s.staffMe), f = sm ? String(sm.name).trim().split(' ')[0] : ''; const hr = new Date().getHours(), gE = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening', gT = hr < 12 ? 'శుభోదయం' : hr < 17 ? 'శుభ మధ్యాహ్నం' : 'శుభ సాయంత్రం'; return f ? tx(gE + ', ' + f, gT + ', ' + f + ' గారు') : tx(gE + ', Owner', gT + ', యజమాని గారు'); })(), heroBal: inr(totalBal), heroBalNote: tx(`From ${outstanding.length} ${pl(outstanding.length, 'order', 'orders')}`, `${outstanding.length} ఆర్డర్ల నుండి`),
       heroCollected: inr(monthPaid), heroBar: { height: '100%', width: heroPct + '%', borderRadius: 6, background: 'linear-gradient(90deg,#d98a32,#f2b552)' },
       emptyDue: openOrders.length ? '' : tx('Nothing due soon.', 'త్వరలో ఇవ్వాల్సినవి ఏమీ లేవు.'), emptyCust: custView.length ? '' : (s.customers.length ? tx('No customers match your search.', 'మీ వెతుకులాటకు కస్టమర్లు లేరు.') : tx('No customers yet. Tap “+ Add customer” to add the first one.', 'ఇంకా కస్టమర్లు లేరు. “+ కస్టమర్” నొక్కి చేర్చండి.')), emptyPay: payView.length ? '' : tx('No payments yet.', 'ఇంకా చెల్లింపులు లేవు.'), emptyOut: outstanding.length ? '' : tx('Every order is fully paid.', 'అన్ని ఆర్డర్లు పూర్తిగా చెల్లించారు.'),
       goPayments: go('payments'),
@@ -6013,10 +6100,10 @@ class Component extends DCLogic {
       },
 
       payKpis: [
-        { label: tx('Received in October', 'అక్టోబర్‌లో వచ్చింది'), value: inr(sum(octPays)), note: tx(`${octPays.length} payments`, `${octPays.length} పేమెంట్లు`) },
+        { label: tx(`Received in ${MON_EN[TODAY.getMonth()]}`, `${MON_TE[TODAY.getMonth()]}లో వచ్చింది`), value: inr(sum(octPays)), note: tx(`${octPays.length} ${pl(octPays.length, 'payment', 'payments')}`, `${octPays.length} పేమెంట్లు`) },
         { label: vt('Cash'), value: inr(sum(octPays.filter(p => p.mode === 'Cash'))), note: tx('This month', 'ఈ నెల') },
         { label: 'UPI', value: inr(sum(octPays.filter(p => p.mode === 'UPI'))), note: tx('This month', 'ఈ నెల') },
-        { label: L.moneyToCollect, value: inr(totalBal), note: tx(`From ${outstanding.length} orders`, `${outstanding.length} ఆర్డర్ల నుండి`) }
+        { label: L.moneyToCollect, value: inr(totalBal), note: tx(`From ${outstanding.length} ${pl(outstanding.length, 'order', 'orders')}`, `${outstanding.length} ఆర్డర్ల నుండి`) }
       ],
       payChips: ['All', 'Cash', 'UPI', 'Advance'].map(k => ({ label: vt(k), style: segB(s.payFilter === k), pick: () => this.setState({ payFilter: k }) })),
       payView,
@@ -6055,7 +6142,8 @@ class Component extends DCLogic {
 
       hasSel: !!sel, sel: sel || {}, steps, stepNote, selPays, selPayCount: selPays.length,
       delTitle: sel ? tx(`Delete ${sel.code}?`, `${sel.code} తొలగించాలా?`) : '',
-      delBody: tx(`This removes the order and its ${selPays.length} payments from the app. Files on the shop PC are not touched.`, `ఈ ఆర్డర్, దాని ${selPays.length} పేమెంట్లు యాప్ నుండి తొలగిపోతాయి. షాప్ PC లోని ఫైళ్ళు అలాగే ఉంటాయి.`),
+      delBody: tx(`This removes the order, its ${selPays.length} ${pl(selPays.length, 'payment', 'payments')} and its folder (photos, designs, quotation, invoice) from Google Drive, the shop PC and every device.`, `ఈ ఆర్డర్, దాని ${selPays.length} పేమెంట్లు, దాని ఫోల్డర్ (ఫోటోలు, డిజైన్లు, కొటేషన్, ఇన్వాయిస్) Google Drive, షాప్ PC మరియు అన్ని పరికరాల నుండి తొలగిపోతాయి.`),
+      act: { msg: tx('Message', 'మెసేజ్'), quote: tx('Quote', 'కొటేషన్'), inv: tx('Invoice', 'ఇన్వాయిస్'), pq: tx('Print Q', 'ప్రింట్ Q'), pi: tx('Print Inv', 'ప్రింట్ Inv'), del: tx('Delete', 'తొలగించు'), close: tx('Close', 'మూసివేయి'), closeFull: tx('Close order', 'ఆర్డర్ మూసివేయి') }, selCompact: s.vw < 1024, selWide: !(s.vw < 1024),
       closeOrder: () => this.setState({ selOrderId: null }),
       editOrder: () => selO && this.editOrderStart(selO.id), editLbl: tx('Edit order', 'ఆర్డర్ మార్చండి'), addItemsLbl: tx('Edit / add items', 'ఐటమ్‌లు మార్చండి / చేర్చండి'),
       selAside: s.vw < 640 ? { position: 'fixed', inset: 0, width: '100%', background: 'var(--color-surface)', zIndex: 21, overflow: 'auto', display: 'flex', flexDirection: 'column' } : { position: 'fixed', top: 12, right: 12, bottom: 12, width: 'min(580px,calc(100% - 24px))', background: 'var(--color-surface)', zIndex: 21, overflow: 'auto', borderRadius: 16, boxShadow: 'var(--shadow-lg)', display: 'flex', flexDirection: 'column' },
@@ -6064,13 +6152,13 @@ class Component extends DCLogic {
       onSelNotes: e => { const v = e.target.value; selO && this.updOrder(selO.id, { notes: v }); },
       openPay: () => selO && this.setState({ dialog: 'pay', formErr: '', form: { amount: Math.max(0, selO.bal), mode: 'Cash', ptype: 'Balance' } }),
       askDelete: () => this.setState({ dialog: 'del' }),
-      doDelete: () => { const id = s.selOrderId; this.setState(x => ({ orders: x.orders.filter(o => o.id !== id), payments: x.payments.filter(p => p.order !== id), selOrderId: null, dialog: null })); this.flash(tx(`SK-${id} deleted`, `SK-${id} తొలగించాం`)); },
+      doDelete: () => { const id = s.selOrderId; this.queuePurge(s.orders.find(o => o.id === id)); this.setState(x => ({ orders: x.orders.filter(o => o.id !== id), payments: x.payments.filter(p => p.order !== id), selOrderId: null, dialog: null })); this.flash(tx(`SK-${id} deleted`, `SK-${id} తొలగించాం`)); },
       openInStudio: () => { if (!selO) return; const key = /birthday/i.test(selO.item) ? 'birthday' : /gruha|house/i.test(selO.item) ? 'housewarming' : 'felicitation'; this.loadTpl(key, selO.id); this.setState({ section: 'studio', selOrderId: null }); },
       selToPhotocraft: () => { if (!selO) return; if (selO.rawStatus === 'Received') this.setStatus(selO, 'Designing'); this.launch('photocraft'); },
       selOpenFolder: () => selO && this.openOrderFolder(selO), openFolderLbl: tx('Open folder', 'ఫోల్డర్ తెరవండి'),
       selAddFiles: () => { if (!selO) return; this._upFor = selO.id; if (this.upRef.current) this.upRef.current.click(); }, upRef: this.upRef, onOrderFiles: this.onOrderFiles, addFilesLbl: tx('Add photos', 'ఫోటోలు చేర్చండి'),
       printQuote: () => selO && this.printDoc(selO, 'quote'), printInv: () => selO && this.printDoc(selO, 'invoice'), printQLbl: tx('Print quotation', 'కోటేషన్ ప్రింట్'), printILbl: tx('Print invoice', 'ఇన్వాయిస్ ప్రింట్'), subRef: this.subRef, onSubFiles: this.onSubFiles, ofv: this.ofVals(selO),
-      selQuote: () => this.docNow(selO, 'quote'), selInvoice: () => this.docNow(selO, 'invoice'), quoteLbl: tx('Quotation', 'కోటేషన్'), invLbl: tx('Invoice', 'ఇన్వాయిస్'),
+      selQuote: () => this.openDoc(selO, 'quote'), selInvoice: () => this.openDoc(selO, 'invoice'), quoteLbl: tx('Quotation', 'కోటేషన్'), invLbl: tx('Invoice', 'ఇన్వాయిస్'),
       syncChip: (() => {
         const gs = s.gStatus, on = s.online !== false;
         if (s.biz.demo) return { show: false };
@@ -6190,7 +6278,7 @@ class Component extends DCLogic {
       upd: { show: !!s.newVer, go: () => location.reload(), text: tx('A new version of the app is ready.', 'యాప్ కొత్త వెర్షన్ సిద్ధంగా ఉంది.'), btn: tx('Update now', 'ఇప్పుడే అప్‌డేట్') },
       sigV: { addrLbl: tx('Email signature · address', 'ఈమెయిల్ సంతకం · అడ్రస్'), phLbl: tx('Email signature · contact numbers', 'ఈమెయిల్ సంతకం · ఫోన్ నంబర్లు'), addr: s.biz.sigAddr ?? SIG_ADDR, ph: s.biz.sigPhones ?? SIG_PH, onAddr: this.bizH('sigAddr'), onPh: this.bizH('sigPhones') }, secWork: tx('Work details', 'పని వివరాలు'), openCustDrive: this.openCustDrive, ...this.dataVals(s), ...this.msgVals(s, { sw2, segB, dotStyle, all }), ...this.galleryVals(s.screen === 'cust' ? this.cuGalState(s) : s, { chip, segB, opt }),
       msgCustomer: () => selO && this.openCompose(selO, selO.rawStatus),
-      showQuickAdd: ((s.section !== 'settings' && s.section !== 'studio') || !!s.no) && s.vw >= 640, notStudio: s.section !== 'studio',
+      showQuickAdd: ((s.section !== 'settings' && s.section !== 'studio') || !!s.no) && s.vw >= 640, notStudio: s.section !== 'studio', tabBarOn: mobile && s.section !== 'studio',
       pickBar: (() => { if (!(s.picking && s.no)) return { show: false }; const t = this.noTotals(s.no), n = s.no.lines.reduce((a, l) => a + (Number(l.qty) || 0), 0);
         const mob = s.vw < 640, ed = s.no.editId != null;
         return { show: !s.dialog, pos: { position: 'fixed', left: mob ? 12 : (s.vw < 1100 ? 96 : 252) + 24, right: mob ? 12 : 24, bottom: mob ? 'calc(80px + env(safe-area-inset-bottom))' : 18, zIndex: 24, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }, kicker: ed ? tx(`Editing SK-${s.no.editId}`, `SK-${s.no.editId} మార్పు`) : tx('Order in progress', 'ఆర్డర్ జరుగుతోంది'), line: tx(`${s.no.cust || 'Customer not chosen'} · ${s.no.lines.length} item${s.no.lines.length === 1 ? '' : 's'} · qty ${n}`, `${s.no.cust || 'కస్టమర్ ఎంచుకోలేదు'} · ${s.no.lines.length} ఐటమ్‌లు · సంఖ్య ${n}`),

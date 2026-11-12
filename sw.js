@@ -1,4 +1,4 @@
-const C = 'sk-app-v56';
+const C = 'sk-app-v58';
 const ROOT = self.registration.scope;
 const CORE = [ROOT, 'support.js', 'vendor/react.production.min.js', 'vendor/react-dom.production.min.js', 'manifest.webmanifest', 'assets/icon-192.png', 'assets/logo-en-sm.png', 'assets/logo-te-sm.png', 'assets/logo-splash.png'];
 const CDN = /^https:\/\/(fonts\.googleapis\.com|fonts\.gstatic\.com|lh3\.googleusercontent\.com)\//;
@@ -7,6 +7,7 @@ self.addEventListener('activate', e => e.waitUntil((async () => { for (const k o
 self.addEventListener('fetch', e => {
   const r = e.request, u = new URL(r.url);
   if (r.method !== 'GET') return;
+  if (r.url.indexOf('%7B%7B') >= 0) { e.respondWith(new Response(null, { status: 204 })); return; }
   const same = u.origin === location.origin;
   if (!same && !CDN.test(r.url)) return;
   if (same && /\/(version|config)\.json$/.test(u.pathname)) return;

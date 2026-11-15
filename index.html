@@ -1400,91 +1400,67 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
       </sc-if>
 
       <sc-if value="{{ sec.pcat }}" hint-placeholder-val="{{ false }}">
-        <div data-screen-label="Product catalogue" style="display:flex;flex-wrap:wrap-reverse;gap:16px;align-items:flex-end">
-          <div style="flex:1 1 340px;max-width:440px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <div data-screen-label="Catalogue" style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start">
+          <div style="flex:1 1 320px;max-width:440px;min-width:0;display:flex;flex-direction:column;gap:14px">
             <div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0">
-              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.saved }}</div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap"><select class="input" value="{{ pc.curId }}" onChange="{{ pc.onLoad }}" style="flex:1 1 160px;min-width:0;min-height:40px">{{ pc.savedOpts }}</select><sc-if value="{{ pc.curId }}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost" onClick="{{ pc.del }}" style="min-height:40px">{{ pc.L.del }}</button></sc-if></div>
-              <div class="field"><label>{{ pc.L.name }}</label><input class="input" value="{{ pc.cfg.name }}" onChange="{{ pc.on.name }}" placeholder="{{ pc.L.namePh }}" style="min-height:40px"></div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-secondary" onClick="{{ pc.save }}" style="min-height:38px">{{ pc.L.save }}</button><sc-if value="{{ pc.curId }}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost" onClick="{{ pc.saveNew }}" style="min-height:38px">{{ pc.L.saveNew }}</button></sc-if><button class="btn btn-ghost" onClick="{{ pc.reset }}" style="min-height:38px">{{ pc.L.newCat }}</button></div>
+              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ ct.L.styleL }}</div>
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"><sc-for list="{{ ct.styles }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" style="{{ o.style }}"><span style="font-weight:800;font-size:13px;line-height:1.2">{{ o.label }}</span><span style="font-size:11.5px;line-height:1.3;color:var(--color-neutral-600)">{{ o.hint }}</span></button></sc-for></div>
+              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ ct.L.layout }}</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:8px"><sc-for list="{{ ct.layouts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" style="{{ o.style }}"><span style="{{ o.icon }}"><sc-for list="{{ o.cells }}" as="c" hint-placeholder-count="1"><span style="{{ c.style }}"></span></sc-for></span><span style="font-weight:700;font-size:12px;line-height:1.2">{{ o.label }}</span></button></sc-for></div>
             </div>
             <div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0">
-              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.tpl }}</div>
-              <div style="font-size:12px;color:var(--color-neutral-600);line-height:1.45;margin-top:-6px">{{ pc.L.tplSub }}</div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px"><sc-for list="{{ pc.tpls }}" as="o" hint-placeholder-count="9"><div style="position:relative;display:flex;min-width:0"><button onClick="{{ o.pick }}" style="{{ o.style }}"><span style="{{ o.thumb }}"></span><span style="font-weight:800;font-size:12.5px;line-height:1.2">{{ o.label }}</span></button><sc-if value="{{ o.isU }}" hint-placeholder-val="{{ false }}"><button onClick="{{ o.del }}" aria-label="Delete template" style="position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:14px;border:0;background:rgba(0,0,0,.62);color:#fff;cursor:pointer;font-size:16px;line-height:1">×</button></sc-if></div></sc-for></div>
-              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:4px">{{ pc.L.classic }}</div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px"><sc-for list="{{ pc.tplsOld }}" as="o" hint-placeholder-count="6"><div style="position:relative;display:flex;min-width:0"><button onClick="{{ o.pick }}" style="{{ o.style }}"><span style="{{ o.thumb }}"></span><span style="font-weight:800;font-size:12.5px;line-height:1.2">{{ o.label }}</span></button><sc-if value="{{ o.isU }}" hint-placeholder-val="{{ false }}"><button onClick="{{ o.del }}" aria-label="Delete template" style="position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:14px;border:0;background:rgba(0,0,0,.62);color:#fff;cursor:pointer;font-size:16px;line-height:1">×</button></sc-if></div></sc-for></div>
-              <label class="btn btn-secondary" style="min-height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer">{{ pc.L.upload }}<input type="file" accept="image/png,image/jpeg,image/webp,.json,application/json" multiple="multiple" onChange="{{ pc.onUp }}" style="display:none"></label>
-              <div style="font-size:12px;color:var(--color-neutral-600);line-height:1.5">{{ pc.L.upHelp }}</div>
-              <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span style="font-size:12px;font-weight:800;color:var(--color-neutral-600)">{{ pc.L.find }}</span><sc-for list="{{ pc.finds }}" as="f" hint-placeholder-count="4"><a href="{{ f.href }}" target="_blank" rel="noopener" style="font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;border:1px solid var(--color-neutral-300);text-decoration:none;color:var(--color-accent-700)">{{ f.label }}</a></sc-for></div>
-              <sc-if value="{{ pc.isUp }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.upPer }}</div><div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-100);align-self:flex-start"><sc-for list="{{ pc.upPerOpts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></div></div></sc-if>
-            </div>
-            <div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0">
-              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.layout }}</div>
-              <div style="display:flex;flex-direction:column;gap:6px"><sc-for list="{{ pc.layouts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.pick }}" style="{{ o.style }}"><span style="font-weight:800;font-size:14px">{{ o.label }}</span><span style="font-size:12px;color:var(--color-neutral-600)">{{ o.sub }}</span></button></sc-for></div>
-              <sc-if value="{{ pc.showTheme }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:4px">{{ pc.themeLbl }}</div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px"><sc-for list="{{ pc.themes }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.pick }}" style="{{ o.style }}"><span style="display:flex;align-items:center"><span style="{{ o.s1 }}"></span><span style="{{ o.s2 }}"></span><span style="{{ o.s3 }}"></span></span><span style="font-weight:800;font-size:13px">{{ o.label }}</span></button></sc-for></div></div></sc-if>
-              <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.views }}</div><div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-100);align-self:flex-start"><sc-for list="{{ pc.viewOpts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></div><div style="font-size:12px;color:var(--color-neutral-600);line-height:1.45">{{ pc.L.viewsSub }}</div></div>
-              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:4px">{{ pc.L.options }}</div>
-              <div style="display:flex;flex-direction:column;gap:2px"><sc-for list="{{ pc.toggles }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.flip }}" role="switch" aria-checked="{{ t.on }}" style="display:flex;align-items:center;gap:10px;min-height:40px;padding:0;border:0;background:transparent;font:inherit;font-size:14px;color:var(--color-text);cursor:pointer;text-align:left"><span style="{{ t.track }}"><span style="{{ t.knob }}"></span></span><span style="display:flex;flex-direction:column"><span style="font-weight:600">{{ t.label }}</span><span style="font-size:12px;color:var(--color-neutral-600)">{{ t.sub }}</span></span></button></sc-for></div>
-              <div class="field"><label>{{ pc.L.headline }}</label><input class="input" value="{{ pc.cfg.headline }}" onChange="{{ pc.on.headline }}" placeholder="{{ pc.L.headlinePh }}" style="min-height:40px"></div>
-              <div class="field"><label>{{ pc.L.tagline }}</label><input class="input" value="{{ pc.cfg.tagline }}" onChange="{{ pc.on.tagline }}" placeholder="{{ pc.L.taglinePh }}" style="min-height:40px"></div>
-              <div class="field"><label>{{ pc.L.forName }}</label><input class="input" value="{{ pc.cfg.forName }}" onChange="{{ pc.on.forName }}" placeholder="{{ pc.L.forNamePh }}" style="min-height:40px"></div>
-              <div class="field"><label>{{ pc.L.offer }}</label><input class="input" value="{{ pc.cfg.offer }}" onChange="{{ pc.on.offer }}" placeholder="{{ pc.L.offerPh }}" style="min-height:40px"></div>
-              <div class="field"><label>{{ pc.L.fest }}</label><select class="input" value="{{ pc.cfg.fest }}" onChange="{{ pc.onFest }}" style="min-height:40px">{{ pc.festOpts }}</select></div>
-              <div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.font }}</div><div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-100);align-self:flex-start;flex-wrap:wrap"><sc-for list="{{ pc.fontOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></div></div>
-            </div>
-            <div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0">
-              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.products }}</div><span style="font-size:12.5px;color:var(--color-neutral-600)">{{ pc.countLine }}</span></div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap"><input class="input" value="{{ pc.q }}" onChange="{{ pc.onQ }}" placeholder="{{ pc.L.searchPh }}" style="flex:1 1 150px;min-width:0;min-height:38px"><select class="input" value="{{ pc.occ }}" onChange="{{ pc.onOcc }}" style="flex:1 1 130px;min-width:0;min-height:38px">{{ pc.occOpts }}</select></div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-ghost" onClick="{{ pc.all }}" style="min-height:32px;padding:0 10px">{{ pc.L.all }}</button><button class="btn btn-ghost" onClick="{{ pc.none }}" style="min-height:32px;padding:0 10px">{{ pc.L.none }}</button></div>
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:520px;overflow:auto;margin:0 -6px;padding:0 6px">
-                <sc-for list="{{ pc.items }}" as="it" hint-placeholder-count="6">
-                  <div style="{{ it.rowStyle }}">
-                    <div style="display:flex;align-items:center;gap:10px">
-                      <button onClick="{{ it.toggle }}" role="checkbox" aria-checked="{{ it.on }}" aria-label="{{ it.name }}" style="{{ it.box }}">{{ it.mark }}</button>
-                      <div style="position:relative;width:46px;height:46px;flex:none;border-radius:8px;background:var(--color-neutral-100);overflow:hidden"><div role="img" aria-label="{{ it.code }}" style="{{ it.thumb }}"></div></div>
-                      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font-family:ui-monospace,Consolas,monospace;font-size:10.5px;font-weight:800;color:var(--color-accent-700)">{{ it.code }}</span><span style="font-weight:700;font-size:13.5px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.name }}</span><span style="font-size:11.5px;color:var(--color-neutral-600)">{{ it.occ }}</span></div>
-                      <sc-if value="{{ it.on }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:2px;flex:none"><button onClick="{{ it.up }}" aria-label="Move up" style="width:28px;height:22px;border:1px solid var(--color-divider);border-radius:6px;background:var(--color-surface);cursor:pointer;font-size:11px;line-height:1">▲</button><button onClick="{{ it.down }}" aria-label="Move down" style="width:28px;height:22px;border:1px solid var(--color-divider);border-radius:6px;background:var(--color-surface);cursor:pointer;font-size:11px;line-height:1">▼</button></div></sc-if>
-                    </div>
-                    <sc-if value="{{ it.isFlyer }}" hint-placeholder-val="{{ false }}"><div style="padding:8px 0 0 34px"><button onClick="{{ it.onFeat }}" style="{{ it.featStyle }}">{{ it.featLbl }}</button></div></sc-if>
-                    <sc-if value="{{ it.showAv }}" hint-placeholder-val="{{ false }}"><label style="display:flex;align-items:center;gap:8px;padding:8px 0 0 34px;font-size:12px;color:var(--color-neutral-700)">{{ pc.L.avail }}<select class="input" value="{{ it.avVal }}" onChange="{{ it.onAv }}" style="min-height:32px;padding:0 8px;font-size:13px;flex:1;min-width:0;background:var(--color-surface)">{{ it.avOpts }}</select></label></sc-if>
-                    <sc-if value="{{ it.showPrices }}" hint-placeholder-val="{{ false }}">
-                      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:6px;padding:8px 0 2px 34px"><sc-for list="{{ it.sizes }}" as="z" hint-placeholder-count="3"><label style="display:flex;flex-direction:column;gap:2px;font-size:11px;color:var(--color-neutral-600)">{{ z.k }}<input class="input" inputMode="numeric" value="{{ z.val }}" onChange="{{ z.on }}" style="{{ z.style }}"></label></sc-for></div>
-                    </sc-if>
+              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ ct.L.tpl }}</div>
+              <div style="font-size:12px;color:var(--color-neutral-600);line-height:1.45;margin-top:-6px">{{ ct.L.tplSub }}</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px"><sc-for list="{{ ct.tpls }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="{{ o.style }}"><span style="{{ o.thumb }}"><span style="{{ o.bar }}"></span><span style="{{ o.chip }}"></span><span style="{{ o.dot }}"></span></span><span style="font-weight:700;font-size:12px;line-height:1.2;text-align:center">{{ o.label }}</span></button></sc-for></div>
+              <sc-if value="{{ ct.notEd }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-secondary" onClick="{{ ct.newTpl }}" style="min-height:38px">{{ ct.L.newTpl }}</button><sc-if value="{{ ct.canEdit }}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost" onClick="{{ ct.editTpl }}" style="min-height:38px">{{ ct.L.editTpl }}</button></sc-if></div></sc-if>
+              <sc-if value="{{ ct.isEd }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:12px;background:var(--color-neutral-100)">
+                  <div class="field"><label>{{ ct.L.name }}</label><input class="input" value="{{ ct.ed.name }}" onChange="{{ ct.ed.onName }}" style="min-height:40px"></div>
+                  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px">
+                    <label style="display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-weight:700;color:var(--color-neutral-600);min-width:0">{{ ct.L.cPage }}<input type="color" value="{{ ct.ed.page }}" onChange="{{ ct.ed.onPage }}" style="width:100%;height:36px;padding:2px;border:1px solid var(--color-neutral-300);border-radius:8px;background:var(--color-surface);cursor:pointer"></label>
+                    <label style="display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-weight:700;color:var(--color-neutral-600);min-width:0">{{ ct.L.cCard }}<input type="color" value="{{ ct.ed.card }}" onChange="{{ ct.ed.onCard }}" style="width:100%;height:36px;padding:2px;border:1px solid var(--color-neutral-300);border-radius:8px;background:var(--color-surface);cursor:pointer"></label>
+                    <label style="display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-weight:700;color:var(--color-neutral-600);min-width:0">{{ ct.L.cInk }}<input type="color" value="{{ ct.ed.ink }}" onChange="{{ ct.ed.onInk }}" style="width:100%;height:36px;padding:2px;border:1px solid var(--color-neutral-300);border-radius:8px;background:var(--color-surface);cursor:pointer"></label>
+                    <label style="display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-weight:700;color:var(--color-neutral-600);min-width:0">{{ ct.L.cAccent }}<input type="color" value="{{ ct.ed.accent }}" onChange="{{ ct.ed.onAccent }}" style="width:100%;height:36px;padding:2px;border:1px solid var(--color-neutral-300);border-radius:8px;background:var(--color-surface);cursor:pointer"></label>
+                    <label style="display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-weight:700;color:var(--color-neutral-600);min-width:0">{{ ct.L.cGold }}<input type="color" value="{{ ct.ed.gold }}" onChange="{{ ct.ed.onGold }}" style="width:100%;height:36px;padding:2px;border:1px solid var(--color-neutral-300);border-radius:8px;background:var(--color-surface);cursor:pointer"></label>
                   </div>
-                </sc-for>
-              </div>
-              <sc-if value="{{ pc.showPriceNote }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;color:var(--color-neutral-700);line-height:1.5">{{ pc.L.priceNote }}</div></sc-if>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+                    <div class="field"><label>{{ ct.L.head }}</label><select class="input" value="{{ ct.ed.head }}" onChange="{{ ct.ed.onHead }}" style="min-height:40px"><option value="band">{{ ct.L.hBand }}</option><option value="line">{{ ct.L.hLine }}</option><option value="center">{{ ct.L.hCenter }}</option></select></div>
+                    <div class="field"><label>{{ ct.L.cardSt }}</label><select class="input" value="{{ ct.ed.cardStyle }}" onChange="{{ ct.ed.onCardStyle }}" style="min-height:40px"><option value="frame">{{ ct.L.kFrame }}</option><option value="plain">{{ ct.L.kPlain }}</option><option value="glow">{{ ct.L.kGlow }}</option></select></div>
+                    <div class="field"><label>{{ ct.L.fontL }}</label><select class="input" value="{{ ct.ed.serif }}" onChange="{{ ct.ed.onSerif }}" style="min-height:40px"><option value="1">{{ ct.L.fSerif }}</option><option value="0">{{ ct.L.fSans }}</option><option value="2">{{ ct.L.fCond }}</option></select></div>
+                  </div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="font-size:12.5px;font-weight:700;color:var(--color-neutral-600)">{{ ct.L.bg }}</span><label class="btn btn-ghost" style="min-height:36px;display:flex;align-items:center;cursor:pointer">{{ ct.L.bgUp }}<input type="file" accept="image/png,image/jpeg,image/webp" onChange="{{ ct.ed.bgUp }}" style="display:none"></label><sc-if value="{{ ct.ed.hasBg }}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost" onClick="{{ ct.ed.bgRm }}" style="min-height:36px">{{ ct.L.bgRm }}</button></sc-if></div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" onClick="{{ ct.ed.save }}" style="min-height:40px">{{ ct.L.save }}</button><button class="btn btn-ghost" onClick="{{ ct.ed.cancel }}" style="min-height:40px">{{ ct.L.cancel }}</button><sc-if value="{{ ct.ed.isOld }}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost" onClick="{{ ct.ed.del }}" style="min-height:40px;color:var(--color-danger,#b3261e)">{{ ct.L.del }}</button></sc-if></div>
+                </div>
+              </sc-if>
+            </div>
+            <div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+              <div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ ct.L.opts }}</div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:14px">{{ ct.L.cover }}</div><div style="font-size:12px;color:var(--color-neutral-600);line-height:1.45">{{ ct.L.coverSub }}</div></div><button role="switch" aria-checked="{{ ct.sw.cover.aria }}" aria-label="{{ ct.L.cover }}" onClick="{{ ct.sw.cover.on }}" style="{{ ct.sw.cover.track }}"><span style="{{ ct.sw.cover.knob }}"></span></button></div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:14px">{{ ct.L.prices }}</div><div style="font-size:12px;color:var(--color-neutral-600);line-height:1.45">{{ ct.L.pricesSub }}</div></div><button role="switch" aria-checked="{{ ct.sw.prices.aria }}" aria-label="{{ ct.L.prices }}" onClick="{{ ct.sw.prices.on }}" style="{{ ct.sw.prices.track }}"><span style="{{ ct.sw.prices.knob }}"></span></button></div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="flex:1;font-weight:600;font-size:14px">{{ ct.L.showSizes }}</div><button role="switch" aria-checked="{{ ct.sw.showSizes.aria }}" aria-label="{{ ct.L.showSizes }}" onClick="{{ ct.sw.showSizes.on }}" style="{{ ct.sw.showSizes.track }}"><span style="{{ ct.sw.showSizes.knob }}"></span></button></div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="flex:1;font-weight:600;font-size:14px">{{ ct.L.showId }}</div><button role="switch" aria-checked="{{ ct.sw.showId.aria }}" aria-label="{{ ct.L.showId }}" onClick="{{ ct.sw.showId.on }}" style="{{ ct.sw.showId.track }}"><span style="{{ ct.sw.showId.knob }}"></span></button></div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="flex:1;font-weight:600;font-size:14px">{{ ct.L.showPhone }}</div><button role="switch" aria-checked="{{ ct.sw.showPhone.aria }}" aria-label="{{ ct.L.showPhone }}" onClick="{{ ct.sw.showPhone.on }}" style="{{ ct.sw.showPhone.track }}"><span style="{{ ct.sw.showPhone.knob }}"></span></button></div>
+              <div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:12.5px;font-weight:700;color:var(--color-neutral-600)">{{ ct.L.angle }}</div><div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-100)"><sc-for list="{{ ct.angles }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></div></div>
+              <div class="field"><label>{{ ct.L.title }}</label><input class="input" value="{{ ct.title }}" onChange="{{ ct.on.title }}" style="min-height:40px"></div>
+              <div class="field"><label>{{ ct.L.sub }}</label><input class="input" value="{{ ct.sub }}" onChange="{{ ct.on.sub }}" placeholder="{{ ct.L.subPh }}" style="min-height:40px"></div>
+            </div>
+            <div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div style="flex:1;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ ct.L.prods }}</div><sc-if value="{{ ct.hasProds }}" hint-placeholder-val="{{ true }}"><button class="btn btn-ghost" onClick="{{ ct.all }}" style="min-height:32px;padding:4px 10px;font-size:12.5px">{{ ct.L.all }}</button><button class="btn btn-ghost" onClick="{{ ct.none }}" style="min-height:32px;padding:4px 10px;font-size:12.5px">{{ ct.L.none }}</button></sc-if></div>
+              <div style="font-size:12px;color:var(--color-neutral-600);line-height:1.45;margin-top:-4px">{{ ct.L.prodsSub }}</div>
+              <sc-if value="{{ ct.noProds }}" hint-placeholder-val="{{ false }}"><div style="padding:14px;border:1px dashed var(--color-neutral-300);border-radius:10px;font-size:13px;color:var(--color-neutral-600);text-align:center">{{ ct.L.noProds }}</div></sc-if>
+              <div style="display:flex;flex-direction:column;max-height:340px;overflow:auto"><sc-for list="{{ ct.items }}" as="o" hint-placeholder-count="4"><div style="{{ o.row }}"><button onClick="{{ o.toggle }}" aria-label="{{ o.name }}" style="{{ o.box }}">{{ o.mark }}</button><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.name }}</div><div style="font-size:11.5px;color:var(--color-neutral-600)">{{ o.id }}</div></div><span style="{{ o.badgeStyle }}">{{ o.badge }}</span><button onClick="{{ o.price }}" title="{{ o.pTitle }}" aria-label="{{ o.pTitle }}" style="{{ o.pStyle }}">₹</button></div></sc-for></div>
             </div>
           </div>
-          <div style="flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px">
-            <div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0">
-              <div style="display:flex;gap:10px 16px;flex-wrap:wrap;align-items:flex-end">
-                <div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.preview }}</div><div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-100)"><sc-for list="{{ pc.prevOpts }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></div></div>
-                <sc-if value="{{ pc.isImg }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.imgSize }}</div><div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-100);flex-wrap:wrap"><sc-for list="{{ pc.imgOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></div></div></sc-if>
-                <sc-if value="{{ pc.isPdf }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ pc.L.paper }}</div><div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-100)"><sc-for list="{{ pc.paperOpts }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></div></div></sc-if>
-                <span style="margin-left:auto;font-size:13px;color:var(--color-neutral-600)">{{ pc.pageLine }}</span>
-              </div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap">
-                <button class="btn btn-primary" onClick="{{ pc.share }}" disabled="{{ pc.busy }}" style="min-height:42px;background:#1a8f4e;border-color:#1a8f4e">{{ pc.L.shareWa }}</button>
-                <button class="btn btn-secondary" onClick="{{ pc.download }}" disabled="{{ pc.busy }}" style="min-height:42px">{{ pc.dlLbl }}</button>
-                <sc-if value="{{ pc.isPdf }}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost" onClick="{{ pc.print }}" disabled="{{ pc.busy }}" style="min-height:42px">{{ pc.L.print }}</button></sc-if>
-              </div>
-              <sc-if value="{{ pc.busyLine }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:var(--color-accent-700);font-weight:600">{{ pc.busyLine }}</div></sc-if>
+          <div style="flex:2 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:10px 14px">
+              <div style="flex:1 1 160px;min-width:0;font-size:13px;font-weight:600;color:var(--color-neutral-600)">{{ ct.count }}<sc-if value="{{ ct.isBusy }}" hint-placeholder-val="{{ false }}"><span style="margin-left:8px;color:var(--color-accent-700)">{{ ct.busy }}</span></sc-if></div>
+              <button class="btn btn-primary" onClick="{{ ct.pdf }}" disabled="{{ ct.isBusy }}" style="min-height:40px">{{ ct.L.pdf }}</button>
+              <button class="btn btn-secondary" onClick="{{ ct.img }}" disabled="{{ ct.isBusy }}" style="min-height:40px">{{ ct.L.img }}</button>
+              <button class="btn btn-ghost" onClick="{{ ct.print }}" disabled="{{ ct.isBusy }}" style="min-height:40px">{{ ct.L.print }}</button>
             </div>
-            <sc-if value="{{ pc.empty }}" hint-placeholder-val="{{ false }}"><div style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0;align-items:center;text-align:center;padding:32px;color:var(--color-neutral-600)">{{ pc.L.empty }}</div></sc-if>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,{{ pc.thumbW }}),1fr));gap:12px">
-              <sc-for list="{{ pc.pages }}" as="p" hint-placeholder-count="4"><button onClick="{{ p.open }}" style="display:flex;flex-direction:column;gap:6px;padding:0;border:0;background:transparent;cursor:zoom-in;font:inherit;text-align:left"><div role="img" aria-label="{{ p.n }}" style="{{ p.style }}"></div><span style="font-size:12px;color:var(--color-neutral-600)">{{ p.n }}</span></button></sc-for>
-            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:16px;border-radius:14px;background:var(--color-neutral-100);min-height:300px"><sc-for list="{{ ct.pages }}" as="p" hint-placeholder-count="1"><img src="{{ p.src }}" alt="{{ p.alt }}" style="display:block;width:100%;max-width:620px;height:auto;border-radius:4px;box-shadow:0 2px 14px rgba(0,0,0,.18);background:#fff"></sc-for></div>
           </div>
         </div>
-        <sc-if value="{{ pc.view.show }}" hint-placeholder-val="{{ false }}">
-          <div onClick="{{ pc.view.close }}" style="position:fixed;inset:0;z-index:80;background:rgba(20,12,6,.86);display:flex;align-items:center;justify-content:center;padding:56px 16px 24px">
-            <div role="img" aria-label="{{ pc.view.n }}" style="{{ pc.view.style }}"></div>
-            <div style="position:absolute;top:12px;left:0;right:0;display:flex;justify-content:center;gap:10px;align-items:center;color:#fff;font-size:14px;font-weight:700"><button onClick="{{ pc.view.prev }}" style="min-width:44px;min-height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font:inherit;cursor:pointer">◀</button><span>{{ pc.view.n }}</span><button onClick="{{ pc.view.next }}" style="min-width:44px;min-height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font:inherit;cursor:pointer">▶</button><button onClick="{{ pc.view.close }}" style="min-width:44px;min-height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font:inherit;cursor:pointer">✕</button></div>
-          </div>
-        </sc-if>
       </sc-if>
       <sc-if value="{{ sec.payments }}" hint-placeholder-val="{{ false }}">
         <div data-screen-label="Payments" style="display:flex;flex-direction:column;gap:20px">
@@ -2276,13 +2252,13 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
     </div>
     <div style="flex:none;padding:6px 12px 0"><div data-sk-ptabs="" role="tablist" style="display:flex;gap:3px;padding:3px;border-radius:9px;background:var(--color-neutral-200)"><sc-for list="{{ gm.tabs }}" as="tb" hint-placeholder-count="3"><button role="tab" aria-selected="{{ tb.on }}" onClick="{{ tb.pick }}" style="{{ tb.style }}">{{ tb.label }}</button></sc-for></div></div>
     <div style="flex:none;display:flex;flex-direction:column;gap:8px;padding:6px 12px 2px">
-    <div style="position:relative;height:clamp(170px,28dvh,300px);border-radius:16px;border:1px solid var(--color-divider);background:var(--color-neutral-100);overflow:hidden">
+    <div style="position:relative;height:clamp(230px,44dvh,480px);border-radius:16px;border:1px solid var(--color-divider);background:var(--color-neutral-100);overflow:hidden">
       <sc-if value="{{ gm.tabMedia }}" hint-placeholder-val="{{ true }}">
       <div data-screen-label="Model slider" onPointerDown="{{ gm.sdown }}" onPointerMove="{{ gm.smove }}" onPointerUp="{{ gm.sup }}" onPointerCancel="{{ gm.sup }}" onPointerLeave="{{ gm.sup }}" style="position:absolute;inset:0;overflow:hidden;touch-action:pan-y;user-select:none">
         <div style="{{ gm.track }}">
           <sc-for list="{{ gm.slides }}" as="sl" hint-placeholder-count="1">
             <div style="position:relative;flex:0 0 100%;height:100%;min-width:0">
-              <sc-if value="{{ sl.isImg }}" hint-placeholder-val="{{ true }}"><button onClick="{{ sl.open }}" aria-label="{{ sl.tag }}" style="position:absolute;inset:8px 54px 26px;border:0;padding:0;background:transparent;cursor:zoom-in"><div role="img" aria-label="{{ sl.tag }}" style="{{ sl.style }}" draggable="false"></div></button></sc-if>
+              <sc-if value="{{ sl.isImg }}" hint-placeholder-val="{{ true }}"><button onClick="{{ sl.open }}" aria-label="{{ sl.tag }}" style="position:absolute;inset:6px 6px 30px;border:0;padding:0;background:transparent;cursor:zoom-in"><div role="img" aria-label="{{ sl.tag }}" style="{{ sl.style }}" draggable="false"></div></button></sc-if>
               <sc-if value="{{ sl.is3d }}" hint-placeholder-val="{{ false }}"><model-viewer src="{{ sl.src }}" alt="{{ sl.tag }}" camera-controls="" auto-rotate="" shadow-intensity="1" interaction-prompt="none" touch-action="none" loading="eager" style="position:absolute;inset:0 0 36px 0;width:100%;height:calc(100% - 36px);display:block;background:transparent;--poster-color:transparent;touch-action:none"></model-viewer></sc-if>
               <sc-if value="{{ sl.isFile }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0 0 36px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;text-align:center;color:var(--color-neutral-700)"><div style="font-size:14px;font-weight:700;overflow-wrap:anywhere">{{ sl.name }}</div><div style="font-size:12.5px;max-width:240px;text-wrap:pretty">{{ sl.note }}</div><sc-if value="{{ sl.canDl }}" hint-placeholder-val="{{ false }}"><a href="{{ sl.src }}" download="{{ sl.name }}" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;background:var(--color-accent);color:#fff;font-size:13px;font-weight:700;text-decoration:none">{{ sl.dl }}</a></sc-if></div></sc-if>
             </div>
@@ -2299,7 +2275,7 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
       <sc-if value="{{ gm.sg.hasImg }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="Size guide" style="{{ gm.sg.imgStyle }}"></div></sc-if>
       <sc-if value="{{ gm.sg.busy }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;justify-content:center;gap:10px;min-height:200px;color:var(--color-neutral-600);font-size:13px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M21 12a9 9 0 1 1-6.2-8.6"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.9s" repeatCount="indefinite"></animateTransform></path></svg>{{ gm.sg.busyLbl }}</div></sc-if><sc-if value="{{ gm.sg.live }}" hint-placeholder-val="{{ true }}"><div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;padding:16px">
         <div style="font-size:12.5px;line-height:1.45;color:var(--color-neutral-600);text-wrap:pretty">{{ gm.sg.note }}</div>
-        <div style="flex:1;min-height:0;display:flex;align-items:flex-end;gap:4px;overflow-x:auto;padding:4px 2px 2px;scrollbar-width:thin"><sc-for list="{{ gm.sg.items }}" as="it" hint-placeholder-count="5"><button onClick="{{ it.pick }}" style="{{ it.wrap }}"><span style="{{ it.box }}"><sc-if value="{{ it.isRef }}" hint-placeholder-val="{{ false }}"><span style="{{ it.dwS }}"><span style="{{ it.capW }}"></span><span style="{{ it.tW }}">{{ it.dW }}</span></span><span style="{{ it.dhS }}"><span style="{{ it.capH }}"></span><span style="{{ it.tH }}">{{ it.dH }}</span></span></sc-if></span><span style="{{ it.lbl }}">{{ it.label }}</span><span style="{{ it.dimS }}">{{ it.dim }}</span></button></sc-for></div>
+        <div ref="{{ sgBoxRef }}" style="flex:1;min-height:0;display:flex;align-items:flex-end;gap:4px;overflow-x:auto;padding:4px 2px 2px;scrollbar-width:thin"><sc-for list="{{ gm.sg.items }}" as="it" hint-placeholder-count="5"><button onClick="{{ it.pick }}" style="{{ it.wrap }}"><span style="{{ it.box }}"><sc-if value="{{ it.isRef }}" hint-placeholder-val="{{ false }}"><span style="{{ it.dwS }}"><span style="{{ it.capW }}"></span><span style="{{ it.tW }}">{{ it.dW }}</span></span><span style="{{ it.dhS }}"><span style="{{ it.capH }}"></span><span style="{{ it.tH }}">{{ it.dH }}</span></span></sc-if></span><span style="{{ it.lbl }}">{{ it.label }}</span><span style="{{ it.dimS }}">{{ it.dim }}</span></button></sc-for></div>
       </div></sc-if>
       </div></sc-if>
     </div>
@@ -2361,8 +2337,8 @@ html[lang="te"] .input,html[lang="te"] .btn,html[lang="te"] button{font-family:v
     <div data-screen-label="Size guide" style="position:relative;width:100%;aspect-ratio:3 / 4;max-height:calc(100dvh - 180px);min-height:240px;border-radius:12px;background:#ffffff;border:1px solid var(--color-divider);overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box"><sc-if value="{{ gm.multi }}" hint-placeholder-val="{{ false }}"><button onClick="{{ gm.sgPrev }}" aria-label="Previous" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:3;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:rgba(20,14,12,.55);color:#fff;cursor:pointer" style-hover="background:rgba(20,14,12,.8)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="m15 18-6-6 6-6"></path></svg></button><button onClick="{{ gm.sgNext }}" aria-label="Next" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:3;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:rgba(20,14,12,.55);color:#fff;cursor:pointer" style-hover="background:rgba(20,14,12,.8)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg></button><span style="position:absolute;right:8px;bottom:8px;z-index:3;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;background:rgba(20,14,12,.6);color:#fff">{{ gm.sgCount }}</span></sc-if><button onClick="{{ gm.sg.full }}" aria-label="{{ gm.sg.fullLbl }}" style="position:absolute;top:8px;right:8px;z-index:3;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:0;border-radius:999px;background:rgba(20,14,12,.74);color:#fff;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer" style-hover="background:rgba(20,14,12,.9)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>{{ gm.sg.fullLbl }}</button>
       <sc-if value="{{ gm.sg.hasImg }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="Size guide" style="{{ gm.sg.imgStyle }}"></div></sc-if>
       <sc-if value="{{ gm.sg.busy }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;justify-content:center;gap:10px;min-height:200px;color:var(--color-neutral-600);font-size:13px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M21 12a9 9 0 1 1-6.2-8.6"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.9s" repeatCount="indefinite"></animateTransform></path></svg>{{ gm.sg.busyLbl }}</div></sc-if><sc-if value="{{ gm.sg.live }}" hint-placeholder-val="{{ true }}"><div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;padding:16px">
-        <div style="font-size:12.5px;line-height:1.45;color:var(--color-neutral-600);text-wrap:pretty">{{ gm.sg.note }}</div>
-        <div style="flex:1;min-height:0;display:flex;align-items:flex-end;gap:4px;overflow-x:auto;padding:4px 2px 2px;scrollbar-width:thin"><sc-for list="{{ gm.sg.items }}" as="it" hint-placeholder-count="5"><button onClick="{{ it.pick }}" style="{{ it.wrap }}"><span style="{{ it.box }}"><sc-if value="{{ it.isRef }}" hint-placeholder-val="{{ false }}"><span style="{{ it.dwS }}"><span style="{{ it.capW }}"></span><span style="{{ it.tW }}">{{ it.dW }}</span></span><span style="{{ it.dhS }}"><span style="{{ it.capH }}"></span><span style="{{ it.tH }}">{{ it.dH }}</span></span></sc-if></span><span style="{{ it.lbl }}">{{ it.label }}</span><span style="{{ it.dimS }}">{{ it.dim }}</span></button></sc-for></div>
+        <div style="font-size:12.5px;line-height:1.45;color:var(--color-neutral-600);text-wrap:pretty;padding-right:118px">{{ gm.sg.note }}</div>
+        <div ref="{{ sgBoxRef }}" style="flex:1;min-height:0;display:flex;align-items:flex-end;gap:4px;overflow-x:auto;padding:4px 2px 2px;scrollbar-width:thin"><sc-for list="{{ gm.sg.items }}" as="it" hint-placeholder-count="5"><button onClick="{{ it.pick }}" style="{{ it.wrap }}"><span style="{{ it.box }}"><sc-if value="{{ it.isRef }}" hint-placeholder-val="{{ false }}"><span style="{{ it.dwS }}"><span style="{{ it.capW }}"></span><span style="{{ it.tW }}">{{ it.dW }}</span></span><span style="{{ it.dhS }}"><span style="{{ it.capH }}"></span><span style="{{ it.tH }}">{{ it.dH }}</span></span></sc-if></span><span style="{{ it.lbl }}">{{ it.label }}</span><span style="{{ it.dimS }}">{{ it.dim }}</span></button></sc-for></div>
       </div></sc-if>
     </div>
           </sc-if>
@@ -3051,7 +3027,7 @@ const OLD_EM = {
   Ready: { subject: 'Order {order} is ready for pickup', body: 'Dear {name},\n\nYour order {order} ({item}) is ready. Balance to pay: {balance}.\n\nమీ ఆర్డర్ {order} సిద్ధంగా ఉంది.' + EM_SIGN },
   Delivered: { subject: 'Thank you – order {order} delivered', body: 'Dear {name},\n\nYour order {order} has been delivered. Thank you for choosing us!\n\nధన్యవాదాలు {name} గారు!' + EM_SIGN }
 };
-const APP_VER = '2026.11.13-1';
+const APP_VER = '2026.11.13-13';
 const WA_SIGN = '\n\n— *Sai Kiran Wood Works & Mementos*, Jinnuru.';
 const SIG_ADDR = 'Jinnuru, West Godavari, Andhra Pradesh', SIG_PH = '+91 98490 76616 (Proprietor), +91 89191 07529 (Orders & support)';
 const skSigText = b => 'Warm regards,\nSai Kiran Wood Works & Mementos\n' + ((b && b.sigAddr) || SIG_ADDR) + '\nPh: ' + ((b && b.sigPhones) || SIG_PH);
@@ -3288,6 +3264,22 @@ const palGrad = (pal, deg) => pal.length > 1 ? `linear-gradient(135deg, ${pal.ma
 const SIZE_RATES = [['4×6', 75], ['4×8', 140], ['5×7', 165], ['5×9', 175], ['6×8', 200], ['6×12', 250], ['8×12', 350], ['10×12.5', 500], ['10×15', 500], ['12×14', 700], ['13×19', 900]];
 const RATE_OF = Object.fromEntries(SIZE_RATES);
 const SIZE_DEF = Object.fromEntries(SIZE_RATES);
+const CT_BIZ = 'Sai Kiran Wood Works & Mementos';
+const ctRgb = h => { const m = /^#?([0-9a-f]{6})$/i.exec(String(h || '')); const n = m ? parseInt(m[1], 16) : 0; return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
+const ctA = (h, a) => { const c = ctRgb(h); return `rgba(${c[0]},${c[1]},${c[2]},${a})`; };
+const ctLum = h => { const c = ctRgb(h); return (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) / 255; };
+const ctMix = (a, b, t) => { const x = ctRgb(a), y = ctRgb(b); return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+const CT_STYLES = { classic: [1, 2, 3, 4], showcase: [3, 2], guide: [9, 6], book: [4, 6] };
+const CT_TPLS = [
+  { id: 'royal', name: 'Royal maroon', te: 'రాయల్ మెరూన్', page: '#fbf5e9', card: '#fffdf8', ink: '#2b1410', muted: '#7b6a5f', accent: '#6b1220', gold: '#b98a2e', head: 'band', cardStyle: 'frame', serif: true },
+  { id: 'walnut', name: 'Walnut wood', te: 'వాల్‌నట్ వుడ్', page: '#efe3d0', card: '#fbf4e8', ink: '#3a2314', muted: '#806a55', accent: '#5a341c', gold: '#a8742c', head: 'line', cardStyle: 'plain', serif: true },
+  { id: 'clean', name: 'Clean white', te: 'క్లీన్ వైట్', page: '#ffffff', card: '#f4f3f1', ink: '#1c1b1a', muted: '#6b6763', accent: '#b3261e', gold: '#8a8580', head: 'line', cardStyle: 'plain', serif: false },
+  { id: 'midnight', name: 'Midnight gold', te: 'మిడ్‌నైట్ గోల్డ్', page: '#14110f', card: '#211b16', ink: '#f4ead8', muted: '#b3a48c', accent: '#e0b34c', gold: '#d4a640', head: 'center', cardStyle: 'glow', serif: true },
+  { id: 'festive', name: 'Festive saffron', te: 'పండుగ కాషాయం', page: '#fff5df', card: '#ffffff', ink: '#3b1d06', muted: '#86684a', accent: '#c2410c', gold: '#d99a1c', head: 'band', cardStyle: 'frame', serif: false },
+  { id: 'pastel', name: 'Pastel studio', te: 'పాస్టెల్ స్టూడియో', page: '#ffffff', card: '#faf7f5', ink: '#1d1d22', muted: '#8b8b94', accent: '#d9693f', gold: '#b9a7e8', head: 'line', cardStyle: 'plain', serif: false, cond: true, tints: ['#fbd3b0', '#f9bcb6', '#c9bdec'] },
+  { id: 'organic', name: 'Organic beige', te: 'ఆర్గానిక్ బీజ్', page: '#efe9df', card: '#f8f4ed', ink: '#3b3229', muted: '#7d7163', accent: '#6b6a45', gold: '#a98b62', head: 'line', cardStyle: 'plain', serif: true, tints: ['#ddd2c0', '#e6dfd2', '#c9cdb4'] },
+  { id: 'teal', name: 'Teal & gold', te: 'టీల్ & గోల్డ్', page: '#f7f6f3', card: '#ffffff', ink: '#12343b', muted: '#6d7b7d', accent: '#0f4c55', gold: '#b89a5e', head: 'center', cardStyle: 'plain', serif: true, tints: ['#0f4c55', '#e6e4df', '#d9c9a8'] },
+];
 const applySizePrices = m => { SIZE_RATES.forEach(r => { r[1] = Number((m && m[r[0]]) ?? SIZE_DEF[r[0]]) || 0; RATE_OF[r[0]] = r[1]; }); };
 const ORG_TYPES = ['Individual', 'School', 'Govt. Organization', 'Private Organization', 'Temple'];
 const OCCASIONS = ['Retirement', 'Felicitation', 'Anniversary', 'Independence Day', 'August 15', "Teachers' Day", 'Birthday', 'Wedding', 'Gruhapravesam', 'Inauguration', 'Theaters', 'Karteekamaasa vanasamaraadhana'];
@@ -3743,7 +3735,7 @@ class Component extends DCLogic {
     this.setState({ section: p, msFull: false, navOpen: false });
   }
   msVals(s, o, segB) {
-    if (!this._msProbe) { this._msProbe = 1; try { localStorage.setItem('memento3d.install.dismissed', '1'); } catch (e) {} fetch('studio.html', { method: 'HEAD', cache: 'no-store' }).then(r => this.setState({ msSrc: r.ok ? 'studio.html' : 'export/hosting/studio.html' })).catch(() => this.setState({ msSrc: 'studio.html' })); }
+    if (!this._msProbe) { this._msProbe = 1; try { localStorage.setItem('memento3d.install.dismissed', '1'); } catch (e) {} fetch('studio.html', { method: 'HEAD', cache: 'no-store' }).then(r => this.setState({ msSrc: (r.ok ? 'studio.html' : 'export/hosting/studio.html') + '?v=' + APP_VER })).catch(() => this.setState({ msSrc: 'studio.html?v=' + APP_VER })); }
     const cur = s.msBase || '';
     return {
       src: s.msSrc || 'about:blank', frameRef: this.msFrameRef, fileRef: this.msFile,
@@ -3894,7 +3886,7 @@ class Component extends DCLogic {
     this._fpoll = setInterval(() => { this.fSyncNow(); }, 180000);
     this._spT = setTimeout(() => this.setState({ splash: false }), 2750);
     this.fixTplNow(); setTimeout(this.fixTplNow, 6000);
-    this.checkVer(); this._vpoll = setInterval(this.checkVer, 300000);
+    this.checkVer(); this._vpoll = setInterval(this.checkVer, SK_LIVE ? 300000 : 20000);
     this._vis = () => { if (document.visibilityState === 'hidden') { clearTimeout(this._cs); this.saveCache(); return; } if (document.visibilityState === 'visible' && this._gReady && this.gTokValid(0)) this.gSyncNow(); };
     this._onl = () => { this.setState({ online: navigator.onLine !== false }); if (navigator.onLine) this._vis(); };
     this._gest = e => { const login = e === true; if (!login && this.state.screen !== 'admin') return; const asked = this.gAutoAsk(false); if (!asked && !login && this._pending && !this._permAsked) { this._permAsked = true; this.reconnectData(); } };
@@ -4201,10 +4193,16 @@ class Component extends DCLogic {
     } catch (er) { this.flash(er.message || String(er)); }
   };
   checkVer = async () => {
-    if (!SK_LIVE) return;
-    try { if (this._swr) this._swr.update().catch(() => {}); const r = await fetch('version.json?ts=' + Date.now(), { cache: 'no-store' }); if (!r.ok) return; const j = await r.json();
+    // live site: show the "new version" bar. Preview (not a live host): reload by itself as soon as nothing is being edited.
+    try { if (SK_LIVE && this._swr) this._swr.update().catch(() => {}); if (!SK_LIVE && document.visibilityState !== 'visible') return;
+      let r = await fetch('version.json?ts=' + Date.now(), { cache: 'no-store' }).catch(() => null);
+      if ((!r || !r.ok) && !SK_LIVE) r = await fetch('export/hosting/version.json?ts=' + Date.now(), { cache: 'no-store' }).catch(() => null);
+      if (!r || !r.ok) return; const j = await r.json();
       if (!j || !j.v || j.v === APP_VER) return; let done = ''; try { done = sessionStorage.getItem('sk_rl') || ''; } catch (e) {}
-      if (done !== j.v) this.setState({ newVer: true }); } catch (e) {}
+      if (done === j.v) return;
+      const s = this.state, ae = document.activeElement, busy = s.dialog || s.orderOpen || s.compose || s.gEdit || s.sending || (ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName));
+      if (!SK_LIVE && !busy) { try { sessionStorage.setItem('sk_rl', j.v); } catch (e) {} location.reload(); return; }
+      if (SK_LIVE) this.setState({ newVer: true }); } catch (e) {}
   };
   sendCompose = async () => {
     const c = this.state.compose; if (!c || this.state.sending) return;
@@ -4357,7 +4355,13 @@ class Component extends DCLogic {
     try { await navigator.clipboard.writeText(p); this.flash(tx('Path copied — paste it in File Explorer’s address bar', 'పాత్ కాపీ అయింది — File Explorer అడ్రస్ బార్‌లో పేస్ట్ చేయండి')); }
     catch (e) { this.flash(p); }
   };
-  loadMV() { if (this._mvLoaded || (window.customElements && customElements.get('model-viewer'))) return; this._mvLoaded = 1; const sc = document.createElement('script'); sc.type = 'module'; sc.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js'; document.head.appendChild(sc); }
+  loadMV() {
+    if (this._mvLoaded || (window.customElements && customElements.get('model-viewer'))) return; this._mvLoaded = 1;
+    // the 3D viewer ships with the app (works offline and where outside sites are blocked); the Google copy is only a last resort
+    const urls = ['vendor/model-viewer.min.js?v=3.5.0', 'export/hosting/vendor/model-viewer.min.js?v=3.5.0', 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js'];
+    const next = i => { if (i >= urls.length) return; const sc = document.createElement('script'); sc.type = 'module'; sc.src = urls[i]; sc.onerror = () => { sc.remove(); next(i + 1); }; document.head.appendChild(sc); };
+    next(0);
+  }
   gOnAngFiles = async e => {
     const files = [...((e.target && e.target.files) || [])]; if (e.target) e.target.value = ''; if (!files.length || !this.state.gEdit) return;
     const load = f => new Promise((res, rej) => { const url = URL.createObjectURL(f), img = new Image();
@@ -4468,6 +4472,7 @@ class Component extends DCLogic {
     this.setState(s => ({ gallery: g.origId ? s.gallery.map(x => x.id === g.origId ? m : x) : [m, ...s.gallery], gEdit: null, dialog: null, gm: s.gm ? { ...s.gm, id } : s.gm }));
     this.flash(draft ? tx(`SK-${id} saved as draft · customers can't see it yet`, `SK-${id} డ్రాఫ్ట్‌గా సేవ్ · కస్టమర్లకు ఇంకా కనిపించదు`) : g.origId ? tx(`SK-${id} published`, `SK-${id} పబ్లిష్ అయింది`) : tx(`SK-${id} added to the Gallery`, `SK-${id} గ్యాలరీలో చేరింది`));
   };
+  sgBoxRef = el => { if (this._sgRO) { this._sgRO.disconnect(); this._sgRO = null; } if (!el) { this._sgBox = null; return; } const rd = () => { const w = el.offsetWidth, h = el.offsetHeight, o = this._sgBox || {}; if (w > 40 && h > 40 && (Math.abs(w - (o.w || 0)) > 2 || Math.abs(h - (o.h || 0)) > 2)) { this._sgBox = { w, h }; this.forceUpdate(); } }; if (typeof ResizeObserver !== 'undefined') { this._sgRO = new ResizeObserver(rd); this._sgRO.observe(el); } rd(); };
   sgItems(sizes, refKey, shape, sel, availW, maxH, pick, img, k3, per) {
     const R = SG_REFS[refKey] || SG_REFS.phone, ar = img && this._snapAr && this._snapAr[img], real = img && this._snapDim ? this.m3Real(this._snapDim[img], k3, shape) : null, rk = real && real.k ? sgDims(real.k, shape) : null;
     const okR = (r2, d) => r2 && r2.h / d.h > 0.85 && r2.h / d.h < 1.45, rats = sizes.map(k => { const d = sgDims(k, shape), pz = d && per && per(k), r2 = pz && pz.img && this._snapDim ? this.m3Real(this._snapDim[pz.img], k, shape) : null; return okR(r2, d) ? r2.h / d.h : 0; }).filter(Boolean).sort((a, b) => a - b), rat = rats.length ? rats[rats.length >> 1] : 1;
@@ -4774,7 +4779,7 @@ class Component extends DCLogic {
         tabs: [['photos', tx('Photos', 'ఫోటోలు')], ...(gM3 ? [['3d', tx('3D view', '3D వ్యూ')]] : []), ...(gHas3 ? [['size', tx('Size guide', 'సైజ్ గైడ్')]] : [])].map(([k, l]) => { const on = gTab === k; return { label: l, on, pick: () => setG(k === 'size' ? { tab: 'size' } : k === '3d' ? { tab: null, slide: gN - 1 } : { tab: null, slide: gTab === '3d' ? 0 : gCur }), style: { ...sgSeg(on), flex: '1 1 0', minWidth: 0, minHeight: 36 } }; }),
         sg: gTab !== 'size' ? {} : { hasImg: !!m.sguide, live: !m.sguide && gSnap === 'ok', busy: !m.sguide && gSnap === 'busy', busyLbl: tx('Preparing size guide…', 'సైజ్ గైడ్ సిద్ధం అవుతోంది…'), imgStyle: { position: 'absolute', inset: 8, background: `center / contain no-repeat url("${m.sguide}")` },
           note: tx(`Drawn to scale next to a ${(SG_REFS[m.sref] || SG_REFS.phone)[0].toLowerCase()}. Tap a size to select it.`, `${(SG_REFS[m.sref] || SG_REFS.phone)[1]} పక్కన అసలు కొలతల్లో. సైజ్ ఎంచుకోవడానికి నొక్కండి.`),
-          items: m.sguide ? [] : this.sgItems(sz.map(r => r[0]), m.sref || 'phone', m.shape, size[0], gNarrow ? (s.vw || 360) - 40 : Math.min(s.vw || 1024, 980) / 2 - 84, gNarrow ? 150 : 300, k => { const f = offOf(k, col.c, bs[0]) ? best({ size: k, col: col.c, base: bs[0] }, { size: k }) : null; setG({ size: k, ...(f ? { col: f.col, bases: [f.base] } : {}) }); }, this.snapLive(this.pick3d(m)), this.pick3dK(m), this.sgPer(m)),
+          items: m.sguide ? [] : this.sgItems(sz.map(r => r[0]), m.sref || 'phone', m.shape, size[0], this._sgBox ? this._sgBox.w - 10 : gNarrow ? (s.vw || 360) - 40 : Math.min(s.vw || 1024, 980) / 2 - 84, this._sgBox ? Math.max(90, this._sgBox.h - 16) : gNarrow ? 150 : 240, k => { const f = offOf(k, col.c, bs[0]) ? best({ size: k, col: col.c, base: bs[0] }, { size: k }) : null; setG({ size: k, ...(f ? { col: f.col, bases: [f.base] } : {}) }); }, this.snapLive(this.pick3d(m)), this.pick3dK(m), this.sgPer(m)),
           full: () => setG({ fs: true, fsSg: true }), fullLbl: tx('Full screen', 'ఫుల్ స్క్రీన్') } };
       if (s.gm.sgFs && gTab === 'size') sgfsV = { open: true, title: (isTe() && m.te ? m.te : m.name) + ' · ' + tx('Size guide', 'సైజ్ గైడ్'), note: tx(`Drawn to scale next to a ${(SG_REFS[m.sref] || SG_REFS.phone)[0].toLowerCase()}`, `${(SG_REFS[m.sref] || SG_REFS.phone)[1]} పక్కన అసలు కొలతల్లో`),
         hasImg: !!m.sguide, live: !m.sguide && gSnap === 'ok', imgStyle: { width: '100%', height: '100%', background: `center / contain no-repeat url("${m.sguide}")` }, close: () => setG({ sgFs: false }),
@@ -5083,7 +5088,7 @@ class Component extends DCLogic {
     const dm = m || {};
     Object.assign(gv, { delTitle: tx(`Delete SK-${dm.id}?`, `SK-${dm.id} తొలగించాలా?`), delBody: tx('This removes the model from the Gallery. Existing orders keep their IDs.', 'ఈ మోడల్ గ్యాలరీ నుండి తొలగుతుంది. పాత ఆర్డర్లలో ID అలాగే ఉంటుంది.'), delBtn: tx('Delete model', 'మోడల్ తొలగించండి'),
       delCancel: () => this.setState({ dialog: s.gEdit ? 'gEdit' : null }), delDo: () => { const id = dm.id; this.setState(x => ({ gallery: x.gallery.filter(y => y.id !== id), gm: null, dialog: null, gEdit: null })); this.flash(tx(`SK-${id} deleted`, `SK-${id} తొలగించాం`)); } });
-    return { gv, gm, gmOpen: gmOpen && !s.dialog && !gm.stacked, gmPhone: gmOpen && !s.dialog && !!gm.stacked, gfs, sgfs: sgfsV, gfsRef: this.gfsRef, gVarRef: this.gVarRef, gBvRef: this.gBvRef, pbImgRef: this.pbImgRef, onPbImg: this.onPbImg, gSvRef: this.gSvRef, gAngRef: this.gAngRef, g3dRef: this.g3dRef, ge, pe, gq: s.gq, gSize: s.gSize, gImgRef: this.gImgRef,
+    return { gv, gm, gmOpen: gmOpen && !s.dialog && !gm.stacked, gmPhone: gmOpen && !s.dialog && !!gm.stacked, gfs, sgfs: sgfsV, gfsRef: this.gfsRef, sgBoxRef: this.sgBoxRef, gVarRef: this.gVarRef, gBvRef: this.gBvRef, pbImgRef: this.pbImgRef, onPbImg: this.onPbImg, gSvRef: this.gSvRef, gAngRef: this.gAngRef, g3dRef: this.g3dRef, ge, pe, gq: s.gq, gSize: s.gSize, gImgRef: this.gImgRef,
       onGq: e => this.setState({ gq: e.target.value }), clearGq: () => this.setState({ gq: '' }), gqKey: e => { if (e.key === 'Escape') this.setState({ gq: '' }); }, onGSize: e => this.setState({ gSize: e.target.value }),
       gmBg: e => { if (e.target === e.currentTarget) this.setState({ gm: null }); },
       addModel: () => this.setState({ dialog: 'gEdit', gEdit: newEdit() }),
@@ -6056,8 +6061,245 @@ class Component extends DCLogic {
     } catch (e) { this.flash(/blocked|tainted|insecure/i.test(String(e && (e.message || e.name))) ? tx('Some product photos are stored on another site and cannot be exported. Re-upload them in Gallery.', 'కొన్ని ఫోటోలు వేరే సైట్‌లో ఉన్నాయి — గ్యాలరీలో మళ్ళీ అప్‌లోడ్ చేయండి.') : tx('Could not make the files: ', 'ఫైళ్లు తయారు కాలేదు: ') + (e.message || e)); }
     finally { this.setState({ pcBusy: '' }); }
   };
+  // ───── Catalogue builder ─────
+  ctDef() { return { ids: null, style: 'classic', cover: false, per: 1, tpl: 'royal', prices: true, off: {}, angle: 'front', title: 'Product Catalogue', sub: '', showId: true, showSizes: true, showPhone: true }; }
+  ctCfg(s) { if (!s.ct && this._ctInit === undefined) this._ctInit = lsJ('sk_ct', null); return { ...this.ctDef(), ...(s.ct || this._ctInit || {}) }; }
+  setCt(p) { this.setState(x => { const ct = { ...this.ctCfg(x), ...p }; lsSet('sk_ct', ct); return { ct }; }); }
+  ctSoon() { clearTimeout(this._ctT); this._ctT = setTimeout(() => this.ctPreview(), 350); }
+  ctAll(s) { return ((s || this.state).gallery || []).filter(m => !skB(m.hidden) && !skB(m.draft)); }
+  ctModels(cfg, s) { const all = this.ctAll(s); return cfg.ids ? all.filter(m => cfg.ids.includes(m.id)) : all; }
+  ctTpls(s) { return [...CT_TPLS, ...((((s || this.state).biz || {}).ctTpls) || [])]; }
+  ctTpl(cfg, s) { s = s || this.state; if (s.ctEd) return { ...s.ctEd, muted: ctMix(s.ctEd.ink, s.ctEd.page, .42) }; const l = this.ctTpls(s); return l.find(t => t.id === cfg.tpl) || l[0]; }
+  ctStyle(cfg) { return CT_STYLES[cfg.style] ? cfg.style : 'classic'; }
+  ctPer(cfg) { const o = CT_STYLES[this.ctStyle(cfg)]; return o.includes(cfg.per) ? cfg.per : o[0]; }
+  ctPages(cfg, ms) { const per = this.ctPer(cfg), st = this.ctStyle(cfg), pages = []; if (cfg.cover) pages.push({ cover: true, items: ms.slice(0, 1), start: 0 });
+    let i = 0; if (st === 'guide' && ms.length) { const n = per - (per === 9 ? 3 : 2); pages.push({ intro: true, items: ms.slice(0, n), start: 0 }); i = n; }
+    for (; i < ms.length; i += per) pages.push({ items: ms.slice(i, i + per), start: i }); if (!pages.some(q => !q.cover)) pages.push({ items: [], start: 0 }); return pages; }
+  async ctShot(m, angle) {
+    const m3 = this.pick3d(m), ORB = { front: '0deg 84deg auto', iso: '-32deg 76deg auto', side: '-90deg 84deg auto' };
+    if (m3) { let u = this.m3Src(m3); for (let i = 0; !u && i < 12 && this.snapState(m3) !== 'fail'; i++) { await new Promise(r => setTimeout(r, 400)); u = this.m3Src(m3); }
+      if (u) { try { return { cv: await this.snapModel(u, ORB[angle] || ORB.front, 1100), is3d: true }; } catch (e) {} } }
+    const im = await this.pcImg(m.img || this.pcAngles(m)[0] || ''); return im ? { cv: im, is3d: false } : null;
+  }
+  async ctRender(u, over) {
+    const s = this.state, cfg = { ...this.ctCfg(s), ...(over || {}) }, T = this.ctTpl(cfg, s), ms = this.ctModels(cfg, s);
+    const W = Math.round(1240 * u), H = Math.round(1754 * u), per = this.ctPer(cfg), st = this.ctStyle(cfg);
+    const SANS = getComputedStyle(document.body).fontFamily || 'system-ui, sans-serif', SERIF = 'Georgia, "Times New Roman", serif', HF = T.cond ? 'COND' : T.serif ? SERIF : SANS;
+    const shots = {}; for (const m of ms) shots[m.id] = await this.ctShot(m, cfg.angle);
+    const bg = T.bgImg ? await this.pcImg(T.bgImg) : null;
+    const pages = this.ctPages(cfg, ms), inner = pages.filter(q => !q.cover).length;
+    const onCol = h => ctLum(h) > .55 ? '#1c1410' : '#fff8ea';
+    const okC = (c1, c2, d) => Math.abs(ctLum(c1) - ctLum(c2)) > d, pOk = okC(T.ink, T.page, .35), cOk = okC(T.ink, T.card, .35);
+    const PI = pOk ? T.ink : onCol(T.page), PM = pOk && okC(T.muted, T.page, .2) ? T.muted : ctMix(PI, T.page, .4), CI = cOk ? T.ink : onCol(T.card), CM = cOk && okC(T.muted, T.card, .2) ? T.muted : ctMix(CI, T.card, .4), CA = okC(T.accent, T.card, .25) ? T.accent : okC(T.gold, T.card, .25) ? T.gold : CI, PA = okC(T.accent, T.page, .25) ? T.accent : okC(T.gold, T.page, .25) ? T.gold : PI;
+    const TN = T.tints && T.tints.length ? T.tints : [ctMix(T.accent, T.page, .8), ctMix(T.gold, T.page, .7), ctMix(T.ink, T.page, .86)];
+    return pages.map((pg, pi0) => { const items = pg.items, pi = pi0 - (cfg.cover ? 1 : 0); let CS = 1;
+      const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const x = cv.getContext('2d');
+      const font = (px, wt, fam) => { CS = fam === 'COND' ? .7 : 1; x.font = `${wt} ${px * u}px ${fam && fam !== 'COND' ? fam : SANS}`; }, mw = t => x.measureText(t).width * CS;
+      const txt = (t, X, Y, px, wt, col, al, fam, ls) => { font(px, wt, fam); x.fillStyle = col; x.textAlign = al || 'left'; x.textBaseline = 'alphabetic'; try { x.letterSpacing = ((ls || 0) * u) + 'px'; } catch (e) {} if (CS !== 1) { x.save(); x.translate(X, Y); x.scale(CS, 1); x.fillText(t, 0, 0); x.restore(); } else x.fillText(t, X, Y); try { x.letterSpacing = '0px'; } catch (e) {} };
+      const fitT = (t, maxW) => { t = String(t || ''); if (mw(t) <= maxW) return t; while (t.length > 1 && mw(t + '…') > maxW) t = t.slice(0, -1); return t.trim() + '…'; };
+      const wrap = (t, maxW, maxL) => { const ws = String(t || '').split(/\s+/).filter(Boolean), out = []; let cur = ''; for (const w of ws) { const n = cur ? cur + ' ' + w : w; if (mw(n) <= maxW || !cur) cur = n; else { out.push(cur); cur = w; } } if (cur) out.push(cur); if (out.length > maxL) { const rest = out.slice(maxL - 1).join(' '); out.length = maxL; out[maxL - 1] = fitT(rest, maxW); } return out.map(l => fitT(l, maxW)); };
+      const rr = (X, Y, w, h, r) => { x.beginPath(); if (x.roundRect) x.roundRect(X, Y, w, h, r); else x.rect(X, Y, w, h); };
+      x.fillStyle = T.page; x.fillRect(0, 0, W, H);
+      if (bg) { const k = Math.max(W / bg.width, H / bg.height), w2 = bg.width * k, h2 = bg.height * k; x.drawImage(bg, (W - w2) / 2, (H - h2) / 2, w2, h2); }
+      const M = 70 * u, title = String(cfg.title || '').toUpperCase(), sub = String(cfg.sub || ''); let top;
+      const blob = (X, Y, w, h, r) => { x.beginPath(); if (x.roundRect) x.roundRect(X, Y, w, h, r); else x.rect(X, Y, w, h); };
+      const fillPic = (shot, X, Y, w, h) => { if (!shot) return; const im = shot.cv; if (shot.is3d) { const aw = w * .78, ah = h * .8, k = Math.min(aw / im.width, ah / im.height), dw = im.width * k, dh = im.height * k, dx = X + (w - dw) / 2, dy = Y + (h - dh) / 2;
+          x.save(); x.translate(X + w / 2, dy + dh - 2 * u); x.scale(1, .13); const sg = x.createRadialGradient(0, 0, 0, 0, 0, dw * .62); sg.addColorStop(0, 'rgba(0,0,0,.4)'); sg.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = sg; x.beginPath(); x.arc(0, 0, dw * .62, 0, Math.PI * 2); x.fill(); x.restore(); x.drawImage(im, dx, dy, dw, dh); }
+        else { const k = Math.max(w / im.width, h / im.height), dw = im.width * k, dh = im.height * k; x.drawImage(im, X + (w - dw) / 2, Y + (h - dh) / 2, dw, dh); } };
+      if (pg.cover) {
+        const m0 = items[0], shot = m0 && shots[m0.id], big = String(cfg.title || 'Catalogue').toUpperCase();
+        if (st === 'showcase' || st === 'guide') {
+          const bx = W * .26, bw = W * .74, bh = H * .56; blob(bx, 0, bw, bh, [0, 0, 12 * u, bh * .62]); x.fillStyle = TN[0]; x.fill(); x.save(); blob(bx, 0, bw, bh, [0, 0, 12 * u, bh * .62]); x.clip(); fillPic(shot, bx, 0, bw, bh); x.restore();
+          blob(M, H * .575, W * .2, H * .06, [H * .03, 12 * u, H * .03, 12 * u]); x.fillStyle = TN[1 % TN.length]; x.fill();
+          let y = H * .66; if (sub) { font(22, 700); txt(fitT(sub.toUpperCase(), W - 2 * M - 40 * u), M + 20 * u, y, 22, 700, PA, 'left', SANS, 5); }
+          font(118, 700, HF); wrap(big, W - 2 * M - 40 * u, 3).forEach(l => { y += 128 * u; txt(l, M + 20 * u, y, 118, 700, PI, 'left', HF); });
+          font(24, 700); txt(fitT(CT_BIZ.toUpperCase(), W - 2 * M), M + 20 * u, H - 130 * u, 24, 700, PI, 'left', SANS, 3); if (cfg.showPhone) { font(17, 600); txt(fitT(SIG_PH, W - 2 * M), M + 20 * u, H - 92 * u, 17, 600, PM); }
+        } else {
+          x.strokeStyle = T.gold; x.lineWidth = 2 * u; x.strokeRect(46 * u, 46 * u, W - 92 * u, H - 92 * u);
+          let y = 190 * u; if (sub) { font(22, 700); txt(fitT(sub.toUpperCase(), W - 240 * u), W / 2, y, 22, 700, okC(T.gold, T.page, .2) ? T.gold : PM, 'center', SANS, 6); }
+          font(96, 700, HF); const tl = wrap(big, W - 240 * u, 3); tl.forEach(l => { y += 106 * u; txt(l, W / 2, y, 96, 700, PA, 'center', HF); });
+          const r = Math.min(W * .32, (H - y - 330 * u) / 2), ccx = W / 2, ccy = y + 70 * u + r; x.beginPath(); x.arc(ccx, ccy, r, 0, Math.PI * 2); x.fillStyle = TN[1 % TN.length]; x.fill(); x.save(); x.beginPath(); x.arc(ccx, ccy, r, 0, Math.PI * 2); x.clip(); fillPic(shot, ccx - r, ccy - r, r * 2, r * 2); x.restore();
+          x.beginPath(); x.arc(ccx, ccy, r + 8 * u, 0, Math.PI * 2); x.strokeStyle = T.gold; x.lineWidth = 2.5 * u; x.stroke();
+          font(26, 700); txt(fitT(CT_BIZ.toUpperCase(), W - 240 * u), W / 2, H - 150 * u, 26, 700, PI, 'center', SANS, 4); if (cfg.showPhone) { font(17, 600); txt(fitT(SIG_PH, W - 200 * u), W / 2, H - 110 * u, 17, 600, PM, 'center'); }
+        }
+        return cv;
+      }
+      if (T.head === 'band') {
+        const fc = onCol(T.accent); x.fillStyle = T.accent; x.fillRect(0, 0, W, 170 * u); x.fillStyle = T.gold; x.fillRect(0, 170 * u, W, 6 * u);
+        font(44, 700, HF); txt(fitT(CT_BIZ, W - 2 * M), M, 84 * u, 44, 700, fc, 'left', HF);
+        font(19, 700); txt(fitT(title, W * .5), M, 128 * u, 19, 700, ctLum(T.accent) > .55 ? T.ink : T.gold, 'left', SANS, 4);
+        if (sub) { font(19, 500); txt(fitT(sub, W * .4), W - M, 128 * u, 19, 500, fc, 'right'); }
+        top = 214 * u;
+      } else if (T.head === 'center') {
+        font(46, 700, HF); txt(fitT(CT_BIZ, W - 2 * M), W / 2, 96 * u, 46, 700, T.gold, 'center', HF);
+        font(18, 700); txt(fitT(sub ? title + '  ·  ' + sub.toUpperCase() : title, W - 2 * M), W / 2, 136 * u, 18, 700, PI, 'center', SANS, 5);
+        x.fillStyle = T.gold; x.fillRect(W / 2 - 110 * u, 160 * u, 220 * u, 2 * u); x.save(); x.translate(W / 2, 161 * u); x.rotate(Math.PI / 4); x.fillRect(-7 * u, -7 * u, 14 * u, 14 * u); x.restore();
+        top = 204 * u;
+      } else {
+        font(42, 700, HF); txt(fitT(CT_BIZ, W * .62), M, 96 * u, 42, 700, PI, 'left', HF);
+        font(19, 700); txt(fitT(title, W * .3), W - M, 96 * u, 19, 700, T.accent, 'right', SANS, 4);
+        if (sub) { font(18, 500); txt(fitT(sub, W - 2 * M), M, 130 * u, 18, 500, PM); }
+        x.fillStyle = T.accent; x.fillRect(M, 150 * u, W - 2 * M, 3 * u); x.fillStyle = T.gold; x.fillRect(M, 157 * u, W - 2 * M, 1 * u);
+        top = 194 * u;
+      }
+      const fy = H - 58 * u; x.fillStyle = ctA(T.gold, .6); x.fillRect(M, fy - 34 * u, W - 2 * M, 1.5 * u);
+      if (cfg.showPhone) { font(17, 600); txt(fitT(SIG_PH, W - 2 * M - 120 * u), M, fy, 17, 600, PM); }
+      txt((pi + 1) + ' / ' + inner, W - M, fy, 17, 700, PM, 'right');
+      const cx = M, cy = top, cw = W - 2 * M, ch = H - 118 * u - top, G = 26 * u;
+      const cardBg = (X, Y, w, h) => {
+        if (T.cardStyle === 'frame') { x.fillStyle = T.card; x.fillRect(X, Y, w, h); x.strokeStyle = T.gold; x.lineWidth = 2.5 * u; x.strokeRect(X, Y, w, h); x.lineWidth = 1 * u; x.strokeStyle = ctA(T.gold, .7); x.strokeRect(X + 9 * u, Y + 9 * u, w - 18 * u, h - 18 * u); }
+        else { rr(X, Y, w, h, 22 * u); x.fillStyle = T.card; x.fill(); if (T.cardStyle === 'glow') { x.strokeStyle = ctA(T.gold, .4); x.lineWidth = 1.5 * u; x.stroke(); } }
+      };
+      const drawPic = (shot, X, Y, w, h) => {
+        if (!shot) { rr(X, Y, w, h, 14 * u); x.fillStyle = ctA(CM, .12); x.fill(); txt('No picture', X + w / 2, Y + h / 2, 18, 600, CM, 'center'); return; }
+        const im = shot.cv, iw = im.width, ih = im.height;
+        if (shot.is3d) {
+          if (T.cardStyle === 'glow') { const g = x.createRadialGradient(X + w / 2, Y + h * .5, 0, X + w / 2, Y + h * .5, Math.max(w, h) * .6); g.addColorStop(0, ctA(T.gold, .3)); g.addColorStop(1, ctA(T.gold, 0)); x.fillStyle = g; x.fillRect(X, Y, w, h); }
+          const aw = w * .9, ah = h * .9 - 16 * u, k = Math.min(aw / iw, ah / ih), dw = iw * k, dh = ih * k, dx = X + (w - dw) / 2, dy = Y + h * .05 + (ah - dh);
+          x.save(); x.translate(X + w / 2, dy + dh - 2 * u); x.scale(1, .13); const sg = x.createRadialGradient(0, 0, 0, 0, 0, dw * .62); sg.addColorStop(0, 'rgba(0,0,0,.42)'); sg.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = sg; x.beginPath(); x.arc(0, 0, dw * .62, 0, Math.PI * 2); x.fill(); x.restore();
+          x.drawImage(im, dx, dy, dw, dh);
+        } else { const k = Math.min(w / iw, h / ih), dw = iw * k, dh = ih * k, dx = X + (w - dw) / 2, dy = Y + (h - dh) / 2; x.save(); rr(dx, dy, dw, dh, 12 * u); x.clip(); x.drawImage(im, dx, dy, dw, dh); x.restore(); }
+      };
+      const lines = (m, w, n, al) => {
+        const show = cfg.prices && !(cfg.off || {})[m.id], sz = this.pcSizes(m), ps = sz.map(r => Number(r[1]) || 0).filter(v => v > 0), lo = ps.length ? Math.min(...ps) : 0, out = [];
+        font(n, 700, HF); wrap(m.name || m.id, w, 2).forEach((l, i) => out.push({ t: l, px: n, wt: 700, col: CI, fam: HF, gap: i ? n * .2 : 0 }));
+        if (cfg.showId) out.push({ t: String(m.id).toUpperCase(), px: Math.max(15, n * .46), wt: 700, col: CM, ls: 2, gap: n * .34 });
+        return { out, show, sz, lo };
+      };
+      const put = (list, X, Y, w, al) => { let y = Y; const ax = al === 'center' ? X + w / 2 : X; list.forEach(o => { y += (o.gap || 0) * u + o.px * u; txt(o.t, ax, y, o.px, o.wt, o.col, al, o.fam, o.ls); }); return y; };
+      const hOf = list => list.reduce((a, o) => a + (o.gap || 0) * u + o.px * u, 0);
+      const small = (m, X, Y, w, h, n, al, mid) => {
+        const L = lines(m, w, n, al), list = L.out;
+        if (L.show && L.lo) list.push({ t: (L.sz.length > 1 ? 'From ' : '') + inr(L.lo), px: n * .92, wt: 800, col: CA, fam: HF, gap: n * .5 });
+        if (cfg.showSizes && L.sz.length) { const px = Math.max(17, n * .56); font(px, 500); wrap('Sizes  ' + L.sz.map(r => r[0] + '″').join('  ·  '), w, 2).forEach((l, i) => list.push({ t: l, px, wt: 500, col: CM, gap: i ? px * .35 : n * .42 })); }
+        put(list, X, mid ? Y + Math.max(0, (h - hOf(list)) / 2) : Y, w, al);
+      };
+      const info = (m, w, n, o) => { const I = o.page ? PI : CI, Mu = o.page ? PM : CM, A = o.page ? PA : CA, show = cfg.prices && !(cfg.off || {})[m.id], sz = this.pcSizes(m), ps = sz.map(r => Number(r[1]) || 0).filter(v => v > 0), lo = ps.length ? Math.min(...ps) : 0, out = [], dpx = o.dpx || Math.max(15, n * .5);
+        if (!o.noName) { font(n, 700, HF); wrap(o.upper ? String(m.name || m.id).toUpperCase() : m.name || m.id, w, o.nameL || 2).forEach((l, i) => out.push({ t: l, px: n, wt: 700, col: I, fam: HF, gap: i ? n * .2 : 0 })); if (cfg.showId) out.push({ t: String(m.id).toUpperCase(), px: Math.max(14, n * .4), wt: 700, col: Mu, ls: 2, gap: n * .34 }); }
+        if (o.desc && m.desc) { font(dpx, 500); wrap(m.desc, w, o.desc).forEach((l, i) => out.push({ t: l, px: dpx, wt: 500, col: Mu, gap: i ? dpx * .45 : (out.length ? n * .5 : 0) })); }
+        if (o.best && m.occasion) { font(dpx, 700); out.push({ t: fitT('Best for: ' + m.occasion, w), px: dpx, wt: 700, col: I, gap: out.length ? dpx * .9 : 0 }); }
+        if (show && lo) out.push({ t: (sz.length > 1 ? 'From ' : '') + inr(lo), px: o.ppx || n * .92, wt: 800, col: A, fam: HF, gap: out.length ? (o.ppx || n) * .55 : 0 });
+        if (cfg.showSizes && sz.length) { const px = o.spx || Math.max(15, n * .5); font(px, 500); wrap('Sizes  ' + sz.map(r => r[0] + '″').join('  ·  '), w, 2).forEach((l, i) => out.push({ t: l, px, wt: 500, col: Mu, gap: i ? px * .35 : px * .8 })); }
+        return out; };
+      if (!items.length) { font(24, 600); txt(tx('Pick products to build the catalogue', 'కేటలాగ్ కోసం ప్రొడక్ట్‌లు ఎంచుకోండి'), W / 2, cy + ch / 2, 24, 600, PM, 'center'); }
+      else if (st === 'showcase') {
+        const h = (ch - G * (per - 1)) / per; items.forEach((m, i) => { const Y = cy + i * (h + G), pw = cw * .52, right = i % 2 === 0, PX = right ? cx + cw - pw : cx, R = Math.min(pw, h) * .5, rad = right ? [R, R * .5, R, 10 * u] : [R * .5, R, 10 * u, R];
+          blob(PX, Y, pw, h, rad); x.fillStyle = TN[(pg.start + i) % TN.length]; x.fill(); x.save(); blob(PX, Y, pw, h, rad); x.clip(); fillPic(shots[m.id], PX, Y, pw, h); x.restore();
+          const tw = cw - pw - 60 * u, tX = right ? cx + 10 * u : cx + pw + 50 * u, n = (per === 2 ? 58 : 48) * (T.cond ? 1 : .74), list = info(m, tw, n, { page: true, upper: true, nameL: 3, desc: per === 2 ? 5 : 3, dpx: 17 }); put(list, tX, Y + Math.max(0, (h - hOf(list)) / 2), tw, 'left'); });
+      } else if (st === 'guide') {
+        const cols = per === 9 ? 3 : 2; let gy = cy, rows = 3; const rh = ch / 3, line = ctA(PM, .4);
+        if (pg.intro) { const ih = rh - 14 * u, lw = cw * .44, m0 = items[0] || ms[0]; x.fillStyle = T.card; x.fillRect(cx, cy, lw, ih); x.fillStyle = TN[0]; x.fillRect(cx + lw, cy, cw - lw, ih); x.save(); x.beginPath(); x.rect(cx + lw, cy, cw - lw, ih); x.clip(); fillPic(m0 && shots[m0.id], cx + lw, cy, cw - lw, ih); x.restore();
+          let y = cy + 58 * u; txt(ms.length + (ms.length === 1 ? ' DESIGN' : ' DESIGNS'), cx + 34 * u, y, 17, 700, CM, 'left', SANS, 4); font(58, 700, HF); wrap(String(cfg.title || 'Catalogue'), lw - 68 * u, 2).forEach(l => { y += 68 * u; txt(l, cx + 34 * u, y, 58, 700, CI, 'left', HF); });
+          if (sub) { font(19, 500); wrap(sub, lw - 68 * u, 3).forEach((l, i) => { y += (i ? 28 : 44) * u; txt(l, cx + 34 * u, y, 19, 500, CM); }); }
+          [...TN, T.accent, T.gold].slice(0, 5).forEach((c, i) => { x.beginPath(); x.arc(cx + 48 * u + i * 44 * u, cy + ih - 44 * u, 15 * u, 0, Math.PI * 2); x.fillStyle = c; x.fill(); x.strokeStyle = ctA(CM, .35); x.lineWidth = 1 * u; x.stroke(); });
+          gy = cy + rh; rows = 2; }
+        const w = cw / cols; x.fillStyle = line; for (let r = 1; r < rows; r++) if (items.length > r * cols) x.fillRect(cx, gy + r * rh, cw, 1.2 * u); for (let c = 1; c < cols; c++) x.fillRect(cx + c * w, gy + 10 * u, 1.2 * u, Math.ceil(items.length / cols) * rh - 20 * u);
+        items.forEach((m, i) => { const X = cx + (i % cols) * w, Y = gy + Math.floor(i / cols) * rh, pd = 18 * u, br = 16 * u;
+          x.beginPath(); x.arc(X + pd + br, Y + 40 * u, br, 0, Math.PI * 2); x.fillStyle = PA; x.fill(); txt(String(pg.start + i + 1), X + pd + br, Y + 46.5 * u, 17, 800, onCol(PA), 'center');
+          const nw = w - pd * 2 - br * 2 - 12 * u; font(16, 800); const nl = wrap(String(m.name || m.id).toUpperCase(), nw * .86, 2); nl.forEach((l, k) => txt(l, X + pd + br * 2 + 12 * u, Y + (nl.length > 1 ? 34 : 46) * u + k * 20 * u, 16, 800, PI, 'left', SANS, 1));
+          const top2 = Y + 76 * u, bh = rh - 92 * u, iw = (w - pd * 2) * (cols === 3 ? .46 : .44); drawPic(shots[m.id], X + pd, top2, iw, bh);
+          const tw = w - pd * 2 - iw - 14 * u, list = info(m, tw, 22, { page: true, noName: true, desc: cols === 3 ? 6 : 5, best: true, dpx: cols === 3 ? 14 : 16, ppx: cols === 3 ? 20 : 24, spx: cols === 3 ? 13.5 : 15 }); if (cfg.showId) list.unshift({ t: String(m.id).toUpperCase(), px: 13, wt: 700, col: PM, ls: 2, gap: 0 }), list[1] && (list[1].gap = 12);
+          put(list, X + pd + iw + 14 * u, top2 + Math.max(0, (bh - hOf(list)) / 2), tw, 'left'); });
+      } else if (st === 'book') {
+        const rows = per === 6 ? 3 : 2, gx = G * 1.5, w = (cw - gx) / 2, h = (ch - G * (rows - 1)) / rows, th = h - (rows === 3 ? 156 : 168) * u;
+        items.forEach((m, i) => { const c = i % 2, r = Math.floor(i / 2), X = cx + c * (w + gx), Y = cy + r * (h + G), tint = TN[(r + c) % 2 ? 0 : 1 % TN.length]; x.fillStyle = tint; x.fillRect(X, Y, w, th);
+          x.save(); x.beginPath(); x.rect(X, Y, w, th); x.clip(); const sh = shots[m.id]; if (sh) fillPic(sh, X, Y, w, th); else txt('No picture', X + w / 2, Y + th / 2, 18, 600, onCol(tint), 'center'); x.restore();
+          put(info(m, w, rows === 3 ? 23 : 26, { page: true, upper: true, desc: 1, dpx: 15 }), X, Y + th + 12 * u, w, 'left'); });
+      }
+      else if (per === 1) {
+        const m = items[0], ih = ch * .66; cardBg(cx, cy, cw, ch); drawPic(shots[m.id], cx + 34 * u, cy + 34 * u, cw - 68 * u, ih - 34 * u);
+        const iw = cw - 150 * u, ix = cx + 75 * u, L = lines(m, iw, 48, 'center'); let y = put(L.out, ix, cy + ih + 6 * u, iw, 'center');
+        if (m.desc) { font(20, 500); wrap(m.desc, iw, 2).forEach(l => { y += 30 * u; txt(l, ix + iw / 2, y, 20, 500, CM, 'center'); }); }
+        const chips = cfg.showSizes || L.show ? L.sz.filter(r => cfg.showSizes || (Number(r[1]) || 0) > 0) : [];
+        if (chips.length) { const rowN = Math.min(chips.length, 5), cwid = Math.min(190 * u, (iw - (rowN - 1) * 14 * u) / rowN), chh = (L.show ? 92 : 56) * u; y += 34 * u;
+          for (let r = 0; r * 5 < chips.length && y + chh < cy + ch - 20 * u; r++) { const row = chips.slice(r * 5, r * 5 + 5), tw = row.length * cwid + (row.length - 1) * 14 * u; row.forEach((c, i) => { const X = ix + (iw - tw) / 2 + i * (cwid + 14 * u), p = Number(c[1]) || 0;
+            rr(X, y, cwid, chh, 12 * u); x.fillStyle = ctA(T.gold, .1); x.fill(); x.strokeStyle = ctA(T.gold, .75); x.lineWidth = 1.5 * u; x.stroke();
+            font(21, 700); txt(fitT(c[0] + '″', cwid - 12 * u), X + cwid / 2, y + (L.show ? 36 : 36) * u, 21, 700, CI, 'center');
+            if (L.show) { font(23, 800, HF); txt(p ? inr(p) : '—', X + cwid / 2, y + 72 * u, 23, 800, CA, 'center', HF); } }); y += chh + 14 * u; } }
+      } else if (per === 4) {
+        const w = (cw - G) / 2, h = (ch - G) / 2; items.forEach((m, i) => { const X = cx + (i % 2) * (w + G), Y = cy + Math.floor(i / 2) * (h + G), ih = h * .6; cardBg(X, Y, w, h); drawPic(shots[m.id], X + 24 * u, Y + 24 * u, w - 48 * u, ih - 24 * u); small(m, X + 30 * u, Y + ih + 2 * u, w - 60 * u, h - ih, 29, 'center', false); });
+      } else {
+        const h = (ch - G * (per - 1)) / per; items.forEach((m, i) => { const Y = cy + i * (h + G), iw = cw * (per === 2 ? .5 : .42), flip = per === 2 && i % 2 === 1; cardBg(cx, Y, cw, h);
+          drawPic(shots[m.id], (flip ? cx + cw - iw : cx) + 26 * u, Y + 26 * u, iw - 52 * u, h - 52 * u); small(m, flip ? cx + 50 * u : cx + iw + 16 * u, Y, cw - iw - 66 * u, h, per === 2 ? 40 : 34, 'left', true); });
+      }
+      return cv;
+    });
+  }
+  async ctPreview() {
+    const seq = (this._ctSeq = (this._ctSeq || 0) + 1); this.setState({ ctBusy: tx('Updating preview…', 'ప్రివ్యూ తయారవుతోంది…') });
+    try { const cv = await this.ctRender(.6); if (seq !== this._ctSeq) return; this.setState({ ctPrev: cv.map(c => c.toDataURL('image/jpeg', .86)), ctBusy: '' }); }
+    catch (e) { if (seq === this._ctSeq) this.setState({ ctBusy: '' }); this.flash(tx('Preview failed: ', 'ప్రివ్యూ కాలేదు: ') + (e && e.message || e)); }
+  }
+  ctRun = async mode => {
+    const cfg = this.ctCfg(this.state); if (!this.ctModels(cfg).length) return this.flash(tx('Pick at least one product', 'కనీసం ఒక ప్రొడక్ట్ ఎంచుకోండి'));
+    this.setState({ ctBusy: tx('Making files…', 'ఫైళ్లు తయారవుతున్నాయి…') });
+    const blob = (cv, q) => new Promise((res, rej) => { try { cv.toBlob(b2 => b2 ? res(b2) : rej(new Error('blocked')), 'image/jpeg', q); } catch (e) { rej(e); } });
+    const base = 'SaiKiran-Catalogue-' + this.ctStyle(cfg) + '-' + this.ctPer(cfg) + 'up';
+    try {
+      const cvs = await this.ctRender(1.6);
+      if (mode === 'print') { const srcs = cvs.map(c => c.toDataURL('image/jpeg', .9)), w = window.open('', '_blank'); if (!w) throw new Error(tx('Allow pop-ups to print, or use Download PDF', 'ప్రింట్ కోసం పాప్-అప్‌లు అనుమతించండి, లేదా PDF డౌన్‌లోడ్ చేయండి'));
+        w.document.write('<!doctype html><title>' + base + '</title><style>@page{size:A4;margin:0}body{margin:0}img{display:block;width:100%;page-break-after:always}</style>' + srcs.map(u2 => '<img src="' + u2 + '">').join('') + '<script>window.onload=function(){setTimeout(function(){print()},300)}<\/script>'); w.document.close(); return; }
+      if (mode === 'img') { for (let i = 0; i < cvs.length; i++) { const f = new File([await blob(cvs[i], .92)], base + '-' + String(i + 1).padStart(2, '0') + '.jpg', { type: 'image/jpeg' }); setTimeout(() => this.dlBlob(f, f.name), i * 250); } this.flash(tx(cvs.length + ' image(s) downloaded', cvs.length + ' ఫోటో(లు) డౌన్‌లోడ్ అయ్యాయి')); return; }
+      const pages = []; for (const cv of cvs) pages.push({ jpg: new Uint8Array(await (await blob(cv, .9)).arrayBuffer()), w: cv.width, h: cv.height });
+      const f = new File([skPdfN(pages, 595.28, 841.89)], base + '-A4.pdf', { type: 'application/pdf' }); this.dlBlob(f, f.name); this.flash(tx('PDF downloaded · ' + cvs.length + ' page(s)', 'PDF డౌన్‌లోడ్ అయింది · ' + cvs.length + ' పేజీ(లు)'));
+    } catch (e) { this.flash(/blocked|tainted|insecure/i.test(String(e && (e.message || e.name))) ? tx('Some product photos are stored on another site and cannot be exported. Re-upload them in Gallery.', 'కొన్ని ఫోటోలు వేరే సైట్‌లో ఉన్నాయి — గ్యాలరీలో మళ్ళీ అప్‌లోడ్ చేయండి.') : tx('Could not make the files: ', 'ఫైళ్లు తయారు కాలేదు: ') + (e && e.message || e)); }
+    finally { this.setState({ ctBusy: '' }); }
+  };
+  ctBgUp = e => { const f = e.target.files && e.target.files[0]; e.target.value = ''; if (!f) return; const im = new Image(); im.onload = () => { const k = Math.min(1, 1600 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); const d = c.toDataURL('image/jpeg', .82); URL.revokeObjectURL(im.src); this.setState(x => x.ctEd ? { ctEd: { ...x.ctEd, bgImg: d } } : null); }; im.onerror = () => this.flash(tx('Could not read that picture', 'ఆ ఫోటో చదవలేకపోయాం')); im.src = URL.createObjectURL(f); };
+  ctVals(s, sec) {
+    if (sec !== 'pcat') return { L: {}, ed: {}, on: {}, styles: [], layouts: [], tpls: [], angles: [], sw: {}, items: [], pages: [] };
+    const cfg = this.ctCfg(s), all = this.ctAll(s), ms = this.ctModels(cfg, s), sel = new Set(ms.map(m => m.id)), T = this.ctTpl(cfg, s), ed = s.ctEd, set = p => this.setCt(p);
+    const sig = JSON.stringify(cfg) + '|' + JSON.stringify(T) + '|' + all.map(m => { const m3 = this.pick3d(m); return m.id + ':' + (m.img || '').length + ':' + (m3 ? (this.m3Src(m3) ? 1 : 0) : '') + ':' + (m.name || '') + ':' + JSON.stringify(this.pcSizes(m)); }).join(',');
+    if (sig !== this._ctSig) { this._ctSig = sig; this.ctSoon(); }
+    const card = on => ({ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, padding: '10px 6px', borderRadius: 10, border: on ? '1.5px solid var(--color-accent)' : '1px solid var(--color-neutral-300)', background: on ? 'var(--color-accent-100)' : 'var(--color-surface)', cursor: 'pointer', font: 'inherit', color: 'var(--color-text)', minWidth: 0 });
+    const seg = on => ({ flex: 1, minWidth: 0, padding: '8px 6px', border: 0, borderRadius: 8, font: 'inherit', fontSize: 13, fontWeight: on ? 800 : 600, cursor: 'pointer', background: on ? 'var(--color-surface)' : 'transparent', color: 'var(--color-text)', boxShadow: on ? '0 1px 2px rgba(0,0,0,.14)' : 'none' });
+    const sw = (on, fn) => ({ on: fn, track: { flex: 'none', width: 44, height: 26, borderRadius: 13, border: 0, padding: 0, cursor: 'pointer', position: 'relative', background: on ? 'var(--color-accent)' : 'var(--color-neutral-300)' }, knob: { position: 'absolute', top: 3, left: on ? 21 : 3, width: 20, height: 20, borderRadius: 10, background: '#fff', boxShadow: '0 1px 2px rgba(0,0,0,.3)', transition: 'left .12s' }, aria: on ? 'true' : 'false' });
+    const cell = { borderRadius: 2, background: 'currentColor', opacity: .55 };
+    const GRID = { 1: ['1fr', '1fr'], 2: ['1fr', '1fr 1fr'], 3: ['1fr', '1fr 1fr 1fr'], 4: ['1fr 1fr', '1fr 1fr'], 6: ['1fr 1fr', '1fr 1fr 1fr'], 9: ['1fr 1fr 1fr', '1fr 1fr 1fr'] }, stN = this.ctStyle(cfg), perN = this.ctPer(cfg), nPages = this.ctPages(cfg, ms).length;
+    const startEd = t => this.setState({ ctEd: { id: t && t.custom ? t.id : '', name: t && t.custom ? t.name : tx('My template', 'నా టెంప్లేట్'), page: T.page, card: T.card, ink: T.ink, accent: T.accent, gold: T.gold, head: T.head, cardStyle: T.cardStyle, serif: !!T.serif, cond: !!T.cond, tints: T.tints || null, bgImg: T.bgImg || '', custom: true } });
+    const edSet = k => e => { const v = e.target.value; this.setState(x => x.ctEd ? { ctEd: { ...x.ctEd, ...(k === 'serif' ? { serif: v === '1', cond: v === '2' } : { [k]: v }) } } : null); };
+    return {
+      L: { styleL: tx('Catalogue style', 'కేటలాగ్ శైలి'), cover: tx('Cover page', 'కవర్ పేజీ'), coverSub: tx('Adds a front page with the heading, tagline and the first selected product.', 'శీర్షిక, ట్యాగ్‌లైన్, మొదటి ప్రొడక్ట్‌తో ముందు పేజీ.'), fCond: tx('Tall condensed', 'సన్నని పొడవు'), layout: tx('Products per page', 'పేజీకి ప్రొడక్ట్‌లు'), tpl: tx('Template', 'టెంప్లేట్'), tplSub: tx('Pick a ready design, or make your own with your colours and background.', 'సిద్ధంగా ఉన్న డిజైన్ ఎంచుకోండి, లేదా మీ రంగులతో మీదే తయారు చేయండి.'), newTpl: tx('+ New custom template', '+ కొత్త టెంప్లేట్'), editTpl: tx('Edit this template', 'ఈ టెంప్లేట్ మార్చండి'),
+        opts: tx('Prices and details', 'ధరలు, వివరాలు'), prices: tx('Show prices', 'ధరలు చూపించు'), pricesSub: tx('Turn off to share a catalogue without prices. Use the ₹ button beside a product to hide only its price.', 'ధరలు లేకుండా కేటలాగ్ కావాలంటే ఆఫ్ చేయండి. ఒక ప్రొడక్ట్ ధర మాత్రమే దాచడానికి దాని పక్కన ₹ నొక్కండి.'), showId: tx('Show product ID', 'ప్రొడక్ట్ ID చూపించు'), showSizes: tx('Show sizes', 'సైజ్‌లు చూపించు'), showPhone: tx('Show phone numbers', 'ఫోన్ నంబర్లు చూపించు'),
+        angle: tx('Picture angle (from the 3D model)', 'ఫోటో కోణం (3D మోడల్ నుండి)'), title: tx('Heading', 'శీర్షిక'), sub: tx('Tagline (optional)', 'ట్యాగ్‌లైన్ (ఐచ్ఛికం)'), subPh: tx('e.g. Mementos, shields and wood works made to order', 'ఉదా. ఆర్డర్‌పై మెమెంటోలు, షీల్డ్‌లు'),
+        prods: tx('Products', 'ప్రొడక్ట్‌లు'), prodsSub: tx('Pictures are made from each product’s 3D model (GLB). A product without one uses its photo.', 'ప్రతి ప్రొడక్ట్ 3D మోడల్ (GLB) నుండి ఫోటో తయారవుతుంది. అది లేకపోతే ఫోటో వాడతాం.'), all: tx('Select all', 'అన్నీ'), none: tx('Clear', 'ఏదీ వద్దు'), noProds: tx('No products in Gallery yet. Add products there first.', 'గ్యాలరీలో ప్రొడక్ట్‌లు లేవు. ముందు అక్కడ చేర్చండి.'),
+        pdf: tx('Download PDF', 'PDF డౌన్‌లోడ్'), img: tx('Download images', 'ఫోటోలు డౌన్‌లోడ్'), print: tx('Print', 'ప్రింట్'),
+        name: tx('Template name', 'టెంప్లేట్ పేరు'), cPage: tx('Page', 'పేజీ'), cCard: tx('Card', 'కార్డ్'), cInk: tx('Text', 'అక్షరాలు'), cAccent: tx('Main colour', 'ప్రధాన రంగు'), cGold: tx('Highlight', 'హైలైట్'), head: tx('Header style', 'హెడర్'), cardSt: tx('Card style', 'కార్డ్ శైలి'), fontL: tx('Heading font', 'ఫాంట్'), bg: tx('Background picture', 'బ్యాక్‌గ్రౌండ్ ఫోటో'), bgUp: tx('Upload picture', 'ఫోటో అప్‌లోడ్'), bgRm: tx('Remove picture', 'ఫోటో తీసేయి'), save: tx('Save template', 'టెంప్లేట్ సేవ్'), cancel: tx('Cancel', 'రద్దు'), del: tx('Delete template', 'టెంప్లేట్ తొలగించు'),
+        hBand: tx('Colour band', 'రంగు బ్యాండ్'), hLine: tx('Simple line', 'సాదా గీత'), hCenter: tx('Centred', 'మధ్యలో'), kFrame: tx('Double frame', 'డబుల్ ఫ్రేమ్'), kPlain: tx('Soft rounded', 'గుండ్రని'), kGlow: tx('Spotlight', 'స్పాట్‌లైట్'), fSerif: tx('Classic serif', 'క్లాసిక్'), fSans: tx('Modern sans', 'ఆధునిక') },
+      styles: [['classic', tx('Classic cards', 'క్లాసిక్ కార్డ్‌లు'), tx('1 to 4 framed products', '1–4 ప్రొడక్ట్‌లు')], ['showcase', tx('Showcase', 'షోకేస్'), tx('Big pictures on colour panels', 'రంగు ప్యానెల్‌లపై పెద్ద ఫోటోలు')], ['guide', tx('Numbered guide', 'నంబర్ గైడ్'), tx('Grid with descriptions', 'వివరణలతో గ్రిడ్')], ['book', tx('Catalogue book', 'కేటలాగ్ బుక్'), tx('Tiled product pages', 'టైల్ పేజీలు')]].map(([k, label, hint]) => ({ label, hint, style: { ...card(stN === k), alignItems: 'flex-start', padding: '10px 12px', gap: 2, textAlign: 'left' }, pick: () => set({ style: k, per: CT_STYLES[k][0] }) })),
+      layouts: CT_STYLES[stN].slice().sort((a, b) => a - b).map(n => ({ label: n === 1 ? tx('1 per page', 'పేజీకి 1') : tx(n + ' per page', 'పేజీకి ' + n), style: card(perN === n), pick: () => set({ per: n }), icon: { display: 'grid', gridTemplateColumns: GRID[n][0], gridTemplateRows: GRID[n][1], gap: 3, width: 34, height: 46, padding: 4, boxSizing: 'border-box', borderRadius: 4, border: '1.5px solid currentColor' }, cells: Array.from({ length: n }, () => ({ style: cell })) })),
+      tpls: this.ctTpls(s).map(t => { const on = !ed && T.id === t.id; return { label: isTe() && t.te ? t.te : t.name, style: { ...card(on), alignItems: 'stretch', padding: 6 }, pick: () => { this.setState({ ctEd: null }); set({ tpl: t.id }); },
+        thumb: { display: 'block', height: 62, borderRadius: 6, background: t.bgImg ? `center / cover no-repeat url("${t.bgImg}")` : t.page, border: '1px solid rgba(0,0,0,.12)', position: 'relative', overflow: 'hidden' },
+        bar: t.head === 'band' ? { position: 'absolute', left: 0, right: 0, top: 0, height: 14, background: t.accent, borderBottom: '2px solid ' + t.gold } : t.head === 'center' ? { position: 'absolute', left: '30%', right: '30%', top: 10, height: 3, background: t.gold } : { position: 'absolute', left: 6, right: 6, top: 12, height: 2, background: t.accent },
+        chip: { position: 'absolute', left: '22%', right: '22%', top: 22, bottom: 7, borderRadius: t.cardStyle === 'frame' ? 0 : 5, background: t.card, border: '1.5px solid ' + (t.cardStyle === 'plain' ? 'transparent' : t.gold) }, dot: { position: 'absolute', left: '50%', bottom: 12, width: 14, height: 4, marginLeft: -7, borderRadius: 2, background: t.accent } }; }),
+      isEd: !!ed, notEd: !ed, canEdit: !ed && !!T.custom, newTpl: () => startEd(null), editTpl: () => startEd(T),
+      ed: ed ? { name: ed.name, page: ed.page, card: ed.card, ink: ed.ink, accent: ed.accent, gold: ed.gold, head: ed.head, cardStyle: ed.cardStyle, serif: ed.cond ? '2' : ed.serif ? '1' : '0', hasBg: !!ed.bgImg, isOld: !!ed.id,
+        onName: edSet('name'), onPage: edSet('page'), onCard: edSet('card'), onInk: edSet('ink'), onAccent: edSet('accent'), onGold: edSet('gold'), onHead: edSet('head'), onCardStyle: edSet('cardStyle'), onSerif: edSet('serif'), bgUp: this.ctBgUp, bgRm: () => this.setState(x => x.ctEd ? { ctEd: { ...x.ctEd, bgImg: '' } } : null),
+        cancel: () => this.setState({ ctEd: null }),
+        save: () => { const d = this.state.ctEd; if (!d) return; const t = { ...d, id: d.id || 'c' + Date.now().toString(36), name: String(d.name || '').trim() || 'My template', muted: ctMix(d.ink, d.page, .42), custom: true };
+          this.setState(x => { const l = ((x.biz || {}).ctTpls) || []; return { ctEd: null, biz: { ...x.biz, ctTpls: l.some(z => z.id === t.id) ? l.map(z => z.id === t.id ? t : z) : [...l, t] } }; }, () => { set({ tpl: t.id }); this.flash(tx('Template saved', 'టెంప్లేట్ సేవ్ అయింది')); }); },
+        del: () => { const id = this.state.ctEd && this.state.ctEd.id; if (!id) return; if (this._ctDel !== id) { this._ctDel = id; this.flash(tx('Press Delete template again to remove it', 'తొలగించడానికి మళ్ళీ నొక్కండి')); setTimeout(() => { this._ctDel = ''; }, 4000); return; } this._ctDel = '';
+          this.setState(x => ({ ctEd: null, biz: { ...x.biz, ctTpls: (((x.biz || {}).ctTpls) || []).filter(z => z.id !== id) } }), () => set({ tpl: 'royal' })); } } : {},
+      sw: { cover: sw(cfg.cover, () => set({ cover: !cfg.cover })), prices: sw(cfg.prices, () => set({ prices: !cfg.prices })), showId: sw(cfg.showId, () => set({ showId: !cfg.showId })), showSizes: sw(cfg.showSizes, () => set({ showSizes: !cfg.showSizes })), showPhone: sw(cfg.showPhone, () => set({ showPhone: !cfg.showPhone })) },
+      angles: [['front', tx('Front', 'ముందు')], ['iso', tx('Angle', 'కోణం')], ['side', tx('Side', 'పక్క')]].map(([k, label]) => ({ label, style: seg(cfg.angle === k), pick: () => set({ angle: k }) })),
+      title: cfg.title, sub: cfg.sub, on: { title: e => set({ title: e.target.value }), sub: e => set({ sub: e.target.value }) },
+      count: tx(`${ms.length} of ${all.length} selected · ${nPages} page(s)`, `${all.length} లో ${ms.length} ఎంచుకున్నారు · ${nPages} పేజీ(లు)`),
+      hasProds: all.length > 0, noProds: !all.length, all: () => set({ ids: null }), none: () => set({ ids: [] }),
+      items: all.map(m => { const on = sel.has(m.id), has3 = !!this.pick3d(m), pOff = !!(cfg.off || {})[m.id], pOn = cfg.prices && !pOff;
+        return { name: m.name || m.id, id: m.id, badge: has3 ? '3D' : m.img ? tx('Photo', 'ఫోటో') : tx('No picture', 'ఫోటో లేదు'),
+          badgeStyle: { flex: 'none', fontSize: 10.5, fontWeight: 800, padding: '2px 7px', borderRadius: 999, background: has3 ? 'var(--color-accent-100)' : 'var(--color-neutral-100)', color: has3 ? 'var(--color-accent-700)' : 'var(--color-neutral-600)' },
+          row: { display: 'flex', alignItems: 'center', gap: 8, padding: '6px 4px', borderRadius: 8, opacity: on ? 1 : .55, minWidth: 0 },
+          box: { flex: 'none', width: 24, height: 24, borderRadius: 6, border: on ? '0' : '1.5px solid var(--color-neutral-400)', background: on ? 'var(--color-accent)' : 'transparent', color: '#fff', fontSize: 14, fontWeight: 800, lineHeight: 1, cursor: 'pointer', padding: 0 }, mark: on ? '✓' : '',
+          toggle: () => { const cur = cfg.ids || all.map(z => z.id), nx = on ? cur.filter(z => z !== m.id) : all.map(z => z.id).filter(z => z === m.id || cur.includes(z)); set({ ids: nx.length === all.length ? null : nx }); },
+          pStyle: { flex: 'none', width: 30, height: 28, borderRadius: 7, border: '1px solid ' + (pOn ? 'var(--color-accent)' : 'var(--color-neutral-300)'), background: pOn ? 'var(--color-accent-100)' : 'transparent', color: pOn ? 'var(--color-accent-700)' : 'var(--color-neutral-400)', fontWeight: 800, fontSize: 13, cursor: cfg.prices ? 'pointer' : 'default', textDecoration: pOn ? 'none' : 'line-through', padding: 0 },
+          pTitle: !cfg.prices ? tx('Prices are off for the whole catalogue', 'మొత్తం కేటలాగ్‌కు ధరలు ఆఫ్') : pOff ? tx('Price hidden for this product · press to show', 'ఈ ప్రొడక్ట్ ధర దాచారు · చూపించడానికి నొక్కండి') : tx('Price shown · press to hide for this product', 'ధర కనిపిస్తోంది · దాచడానికి నొక్కండి'),
+          price: () => { if (!cfg.prices) return; const off = { ...(cfg.off || {}) }; if (pOff) delete off[m.id]; else off[m.id] = 1; set({ off }); } }; }),
+      pages: (s.ctPrev || []).map((src, i) => ({ src, alt: 'Page ' + (i + 1) })), busy: s.ctBusy || '', isBusy: !!s.ctBusy,
+      pdf: () => this.ctRun('pdf'), img: () => this.ctRun('img'), print: () => this.ctRun('print'),
+    };
+  }
   pcVals(s, sec) {
-    if (sec !== 'pcat') return { view: {}, L: {}, cfg: {}, on: {} };
+    if (true) return { view: {}, L: {}, cfg: {}, on: {} };
     const cfg = this.pcCfg(s), gal = s.gallery || [], sel = cfg.ids || this.pcModels(cfg, s).map(m => m.id), set = p => this.setPc(p);
     const sig = JSON.stringify(cfg) + '|' + gal.length + '|' + gal.map(m => m.id + (m.img || '').length).join(',');
     if (sig !== this._pcSig) { this._pcSig = sig; this.pcSoon(); }
@@ -7102,7 +7344,7 @@ class Component extends DCLogic {
     const staffP = isStaffU ? permsOf(s.staff.find(x => x.id === s.staffMe)) : null;
     const sec = s.screen === 'cust' ? s.cuSec : isStaffU && (s.section === 'settings' || (s.section === 'studio' && !staffP.studio) || (s.section === 'whatsapp' && !staffP.messages)) ? 'dashboard' : s.section;
     const NAV = isTe() ? [['dashboard', 'డాష్‌బోర్డ్'], ['orders', 'ఆర్డర్లు'], ['customers', 'కస్టమర్లు'], ['studio', 'మెమెంటో స్టూడియో'], ['catalogue', 'గ్యాలరీ'], ['whatsapp', 'మెసేజ్‌లు'], ['pcat', 'కేటలాగ్'], ['payments', 'పేమెంట్లు'], ['settings', 'యాప్ సెట్టింగ్స్']] : [['dashboard', 'Dashboard'], ['orders', 'Orders'], ['customers', 'Customers'], ['studio', 'Memento studio'], ['catalogue', 'Gallery'], ['whatsapp', 'Messages'], ['pcat', 'Catalogue'], ['payments', 'Payments'], ['settings', 'App settings']];
-    const SUB = isTe() ? { dashboard: `${WD_TE[TODAY.getDay()]}, ${TODAY.getDate()} ${MON_TE[TODAY.getMonth()]} ${TODAY.getFullYear()}`, orders: 'అన్ని ఆర్డర్లు ఒకే చోట', customers: 'కస్టమర్ వివరాలు, ఆర్డర్ చరిత్ర, ఫోల్డర్లు', studio: 'తయారు చేసే ముందు మెమెంటోలను 3Dలో చూడండి', catalogue: 'సైజ్‌లు, రంగులు, బేస్‌లతో మోడల్స్ · ప్రత్యేక IDలు', whatsapp: 'ఆర్డర్ అప్‌డేట్లు, పండుగ మెసేజ్‌లు', pcat: 'WhatsApp కోసం కేటలాగ్ ఇమేజ్‌లు, PDF తయారు చేయండి', payments: 'నగదు, UPI, అడ్వాన్సులు', settings: 'సిబ్బంది, WhatsApp, ఈమెయిల్, డేటాబేస్, ప్రాక్టీస్' } : { dashboard: `${WD_EN[TODAY.getDay()]}, ${TODAY.getDate()} ${MON_EN[TODAY.getMonth()]} ${TODAY.getFullYear()}`, orders: 'All orders in one place', customers: 'Customer details, order history and folders', studio: 'Preview mementos in 3D before making them', catalogue: 'Models with sizes, colours and bases · unique IDs', whatsapp: 'Order updates and festival messages', pcat: 'Make catalogue images and PDFs to post on WhatsApp', payments: 'Cash, UPI and advances', settings: 'Staff, WhatsApp, email, database and a practice area' };
+    const SUB = isTe() ? { dashboard: `${WD_TE[TODAY.getDay()]}, ${TODAY.getDate()} ${MON_TE[TODAY.getMonth()]} ${TODAY.getFullYear()}`, orders: 'అన్ని ఆర్డర్లు ఒకే చోట', customers: 'కస్టమర్ వివరాలు, ఆర్డర్ చరిత్ర, ఫోల్డర్లు', studio: 'తయారు చేసే ముందు మెమెంటోలను 3Dలో చూడండి', catalogue: 'సైజ్‌లు, రంగులు, బేస్‌లతో మోడల్స్ · ప్రత్యేక IDలు', whatsapp: 'ఆర్డర్ అప్‌డేట్లు, పండుగ మెసేజ్‌లు', pcat: '3D మోడల్స్‌తో కేటలాగ్ పేజీలు తయారు చేయండి', payments: 'నగదు, UPI, అడ్వాన్సులు', settings: 'సిబ్బంది, WhatsApp, ఈమెయిల్, డేటాబేస్, ప్రాక్టీస్' } : { dashboard: `${WD_EN[TODAY.getDay()]}, ${TODAY.getDate()} ${MON_EN[TODAY.getMonth()]} ${TODAY.getFullYear()}`, orders: 'All orders in one place', customers: 'Customer details, order history and folders', studio: 'Preview mementos in 3D before making them', catalogue: 'Models with sizes, colours and bases · unique IDs', whatsapp: 'Order updates and festival messages', pcat: 'Build catalogue pages from your 3D models', payments: 'Cash, UPI and advances', settings: 'Staff, WhatsApp, email, database and a practice area' };
     if (s.screen === 'cust') NAV.splice(0, NAV.length, ['chome', tx('Home', 'హోమ్')], ['corders', tx('My orders', 'నా ఆర్డర్లు')], ['catalogue', tx('Gallery', 'గ్యాలరీ')], ['creq', tx('My requests', 'నా అభ్యర్థనలు')], ['cprofile', tx('My account', 'నా ఖాతా')]);
     else { NAV.push(['requests', tx('Requests', 'అభ్యర్థనలు')]); const ORD = ['dashboard', 'catalogue', 'requests', 'orders', 'studio', 'payments', 'customers', 'whatsapp', 'pcat', 'settings']; NAV.sort((a, b) => ORD.indexOf(a[0]) - ORD.indexOf(b[0])); if (isStaffU) { const sp = permsOf(s.staff.find(x => x.id === s.staffMe)), hide = ['settings', ...(sp.studio ? [] : ['studio']), ...(sp.messages ? [] : ['whatsapp'])]; for (let i = NAV.length - 1; i >= 0; i--) if (hide.includes(NAV[i][0])) NAV.splice(i, 1); } }
     Object.assign(SUB, { requests: tx('Design requests and replies from customers', 'కస్టమర్ల నుండి డిజైన్ అభ్యర్థనలు, జవాబులు'), chome: tx('Your orders and designs at Sai Kiran', 'సాయి కిరణ్‌లో మీ ఆర్డర్లు, డిజైన్లు'), corders: tx('Track every order, see bills and pay', 'ప్రతి ఆర్డర్ చూడండి, బిల్లులు, చెల్లింపులు'), creq: tx('Designs you picked and messages to the shop', 'మీరు ఎంచుకున్న డిజైన్లు, షాప్‌కు అభ్యర్థనలు'), cprofile: tx('Your details, PIN and language', 'మీ వివరాలు, PIN, భాష') });
@@ -7378,7 +7620,7 @@ class Component extends DCLogic {
       roleAdmin: s.role === 'admin', roleStaff: s.role === 'staff', roleCustomer: s.role === 'customer',
       login: s.login, lon: { user: this.lb('user'), pass: this.lb('pass'), staffId: this.lb('staffId'), pin: this.lb('pin'), phone: this.lb('phone'), otp: this.lb('otp'), code: this.lb('code'), name: this.lb('name'), pin2: this.lb('pin2'), rplace: this.lb('rplace'), rphone2: this.lb('rphone2'), remail: this.lb('remail'), rorgType: this.lb('rorgType'), rorg: this.lb('rorg'), raddr: this.lb('raddr'), acode: this.lb('acode'), apw1: this.lb('apw1'), apw2: this.lb('apw2') },
       loginErr: s.loginErr ? tr(s.loginErr) : '', doLogin: this.doLogin, enterLogin: e => { if (e.key === 'Enter') this.doLogin(); },
-      loginCta: s.role === 'staff' ? this.slVals(s).cta : s.role === 'admin' && s.login.astep === 'reset' ? this.alVals(s).cta : s.role !== 'customer' ? L.signIn : this.cuCta(s), cl: this.clVals(s), al: this.alVals(s), pc: this.pcVals(s, sec), sl: this.slVals(s),
+      loginCta: s.role === 'staff' ? this.slVals(s).cta : s.role === 'admin' && s.login.astep === 'reset' ? this.alVals(s).cta : s.role !== 'customer' ? L.signIn : this.cuCta(s), cl: this.clVals(s), al: this.alVals(s), pc: this.pcVals(s, sec), ct: this.ctVals(s, sec), pcEmpty: { title: tx('Catalogue', 'కేటలాగ్'), sub: tx('This screen has been cleared. Nothing is here yet.', 'ఈ స్క్రీన్ ఖాళీ చేశాం. ఇక్కడ ఇంకా ఏమీ లేదు.') }, sl: this.slVals(s),
       loginHint: s.role === 'admin' && this.admPwH() ? '' : s.role === 'admin' ? '' : s.role === 'staff' ? '' : (this.cuLive() ? '' : tx('Practice · use a saved customer’s number. Their PIN is in Customers → App access.', 'ప్రాక్టీస్ · సేవ్ చేసిన కస్టమర్ నంబర్ వాడండి. PIN కస్టమర్లు → యాప్ యాక్సెస్ లో ఉంటుంది.')),
       logout: () => this.setState({ screen: 'home', authed: false, staffMe: null, selOrderId: null, selCust: null, gm: null, dialog: null, login: { ...s.login, pass: '', pin: '', otp: '', otpSent: false } }),
 

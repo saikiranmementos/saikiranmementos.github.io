@@ -783,6 +783,10 @@ export async function createEngine(el, cb = {}) {
 
   function normalizeBase() {
     baseRoot.clear(); if (!base) return;
+    // Measure with the turntable at rest. The boxes and ray scans below are taken in world space, so with a spun view
+    // (side, 45° or a saved custom view) the base was sized, turned and centred against rotated axes and came out
+    // 90° off or shifted against the plate.
+    const kSpin = spin; content.rotation.y = 0; content.position.set(0, 0, 0); content.updateMatrixWorld(true);
     const yawG = new THREE.Group(), upG = new THREE.Group(); upG.add(base.obj); yawG.add(upG); baseRoot.add(yawG);
     base.obj.position.set(0, 0, 0); base.obj.rotation.set(0, 0, 0); base.obj.scale.set(1, 1, 1);
     base.obj.updateMatrixWorld(true);
@@ -815,6 +819,7 @@ export async function createEngine(el, cb = {}) {
     } });
     applyBaseFinish();
     analyzeBase();
+    pivot = null; setSpin(kSpin);
     buildSticker();
     buildName();
   }
@@ -1115,8 +1120,9 @@ export async function createEngine(el, cb = {}) {
     front.roughness = f[0]; front.clearcoat = f[1]; front.clearcoatRoughness = f[2]; front.metalness = 0;
     // raw cut MDF edge: fibrous, rough, matte
     const m = mdfEdge();
-    if (edge.map !== m) { edge.map = m; edge.bumpMap = m; edge.roughnessMap = m; edge.needsUpdate = true; }
-    edge.color.set('#ffffff'); edge.metalness = 0; edge.roughness = 0.95; edge.bumpScale = 1.4;
+    // no roughnessMap: the dark fibre texture multiplied roughness down and made the cut edge glossy
+    if (edge.map !== m || edge.roughnessMap) { edge.map = m; edge.bumpMap = m; edge.roughnessMap = null; edge.needsUpdate = true; }
+    edge.color.set('#ffffff'); edge.metalness = 0; edge.roughness = 1; edge.bumpScale = 0.5; edge.envMapIntensity = 0;
     // back is always black with a fine grain
     if (back.map || back.bumpMap !== backGrain()) { back.map = null; back.bumpMap = backGrain(); back.roughnessMap = backGrain(); back.needsUpdate = true; }
     back.color.set('#111111'); back.metalness = 0; back.roughness = 0.75; back.bumpScale = 0.6; back.clearcoat = 0.25; back.clearcoatRoughness = 0.5;
